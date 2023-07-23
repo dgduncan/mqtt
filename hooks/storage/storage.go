@@ -13,11 +13,12 @@ import (
 )
 
 const (
-	SubscriptionKey = "SUB" // unique key to denote Subscriptions in a store
-	SysInfoKey      = "SYS" // unique key to denote server system information in a store
-	RetainedKey     = "RET" // unique key to denote retained messages in a store
-	InflightKey     = "IFM" // unique key to denote inflight messages in a store
-	ClientKey       = "CL"  // unique key to denote clients in a store
+	SubscriptionKey = "SUB"  // unique key to denote Subscriptions in a store
+	SysInfoKey      = "SYS"  // unique key to denote server system information in a store
+	RetainedKey     = "RET"  // unique key to denote retained messages in a store
+	InflightKey     = "IFM"  // unique key to denote inflight messages in a store
+	ClientKey       = "CL"   // unique key to denote clients in a store
+	NodeKey         = "NODE" // unique key to denote nodes in the group
 )
 
 var (
@@ -36,6 +37,7 @@ type Client struct {
 	Listener        string           `json:"listener"`        // the listener the client connected on
 	ProtocolVersion byte             `json:"protocolVersion"` // mqtt protocol version of the client
 	Clean           bool             `json:"clean"`           // if the client requested a clean start/session
+	OwnerNode       string           `json:"owner_node"`      // node in which the client was last known to be connected to
 }
 
 // ClientProperties contains a limited set of the mqtt v5 properties specific to a client connection.

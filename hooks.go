@@ -56,6 +56,10 @@ const (
 	StoredInflightMessages
 	StoredRetainedMessages
 	StoredSysInfo
+	FetchStoredClient
+	FetchStoredSubscriptions
+	FetchStoredInflightMessages
+	FetchStoredRetainedMessages
 )
 
 var (
@@ -108,6 +112,10 @@ type Hook interface {
 	StoredInflightMessages() ([]storage.Message, error)
 	StoredRetainedMessages() ([]storage.Message, error)
 	StoredSysInfo() (storage.SystemInfo, error)
+	FetchStoredClient(cl *Client) ([]storage.Client, error)
+	FetchStoredSubscriptions(cl *Client) ([]storage.Subscription, error)
+	FetchStoredInflightMessages(cl *Client) ([]storage.Message, error)
+	FetchStoredRetainedMessages(cl *Client) ([]storage.Message, error)
 }
 
 // HookOptions contains values which are inherited from the server on initialisation.
@@ -632,6 +640,87 @@ func (h *Hooks) StoredSysInfo() (v storage.SystemInfo, err error) {
 	return
 }
 
+// StoredClients returns all clients, e.g. from a persistent store, is used to
+// populate the server clients list before start.
+func (h *Hooks) FetchStoredClients(cl *Client) (v []storage.Client, err error) {
+	for _, hook := range h.GetAll() {
+		if hook.Provides(FetchStoredClient) {
+			v, err := hook.FetchStoredClient(cl)
+			if err != nil {
+				h.Log.Error().Err(err).Str("hook", hook.ID()).Msg("failed to load clients")
+				return v, err
+			}
+
+			if len(v) > 0 {
+
+				return v, nil
+			}
+		}
+	}
+
+	return
+}
+
+// StoredSubscriptions returns all subcriptions, e.g. from a persistent store, and is
+// used to populate the server subscriptions list before start.
+func (h *Hooks) FetchStoredSubscriptions(cl *Client) (v []storage.Subscription, err error) {
+	for _, hook := range h.GetAll() {
+		if hook.Provides(FetchStoredSubscriptions) {
+			v, err := hook.FetchStoredSubscriptions(cl)
+			if err != nil {
+				h.Log.Error().Err(err).Str("hook", hook.ID()).Msg("failed to load subscriptions")
+				return v, err
+			}
+
+			if len(v) > 0 {
+				return v, nil
+			}
+		}
+	}
+
+	return
+}
+
+// StoredInflightMessages returns all inflight messages, e.g. from a persistent store,
+// and is used to populate the restored clients with inflight messages before start.
+func (h *Hooks) FetchStoredInflightMessages(cl *Client) (v []storage.Message, err error) {
+	for _, hook := range h.GetAll() {
+		if hook.Provides(FetchStoredInflightMessages) {
+			v, err := hook.FetchStoredInflightMessages(cl)
+			if err != nil {
+				h.Log.Error().Err(err).Str("hook", hook.ID()).Msg("failed to load inflight messages")
+				return v, err
+			}
+
+			if len(v) > 0 {
+				return v, nil
+			}
+		}
+	}
+
+	return
+}
+
+// StoredRetainedMessages returns all retained messages, e.g. from a persistent store,
+// and is used to populate the server topics with retained messages before start.
+func (h *Hooks) FetchStoredRetainedMessages(cl *Client) (v []storage.Message, err error) {
+	for _, hook := range h.GetAll() {
+		if hook.Provides(FetchStoredRetainedMessages) {
+			v, err := hook.FetchStoredRetainedMessages(cl)
+			if err != nil {
+				h.Log.Error().Err(err).Str("hook", hook.ID()).Msg("failed to load retained messages")
+				return v, err
+			}
+
+			if len(v) > 0 {
+				return v, nil
+			}
+		}
+	}
+
+	return
+}
+
 // OnConnectAuthenticate is called when a user attempts to authenticate with the server.
 // An implementation of this method MUST be used to allow or deny access to the
 // server (see hooks/auth/allow_all or basic). It can be used in custom hooks to
@@ -837,6 +926,26 @@ func (h *HookBase) StoredInflightMessages() (v []storage.Message, err error) {
 
 // StoredRetainedMessages returns all retained messages from a store.
 func (h *HookBase) StoredRetainedMessages() (v []storage.Message, err error) {
+	return
+}
+
+// FetchStoredClient returns all clients from a store.
+func (h *HookBase) FetchStoredClient(cl *Client) (v []storage.Client, err error) {
+	return
+}
+
+// StoredSubscriptions returns all subcriptions from a store.
+func (h *HookBase) FetchStoredSubscriptions(cl *Client) (v []storage.Subscription, err error) {
+	return
+}
+
+// StoredInflightMessages returns all inflight messages from a store.
+func (h *HookBase) FetchStoredInflightMessages(cl *Client) (v []storage.Message, err error) {
+	return
+}
+
+// StoredRetainedMessages returns all retained messages from a store.
+func (h *HookBase) FetchStoredRetainedMessages(cl *Client) (v []storage.Message, err error) {
 	return
 }
 

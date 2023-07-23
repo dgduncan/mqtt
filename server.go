@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"math"
 	"net"
+	"net/http"
 	"os"
 	"runtime"
 	"sort"
@@ -272,6 +273,7 @@ func (s *Server) Serve() error {
 		}
 	}
 
+	go s.clusterControl()
 	go s.eventLoop()                            // spin up event loop for issuing $SYS values and closing server.
 	s.Listeners.ServeAll(s.EstablishConnection) // start listening on all listeners.
 	s.publishSysTopics()                        // begin publishing $SYS system values.
@@ -302,6 +304,37 @@ func (s *Server) eventLoop() {
 			s.clearExpiredInflights(time.Now().Unix())
 		}
 	}
+}
+
+// eventLoop loops forever, running various server housekeeping methods at different intervals.
+func (s *Server) clusterControl() {
+	s.Log.Debug().Msg("cluster control started")
+	defer s.Log.Debug().Msg("cluster control halted")
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/disconnect", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+		}
+
+		fmt.Println("disconnect called")
+
+		cl, found := s.Clients.Get("test_client")
+		println(found)
+
+		if found {
+			println("should disconnect")
+			s.DisconnectClient(cl, packets.CodeDisconnect)
+		}
+	})
+	server := &http.Server{
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 5 * time.Second,
+		Addr:         ":8082",
+		Handler:      mux,
+	}
+
+	server.ListenAndServe()
 }
 
 // EstablishConnection establishes a new client when a listener accepts a new connection.
@@ -345,6 +378,47 @@ func (s *Server) attachClient(cl *Client, listener string) error {
 
 	atomic.AddInt64(&s.Info.ClientsConnected, 1)
 	defer atomic.AddInt64(&s.Info.ClientsConnected, -1)
+
+	// load client info
+
+	clients, err := s.hooks.FetchStoredClients(cl)
+	if err != nil {
+		return fmt.Errorf("failed to load clients; %w", err)
+	}
+	fmt.Println(len(clients))
+	s.loadClients(clients)
+	s.Log.Debug().
+		Int("len", len(clients)).
+		Msg("loaded clients from store")
+
+	subs, err := s.hooks.FetchStoredSubscriptions(cl)
+	if err != nil {
+		return fmt.Errorf("load subscriptions; %w", err)
+	}
+	s.loadSubscriptions(subs)
+	s.Log.Debug().
+		Int("len", len(subs)).
+		Msg("loaded subscriptions from store")
+
+	inflight, err := s.hooks.FetchStoredInflightMessages(cl)
+	if err != nil {
+		return fmt.Errorf("load inflight; %w", err)
+	}
+	s.loadInflight(inflight)
+	s.Log.Debug().
+		Int("len", len(inflight)).
+		Msg("loaded inflights from store")
+
+	retained, err := s.hooks.FetchStoredRetainedMessages(cl)
+	if err != nil {
+		return fmt.Errorf("load retained; %w", err)
+	}
+	s.loadRetained(retained)
+	s.Log.Debug().
+		Int("len", len(retained)).
+		Msg("loaded retained messages from store")
+
+	// **************
 
 	s.hooks.OnSessionEstablish(cl, pk)
 
