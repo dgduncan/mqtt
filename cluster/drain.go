@@ -12,8 +12,8 @@ import (
 
 	"github.com/hashicorp/raft"
 
-	mqtt "github.com/dgduncan/mqtt/v2"
-	"github.com/dgduncan/mqtt/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v3"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 var (

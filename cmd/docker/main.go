@@ -6,14 +6,14 @@ package main
 
 import (
 	"flag"
-	"github.com/dgduncan/mqtt/v2/config"
+	"github.com/dgduncan/mqtt/v3/config"
 	"log"
 	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
 
-	mqtt "github.com/dgduncan/mqtt/v2"
+	mqtt "github.com/dgduncan/mqtt/v3"
 )
 
 func main() {

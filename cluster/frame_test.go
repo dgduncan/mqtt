@@ -9,7 +9,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/dgduncan/mqtt/v2/packets"
+	"github.com/dgduncan/mqtt/v3/packets"
 	"github.com/stretchr/testify/require"
 )
 

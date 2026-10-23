@@ -12,10 +12,10 @@ import (
 	"time"
 
 	pebbledb "github.com/cockroachdb/pebble"
-	mqtt "github.com/dgduncan/mqtt/v2"
-	"github.com/dgduncan/mqtt/v2/hooks/storage"
-	"github.com/dgduncan/mqtt/v2/packets"
-	"github.com/dgduncan/mqtt/v2/system"
+	mqtt "github.com/dgduncan/mqtt/v3"
+	"github.com/dgduncan/mqtt/v3/hooks/storage"
+	"github.com/dgduncan/mqtt/v3/packets"
+	"github.com/dgduncan/mqtt/v3/system"
 	"github.com/stretchr/testify/require"
 )
 

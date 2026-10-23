@@ -15,7 +15,7 @@ import (
 
 	"github.com/hashicorp/raft"
 
-	"github.com/dgduncan/mqtt/v2/hooks/storage"
+	"github.com/dgduncan/mqtt/v3/hooks/storage"
 )
 
 // Request frames. A request is sent on its own connection to a node's forward listener,

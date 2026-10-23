@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	mqtt "github.com/dgduncan/mqtt/v2"
-	"github.com/dgduncan/mqtt/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v3"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 func TestDrainMovesSessions(t *testing.T) {

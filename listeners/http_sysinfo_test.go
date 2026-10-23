@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dgduncan/mqtt/v2/system"
+	"github.com/dgduncan/mqtt/v3/system"
 
 	"github.com/stretchr/testify/require"
 )

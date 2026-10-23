@@ -13,10 +13,10 @@ import (
 	"syscall"
 	"time"
 
-	mqtt "github.com/dgduncan/mqtt/v2"
-	"github.com/dgduncan/mqtt/v2/hooks/auth"
-	"github.com/dgduncan/mqtt/v2/listeners"
-	"github.com/dgduncan/mqtt/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v3"
+	"github.com/dgduncan/mqtt/v3/hooks/auth"
+	"github.com/dgduncan/mqtt/v3/listeners"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 func main() {

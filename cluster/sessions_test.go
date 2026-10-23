@@ -15,8 +15,8 @@ import (
 	"github.com/hashicorp/raft"
 	"github.com/stretchr/testify/require"
 
-	"github.com/dgduncan/mqtt/v2/hooks/storage"
-	"github.com/dgduncan/mqtt/v2/packets"
+	"github.com/dgduncan/mqtt/v3/hooks/storage"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 // isolate cuts a node off from the cluster without leaving, as if it had crashed or been

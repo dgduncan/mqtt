@@ -18,16 +18,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dgduncan/mqtt/v2/hooks/storage"
-	"github.com/dgduncan/mqtt/v2/listeners"
-	"github.com/dgduncan/mqtt/v2/packets"
-	"github.com/dgduncan/mqtt/v2/system"
+	"github.com/dgduncan/mqtt/v3/hooks/storage"
+	"github.com/dgduncan/mqtt/v3/listeners"
+	"github.com/dgduncan/mqtt/v3/packets"
+	"github.com/dgduncan/mqtt/v3/system"
 
 	"log/slog"
 )
 
 const (
-	Version                       = "2.7.9" // the current server version.
+	Version                       = "3.0.0" // the current server version.
 	defaultSysTopicInterval int64 = 1       // the interval between $SYS topic publishes
 	LocalListener                 = "local"
 	InlineClientId                = "inline"

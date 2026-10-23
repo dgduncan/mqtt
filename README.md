@@ -4,8 +4,8 @@
     
 ![build status](https://github.com/dgduncan/mqtt/actions/workflows/build.yml/badge.svg) 
 [![Coverage Status](https://coveralls.io/repos/github/dgduncan/mqtt/badge.svg?branch=master&v2)](https://coveralls.io/github/dgduncan/mqtt?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/dgduncan/mqtt)](https://goreportcard.com/report/github.com/dgduncan/mqtt/v2)
-[![Go Reference](https://pkg.go.dev/badge/github.com/dgduncan/mqtt.svg)](https://pkg.go.dev/github.com/dgduncan/mqtt/v2)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dgduncan/mqtt)](https://goreportcard.com/report/github.com/dgduncan/mqtt/v3)
+[![Go Reference](https://pkg.go.dev/badge/github.com/dgduncan/mqtt.svg)](https://pkg.go.dev/github.com/dgduncan/mqtt/v3)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dgduncan/mqtt/issues)
 
 </p>
@@ -148,9 +148,9 @@ Importing Mochi MQTT as a package requires just a few lines of code to get start
 import (
   "log"
 
-  mqtt "github.com/dgduncan/mqtt/v2"
-  "github.com/dgduncan/mqtt/v2/hooks/auth"
-  "github.com/dgduncan/mqtt/v2/listeners"
+  mqtt "github.com/dgduncan/mqtt/v3"
+  "github.com/dgduncan/mqtt/v3/hooks/auth"
+  "github.com/dgduncan/mqtt/v3/listeners"
 )
 
 func main() {

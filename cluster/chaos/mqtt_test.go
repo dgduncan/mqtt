@@ -17,7 +17,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dgduncan/mqtt/v2/packets"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 var errClosed = errors.New("connection closed")

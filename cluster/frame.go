@@ -11,7 +11,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/dgduncan/mqtt/v2/packets"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 // Frame types sent over a peer link. Each link carries frames from one node (the

@@ -9,9 +9,9 @@ import (
 	"log/slog"
 	"strings"
 
-	mqtt "github.com/dgduncan/mqtt/v2"
-	"github.com/dgduncan/mqtt/v2/hooks/storage"
-	"github.com/dgduncan/mqtt/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v3"
+	"github.com/dgduncan/mqtt/v3/hooks/storage"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 // Options contains configuration settings for the debug output.

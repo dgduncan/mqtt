@@ -11,8 +11,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/dgduncan/mqtt/v2"
-	"github.com/dgduncan/mqtt/v2/packets"
+	"github.com/dgduncan/mqtt/v3"
+	"github.com/dgduncan/mqtt/v3/packets"
 )
 
 const (

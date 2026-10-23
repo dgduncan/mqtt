@@ -14,7 +14,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dgduncan/mqtt/v2/system"
+	"github.com/dgduncan/mqtt/v3/system"
 )
 
 const TypeSysInfo = "sysinfo"

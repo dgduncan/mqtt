@@ -13,7 +13,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/dgduncan/mqtt/v2/mempool"
+	"github.com/dgduncan/mqtt/v3/mempool"
 )
 
 // All valid packet types and their packet identifiers.
