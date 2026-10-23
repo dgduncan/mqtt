@@ -11,14 +11,14 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/mochi-mqtt/server/v2/hooks/auth"
-	"github.com/mochi-mqtt/server/v2/hooks/storage/badger"
-	"github.com/mochi-mqtt/server/v2/hooks/storage/bolt"
-	"github.com/mochi-mqtt/server/v2/hooks/storage/pebble"
-	"github.com/mochi-mqtt/server/v2/hooks/storage/redis"
-	"github.com/mochi-mqtt/server/v2/listeners"
+	"github.com/dgduncan/mqtt/v2/hooks/auth"
+	"github.com/dgduncan/mqtt/v2/hooks/storage/badger"
+	"github.com/dgduncan/mqtt/v2/hooks/storage/bolt"
+	"github.com/dgduncan/mqtt/v2/hooks/storage/pebble"
+	"github.com/dgduncan/mqtt/v2/hooks/storage/redis"
+	"github.com/dgduncan/mqtt/v2/listeners"
 
-	mqtt "github.com/mochi-mqtt/server/v2"
+	mqtt "github.com/dgduncan/mqtt/v2"
 )
 
 var (

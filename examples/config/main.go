@@ -5,13 +5,13 @@
 package main
 
 import (
-	"github.com/mochi-mqtt/server/v2/config"
+	"github.com/dgduncan/mqtt/v2/config"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 
-	mqtt "github.com/mochi-mqtt/server/v2"
+	mqtt "github.com/dgduncan/mqtt/v2"
 )
 
 func main() {

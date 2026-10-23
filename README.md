@@ -2,11 +2,11 @@
 
 <p align="center">
     
-![build status](https://github.com/mochi-mqtt/server/actions/workflows/build.yml/badge.svg) 
-[![Coverage Status](https://coveralls.io/repos/github/mochi-mqtt/server/badge.svg?branch=master&v2)](https://coveralls.io/github/mochi-mqtt/server?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mochi-mqtt/server)](https://goreportcard.com/report/github.com/mochi-mqtt/server/v2)
-[![Go Reference](https://pkg.go.dev/badge/github.com/mochi-mqtt/server.svg)](https://pkg.go.dev/github.com/mochi-mqtt/server/v2)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/mochi-mqtt/server/issues)
+![build status](https://github.com/dgduncan/mqtt/actions/workflows/build.yml/badge.svg) 
+[![Coverage Status](https://coveralls.io/repos/github/dgduncan/mqtt/badge.svg?branch=master&v2)](https://coveralls.io/github/dgduncan/mqtt?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dgduncan/mqtt)](https://goreportcard.com/report/github.com/dgduncan/mqtt/v2)
+[![Go Reference](https://pkg.go.dev/badge/github.com/dgduncan/mqtt.svg)](https://pkg.go.dev/github.com/dgduncan/mqtt/v2)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dgduncan/mqtt/issues)
 
 </p>
 
@@ -57,7 +57,7 @@ Support for MQTT v3.0.0 and v3.1.1 is considered hybrid-compatibility. Where not
 Unless it's a critical issue, new releases typically go out over the weekend. 
 
 ## Roadmap
-- Please [open an issue](https://github.com/mochi-mqtt/server/issues) to request new features or event hooks!
+- Please [open an issue](https://github.com/dgduncan/mqtt/issues) to request new features or event hooks!
 - Cluster support.
 - Enhanced Metrics support.
 
@@ -148,9 +148,9 @@ Importing Mochi MQTT as a package requires just a few lines of code to get start
 import (
   "log"
 
-  mqtt "github.com/mochi-mqtt/server/v2"
-  "github.com/mochi-mqtt/server/v2/hooks/auth"
-  "github.com/mochi-mqtt/server/v2/listeners"
+  mqtt "github.com/dgduncan/mqtt/v2"
+  "github.com/dgduncan/mqtt/v2/hooks/auth"
+  "github.com/dgduncan/mqtt/v2/listeners"
 )
 
 func main() {
@@ -254,7 +254,7 @@ Hooks are stackable - you can add multiple hooks to a server, and they will be r
 | Persistence    | [mochi-mqtt/server/hooks/storage/redis](hooks/storage/redis/redis.go)    | Persistent storage using [Redis](https://redis.io).                        | 
 | Debugging      | [mochi-mqtt/server/hooks/debug](hooks/debug/debug.go)                    | Additional debugging output to visualise packet flow.                      | 
 
-Many of the internal server functions are now exposed to developers, so you can make your own Hooks by using the above as examples. If you do, please [Open an issue](https://github.com/mochi-mqtt/server/issues) and let everyone know!
+Many of the internal server functions are now exposed to developers, so you can make your own Hooks by using the above as examples. If you do, please [Open an issue](https://github.com/dgduncan/mqtt/issues) and let everyone know!
 
 ### Access Control 
 #### Allow Hook
@@ -591,7 +591,7 @@ Million Message Challenge (hit the server with 1 million messages immediately):
 > Not sure what's going on with EMQX here, perhaps the docker out-of-the-box settings are not optimal, so take it with a pinch of salt as we know for a fact it's a solid piece of software.
 
 ## Contribution Guidelines
-Contributions and feedback are both welcomed and encouraged! [Open an issue](https://github.com/mochi-mqtt/server/issues) to report a bug, ask a question, or make a feature request. If you open a pull request, please try to follow the following guidelines:
+Contributions and feedback are both welcomed and encouraged! [Open an issue](https://github.com/dgduncan/mqtt/issues) to report a bug, ask a question, or make a feature request. If you open a pull request, please try to follow the following guidelines:
 - Try to maintain test coverage where reasonably possible.
 - Clearly state what the PR does and why.
 - Please remember to add your SPDX FileContributor tag to files where you have made a meaningful contribution.
@@ -608,6 +608,6 @@ package name
 Please ensure to add a new `SPDX-FileContributor` line for each contributor to the file. Refer to other files for examples. Please remember to do this, your contributions to this project are valuable and appreciated - it's important to receive credit! 
 
 ## Stargazers over time 🥰
-[![Stargazers over time](https://starchart.cc/mochi-mqtt/server.svg)](https://starchart.cc/mochi-mqtt/server)
-Are you using Mochi MQTT in a project? [Let us know!](https://github.com/mochi-mqtt/server/issues)
+[![Stargazers over time](https://starchart.cc/dgduncan/mqtt.svg)](https://starchart.cc/dgduncan/mqtt)
+Are you using Mochi MQTT in a project? [Let us know!](https://github.com/dgduncan/mqtt/issues)
 

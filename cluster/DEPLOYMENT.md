@@ -55,7 +55,7 @@ Stage 1 is built:
 | Image | [deploy/docker/Dockerfile.cluster](../deploy/docker/Dockerfile.cluster) | Distroless, non-root, about 21MB, cross-compiled for amd64 and arm64 |
 | Helm chart | [deploy/helm/mochi-cluster](../deploy/helm/mochi-cluster) | StatefulSet, headless peer Service, client Service, PodDisruptionBudget, NetworkPolicy, auth and gossip key Secrets, PodMonitoring/ServiceMonitor. Refuses to render without auth configured |
 | Smoke test | [deploy/kind/smoke.sh](../deploy/kind/smoke.sh) | Installs three nodes on kind, checks membership, sends QoS 1 messages between nodes with an authenticated client, checks a wrong password is refused, then does a rolling restart and checks again |
-| CI | [.github/workflows/cluster.yml](../.github/workflows/cluster.yml) | Chart lint and schema validation, cluster unit tests, chaos suite (pushes, nightly, and pull requests touching the cluster or server), kind smoke test, and on pushes a multi-arch image pushed to `ghcr.io/<owner>/mochi-cluster`, tagged by commit, branch and version, with its digest in the run summary |
+| CI | [.github/workflows/cluster.yml](../.github/workflows/cluster.yml) | Chart lint and schema validation, cluster unit tests, chaos suite (pushes, nightly, and pull requests touching the cluster or server), kind smoke test, and on pushes a multi-arch image pushed to `ghcr.io/<owner>/mochi-cluster`, tagged by commit, branch and version, with its digest in the run summary. The chart is also packaged and pushed to `ghcr.io/<owner>/charts/mochi-cluster` |
 
 How nodes find each other: every node is given the headless Service's DNS name as its seed,
 and resolves it itself, leaving out its own address. The library creates a new cluster when
@@ -81,6 +81,29 @@ Still to do:
    relies on the private network and the NetworkPolicy. mTLS on both listeners (a
    `tls.Config` option in `cluster.Options`) would remove that dependency, and would allow
    node pools in different networks.
+
+## Installing the published chart
+
+Every push to a default branch and every `v*` tag packages the chart and pushes it to GHCR as
+an OCI artifact. A tag publishes its own version (`v1.4.2` becomes `1.4.2`, with `appVersion`
+set to match, as the image for that tag is), while a branch push publishes a snapshot named
+`<chart version>-sha<short commit>`, so snapshots never collide with a release:
+
+```sh
+helm install mochi-cluster oci://ghcr.io/<owner>/charts/mochi-cluster \
+  --version 1.4.2 -n mqtt --create-namespace -f my-values.yaml
+```
+
+The package GHCR creates is private. Anonymous pulls need it made public once, under *Package
+settings → Change visibility* for the `charts/mochi-cluster` package; otherwise log in with a
+token that has `read:packages`:
+
+```sh
+helm registry login ghcr.io -u <user>   # personal access token, read:packages
+```
+
+The release version is not checked against `Chart.yaml`, so bump `version` there when you tag
+if you want a checkout and a published chart to describe themselves the same way.
 
 ## GCP
 
@@ -136,6 +159,7 @@ PR ──► vet, lint, race tests ──► chaos suite (cluster/ changes) ─�
        helm lint + kubeconform ──► terraform plan (posted as a PR comment)
 
 main ──► build + push image (tag: sha, digest recorded)
+     ──► package + push helm chart to GHCR (snapshot: <chart version>-sha<commit>)
      ──► deploy to staging: GCP and Vultr in parallel (helm upgrade --atomic --wait)
      ──► smoke test: loadtest cross-node through each staging load balancer
      ──► terraform apply (staging)
@@ -154,8 +178,8 @@ nightly ──► loadtest benchmark against staging, compared with the last run
   and nightly.
 - **Build once.** Build the image only on `main`, push it to GHCR with
   `docker/build-push-action` (amd64 and arm64), and deploy by **digest**, so staging and
-  production run identical bits. The current `docker` job only runs for `mochi-mqtt/server`
-  and pushes to Docker Hub; change the condition and the registry for this fork.
+  production run identical bits. The `docker` job in `build.yml` publishes the server image to
+  `ghcr.io/dgduncan/mqtt` on version tags.
 - **Deploy.** `helm upgrade --install --atomic --wait --timeout 15m`. With OrderedReady and the
   readiness probe, Kubernetes restarts one pod at a time, waits for it to rejoin and report
   healthy, and only then moves on. `--atomic` rolls back if any pod doesn't become ready.

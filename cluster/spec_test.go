@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/mochi-mqtt/server/v2/packets"
+	"github.com/dgduncan/mqtt/v2/packets"
 )
 
 // Spec behaviour which must hold when clients are on different nodes. These were found

@@ -16,7 +16,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/mochi-mqtt/server/v2/packets"
+	"github.com/dgduncan/mqtt/v2/packets"
 )
 
 func freeAddr(t *testing.T) string {

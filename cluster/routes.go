@@ -8,8 +8,8 @@ import (
 	"sort"
 	"sync"
 
-	mqtt "github.com/mochi-mqtt/server/v2"
-	"github.com/mochi-mqtt/server/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v2"
+	"github.com/dgduncan/mqtt/v2/packets"
 )
 
 // localRoutes counts the local subscribers of each filter, so that a node announces a

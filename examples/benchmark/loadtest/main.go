@@ -26,7 +26,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/mochi-mqtt/server/v2/packets"
+	"github.com/dgduncan/mqtt/v2/packets"
 )
 
 var username, password string // credentials every client connects with

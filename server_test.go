@@ -17,10 +17,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mochi-mqtt/server/v2/hooks/storage"
-	"github.com/mochi-mqtt/server/v2/listeners"
-	"github.com/mochi-mqtt/server/v2/packets"
-	"github.com/mochi-mqtt/server/v2/system"
+	"github.com/dgduncan/mqtt/v2/hooks/storage"
+	"github.com/dgduncan/mqtt/v2/listeners"
+	"github.com/dgduncan/mqtt/v2/packets"
+	"github.com/dgduncan/mqtt/v2/system"
 
 	"github.com/stretchr/testify/require"
 )
@@ -674,7 +674,7 @@ func TestEstablishConnectionInheritExisting(t *testing.T) {
 	require.Empty(t, cl.State.Subscriptions.GetAll())
 }
 
-// See https://github.com/mochi-mqtt/server/issues/173
+// See https://github.com/dgduncan/mqtt/issues/173
 func TestEstablishConnectionInheritExistingTrueTakeover(t *testing.T) {
 	s := newServer()
 	d := new(DelayHook)
@@ -987,7 +987,7 @@ func TestEstablishConnectionMaximumClientsReached(t *testing.T) {
 	_ = r.Close()
 }
 
-// See https://github.com/mochi-mqtt/server/issues/178
+// See https://github.com/dgduncan/mqtt/issues/178
 func TestServerEstablishConnectionZeroByteUsernameIsValid(t *testing.T) {
 	s := newServer()
 

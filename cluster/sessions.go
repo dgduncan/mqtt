@@ -13,8 +13,8 @@ import (
 
 	"github.com/hashicorp/raft"
 
-	mqtt "github.com/mochi-mqtt/server/v2"
-	"github.com/mochi-mqtt/server/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v2"
+	"github.com/dgduncan/mqtt/v2/packets"
 )
 
 // session is a client session owned by this node, under a registry claim.

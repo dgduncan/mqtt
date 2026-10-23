@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mochi-mqtt/server/v2/cluster"
+	"github.com/dgduncan/mqtt/v2/cluster"
 )
 
 const project = "mochi-chaos"

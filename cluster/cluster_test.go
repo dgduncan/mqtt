@@ -21,9 +21,9 @@ import (
 	"github.com/hashicorp/raft"
 	"github.com/stretchr/testify/require"
 
-	mqtt "github.com/mochi-mqtt/server/v2"
-	"github.com/mochi-mqtt/server/v2/hooks/auth"
-	"github.com/mochi-mqtt/server/v2/packets"
+	mqtt "github.com/dgduncan/mqtt/v2"
+	"github.com/dgduncan/mqtt/v2/hooks/auth"
+	"github.com/dgduncan/mqtt/v2/packets"
 )
 
 var testLogger = slog.New(slog.NewTextHandler(io.Discard, nil))

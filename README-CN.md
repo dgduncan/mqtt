@@ -2,11 +2,11 @@
 
 <p align="center">
     
-![build status](https://github.com/mochi-mqtt/server/actions/workflows/build.yml/badge.svg) 
-[![Coverage Status](https://coveralls.io/repos/github/mochi-mqtt/server/badge.svg?branch=master&v2)](https://coveralls.io/github/mochi-mqtt/server?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mochi-mqtt/server)](https://goreportcard.com/report/github.com/mochi-mqtt/server/v2)
-[![Go Reference](https://pkg.go.dev/badge/github.com/mochi-mqtt/server.svg)](https://pkg.go.dev/github.com/mochi-mqtt/server/v2)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/mochi-mqtt/server/issues)
+![build status](https://github.com/dgduncan/mqtt/actions/workflows/build.yml/badge.svg) 
+[![Coverage Status](https://coveralls.io/repos/github/dgduncan/mqtt/badge.svg?branch=master&v2)](https://coveralls.io/github/dgduncan/mqtt?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dgduncan/mqtt)](https://goreportcard.com/report/github.com/dgduncan/mqtt/v2)
+[![Go Reference](https://pkg.go.dev/badge/github.com/dgduncan/mqtt.svg)](https://pkg.go.dev/github.com/dgduncan/mqtt/v2)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dgduncan/mqtt/issues)
 
 </p>
 
@@ -57,7 +57,7 @@ MQTT 代表 MQ Telemetry Transport。它是一种发布/订阅、非常简单和
 除非涉及关键问题，新版本通常在周末发布。
 
 ## 规划路线图(Roadmap)
-- 请[提出问题](https://github.com/mochi-mqtt/server/issues)来请求新功能或新的hook钩子接口！
+- 请[提出问题](https://github.com/dgduncan/mqtt/issues)来请求新功能或新的hook钩子接口！
 - 集群支持。
 - 统计度量支持。
 
@@ -127,9 +127,9 @@ options:
 import (
   "log"
 
-  mqtt "github.com/mochi-mqtt/server/v2"
-  "github.com/mochi-mqtt/server/v2/hooks/auth"
-  "github.com/mochi-mqtt/server/v2/listeners"
+  mqtt "github.com/dgduncan/mqtt/v2"
+  "github.com/dgduncan/mqtt/v2/hooks/auth"
+  "github.com/dgduncan/mqtt/v2/listeners"
 )
 
 func main() {
@@ -185,7 +185,7 @@ func main() {
 | listeners.NewHTTPStats       | 一个 HTTP $SYS 服务状态监听器                                                                 |
 | listeners.NewHTTPHealthCheck | 一个 HTTP 健康检测监听器，用于为例如云基础设施提供健康检查响应                                   |
 
-> 可以使用listeners.Listener接口开发新的监听器。如果有兴趣，你可以实现自己的Listener，如果你在此期间你有更好的建议或疑问，你可以[提交问题](https://github.com/mochi-mqtt/server/issues)给我们。 
+> 可以使用listeners.Listener接口开发新的监听器。如果有兴趣，你可以实现自己的Listener，如果你在此期间你有更好的建议或疑问，你可以[提交问题](https://github.com/dgduncan/mqtt/issues)给我们。 
 
 可以在*listeners.Config 中配置TLS，传递给Listener使其支持TLS。
 我们提供了一些示例，可以在 [示例](examples) 文件夹或 [cmd/main.go](cmd/main.go) 中找到。
@@ -232,7 +232,7 @@ server := mqtt.New(&mqtt.Options{
 | 数据持久性    | [mochi-mqtt/server/hooks/storage/redis](hooks/storage/redis/redis.go)    | 使用 [Redis](https://redis.io) 进行持久性存储。                         | 
 | 调试跟踪      | [mochi-mqtt/server/hooks/debug](hooks/debug/debug.go)                    | 调试输出以查看数据包在服务端的链路追踪。   |
 
-许多内部函数都已开放给开发者，你可以参考上述示例创建自己的Hook钩子。如果你有更好的关于Hook钩子方面的建议或者疑问，你可以[提交问题](https://github.com/mochi-mqtt/server/issues)给我们。
+许多内部函数都已开放给开发者，你可以参考上述示例创建自己的Hook钩子。如果你有更好的关于Hook钩子方面的建议或者疑问，你可以[提交问题](https://github.com/dgduncan/mqtt/issues)给我们。
 
 ### 访问控制(Access Control)
 
@@ -529,7 +529,7 @@ Mochi MQTT 的性能与其他的一些主流的mqtt中间件（如 Mosquitto、E
 
 ## 贡献指南(Contribution Guidelines)
 
-我们欢迎代码贡献和反馈！如果你发现了漏洞(bug)或者有任何疑问，又或者是有新的需求，请[提交给我们](https://github.com/mochi-mqtt/server/issues)。如果您提交了一个PR(pull request)请求，请尽量遵循以下准则：
+我们欢迎代码贡献和反馈！如果你发现了漏洞(bug)或者有任何疑问，又或者是有新的需求，请[提交给我们](https://github.com/dgduncan/mqtt/issues)。如果您提交了一个PR(pull request)请求，请尽量遵循以下准则：
 
 - 在合理的情况下，尽量保持测试覆盖率。
 - 清晰地说明PR(pull request)请求的作用和原因。
@@ -547,7 +547,7 @@ package name
 请确保为文件的每位贡献者添加一个新的SPDX-FileContributor 行。可以参考其他文件的示例。请务必记得这样做，你对这个项目的贡献是有价值且受到赞赏的 - 获得认可非常重要！
 
 ## 给我们星星的人数（Stargazers over time） 🥰
-[![Stargazers over time](https://starchart.cc/mochi-mqtt/server.svg)](https://starchart.cc/mochi-mqtt/server)
+[![Stargazers over time](https://starchart.cc/dgduncan/mqtt.svg)](https://starchart.cc/dgduncan/mqtt)
 
-您是否在项目中使用 Mochi MQTT？[请告诉我们！](https://github.com/mochi-mqtt/server/issues)
+您是否在项目中使用 Mochi MQTT？[请告诉我们！](https://github.com/dgduncan/mqtt/issues)
 

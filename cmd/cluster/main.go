@@ -36,10 +36,10 @@ import (
 
 	"github.com/hashicorp/memberlist"
 
-	mqtt "github.com/mochi-mqtt/server/v2"
-	"github.com/mochi-mqtt/server/v2/cluster"
-	"github.com/mochi-mqtt/server/v2/hooks/auth"
-	"github.com/mochi-mqtt/server/v2/listeners"
+	mqtt "github.com/dgduncan/mqtt/v2"
+	"github.com/dgduncan/mqtt/v2/cluster"
+	"github.com/dgduncan/mqtt/v2/hooks/auth"
+	"github.com/dgduncan/mqtt/v2/listeners"
 )
 
 const seedRetryInterval = 2 * time.Second

@@ -1,7 +1,7 @@
 name: cluster
 
 # Tests the cluster under faults, smoke tests the image and helm chart on kind, and pushes
-# the cluster image to GHCR from the default branch and release tags.
+# the cluster image and the packaged helm chart to GHCR from the default branch and release tags.
 # See cluster/DEPLOYMENT.md.
 
 on:
@@ -157,4 +157,59 @@ jobs:
             echo "\`${{ steps.name.outputs.image }}@${{ steps.build.outputs.digest }}\`"
             echo
             echo "Deploy with \`--set image.digest=${{ steps.build.outputs.digest }}\`."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  chart-publish:
+    needs: [chart, smoke]
+    # a release publishes the version of its tag; a branch push publishes a snapshot
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-helm@v4
+      - name: Chart version
+        id: meta
+        run: |
+          chart=deploy/helm/mochi-cluster
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            version="${GITHUB_REF_NAME#v}"
+            echo "app_version=$version" >> "$GITHUB_OUTPUT"
+          else
+            base=$(sed -n 's/^version:[[:space:]]*//p' "$chart/Chart.yaml" | tr -d "\"'")
+            # the "sha" prefix keeps the prerelease identifier non-numeric: a SHA starting with 0
+            # would otherwise be an invalid version segment
+            version="${base}-sha${GITHUB_SHA::7}"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Package
+        run: |
+          args=(--version "${{ steps.meta.outputs.version }}" --destination dist)
+          if [[ -n "${{ steps.meta.outputs.app_version }}" ]]; then
+            args+=(--app-version "${{ steps.meta.outputs.app_version }}")
+          fi
+          helm package deploy/helm/mochi-cluster "${args[@]}"
+      - name: Push to GHCR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          owner=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
+          echo "HELM_REPO=oci://ghcr.io/$owner/charts" >> "$GITHUB_ENV"
+          echo "$GH_TOKEN" | helm registry login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          helm push dist/*.tgz "$HELM_REPO"
+      - name: Summary
+        run: |
+          ref="$HELM_REPO/mochi-cluster:${{ steps.meta.outputs.version }}"
+          {
+            echo "### Helm chart"
+            echo
+            echo "\`$ref\`"
+            echo
+            echo '```sh'
+            echo "helm install mochi-cluster $HELM_REPO/mochi-cluster \\"
+            echo "  --version ${{ steps.meta.outputs.version }} -n mqtt --create-namespace \\"
+            echo "  -f my-values.yaml"
+            echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
