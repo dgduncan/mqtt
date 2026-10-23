@@ -29,7 +29,13 @@ func TestStats(t *testing.T) {
 	require.True(t, ok)
 	waitRetained(t, nodes, "m/r", []byte("r"))
 
-	s1, s2 := nodes[0].cluster.Stats(), nodes[1].cluster.Stats()
+	// The publisher has its puback before the forward runs, and a forward is counted right
+	// after it is queued, so the counters need time to catch up with the retained publish.
+	var s1, s2 Stats
+	require.Eventually(t, func() bool {
+		s1, s2 = nodes[0].cluster.Stats(), nodes[1].cluster.Stats()
+		return s1.Forwarded == 2 && s2.Received == 2
+	}, waitFor, tick, "forwarded and received counts")
 	require.EqualValues(t, 2, s1.Forwarded) // the publish, and the retained publish
 	require.Positive(t, s1.BytesForwarded)
 	require.EqualValues(t, 2, s2.Received)

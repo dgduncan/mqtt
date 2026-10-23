@@ -52,6 +52,11 @@ func testOptions(name string, seeds ...string) Options {
 	mc := memberlist.DefaultLocalConfig()
 	mc.BindAddr = "127.0.0.1"
 	mc.BindPort = 0
+	// A new member's gossip broadcast is only retransmitted a few times, so a node which
+	// misses it learns of the member on its next push/pull, 30s by default. Nodes stalled by
+	// a loaded race-detector build miss broadcasts, and cluster formation then outlasts the
+	// test deadline, so pull state far more often.
+	mc.PushPullInterval = time.Second * 2
 
 	rc := raft.DefaultConfig()
 	rc.HeartbeatTimeout = time.Millisecond * 100
