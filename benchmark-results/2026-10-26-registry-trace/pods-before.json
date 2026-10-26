@@ -1,0 +1,1470 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "checksum/auth": "232f384bbe7eebaa6655cd2aefd61e29f8a91268fb882277dcac900efb0f1de5"
+                },
+                "creationTimestamp": "2026-10-26T17:21:08Z",
+                "generateName": "mochi-cluster-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "mochi-cluster",
+                    "app.kubernetes.io/name": "mochi-cluster",
+                    "apps.kubernetes.io/pod-index": "0",
+                    "controller-revision-hash": "mochi-cluster-64bfc48649",
+                    "statefulset.kubernetes.io/pod-name": "mochi-cluster-0"
+                },
+                "name": "mochi-cluster-0",
+                "namespace": "mochi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "mochi-cluster",
+                        "uid": "6641b2dd-18e2-4966-a544-594d33f4780e"
+                    }
+                ],
+                "resourceVersion": "96818",
+                "uid": "98b16563-1127-49f3-ae04-532051f85495"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "MQTT_NODE_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.name"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_ADVERTISE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "status.podIP"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_SEEDS",
+                                "value": "mochi-cluster-peers.mochi.svc:7946"
+                            },
+                            {
+                                "name": "MQTT_BOOTSTRAP",
+                                "value": "auto"
+                            },
+                            {
+                                "name": "MQTT_JOIN_TIMEOUT",
+                                "value": "2m"
+                            },
+                            {
+                                "name": "MQTT_GOSSIP_KEY",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "gossip-key",
+                                        "name": "mochi-cluster-gossip"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_ALLOW_ALL",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MQTT_LISTEN",
+                                "value": ":1883"
+                            },
+                            {
+                                "name": "MQTT_WS_LISTEN",
+                                "value": ":1882"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_ON_STOP",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_RATE",
+                                "value": "0"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_TIMEOUT",
+                                "value": "60s"
+                            },
+                            {
+                                "name": "MQTT_LOG_LEVEL",
+                                "value": "debug"
+                            },
+                            {
+                                "name": "MQTT_LOG_FORMAT",
+                                "value": "json"
+                            }
+                        ],
+                        "image": "mochi-cluster:auth-fix",
+                        "imagePullPolicy": "Never",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "name": "mochi",
+                        "ports": [
+                            {
+                                "containerPort": 1883,
+                                "name": "mqtt",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 1882,
+                                "name": "mqtt-ws",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7946,
+                                "name": "gossip-tcp",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7946,
+                                "name": "gossip-udp",
+                                "protocol": "UDP"
+                            },
+                            {
+                                "containerPort": 7947,
+                                "name": "forward",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7948,
+                                "name": "raft",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 8080,
+                                "name": "admin",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 2,
+                            "httpGet": {
+                                "path": "/healthz",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 90,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-fjg57",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "hostname": "mochi-cluster-0",
+                "nodeName": "desktop-worker2",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 65532,
+                    "runAsNonRoot": true,
+                    "runAsUser": 65532,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "mochi-cluster-peers",
+                "terminationGracePeriodSeconds": 90,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "topologySpreadConstraints": [
+                    {
+                        "labelSelector": {
+                            "matchLabels": {
+                                "app.kubernetes.io/instance": "mochi-cluster",
+                                "app.kubernetes.io/name": "mochi-cluster"
+                            }
+                        },
+                        "maxSkew": 1,
+                        "topologyKey": "topology.kubernetes.io/zone",
+                        "whenUnsatisfiable": "ScheduleAnyway"
+                    },
+                    {
+                        "labelSelector": {
+                            "matchLabels": {
+                                "app.kubernetes.io/instance": "mochi-cluster",
+                                "app.kubernetes.io/name": "mochi-cluster"
+                            }
+                        },
+                        "maxSkew": 1,
+                        "topologyKey": "kubernetes.io/hostname",
+                        "whenUnsatisfiable": "ScheduleAnyway"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-fjg57",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:09Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:08Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:11Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:11Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:08Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://5584bd249148dfa60dfc2b18ea68e6ccd9253847d47595177bf372cd2463ded3",
+                        "image": "docker.io/library/mochi-cluster:auth-fix",
+                        "imageID": "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf",
+                        "lastState": {},
+                        "name": "mochi",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-26T17:21:09Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65532,
+                                "supplementalGroups": [
+                                    65532
+                                ],
+                                "uid": 65532
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-fjg57",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.26.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.26.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.244.1.6",
+                "podIPs": [
+                    {
+                        "ip": "10.244.1.6"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-26T17:21:08Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "checksum/auth": "232f384bbe7eebaa6655cd2aefd61e29f8a91268fb882277dcac900efb0f1de5"
+                },
+                "creationTimestamp": "2026-10-26T17:20:37Z",
+                "generateName": "mochi-cluster-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "mochi-cluster",
+                    "app.kubernetes.io/name": "mochi-cluster",
+                    "apps.kubernetes.io/pod-index": "1",
+                    "controller-revision-hash": "mochi-cluster-64bfc48649",
+                    "statefulset.kubernetes.io/pod-name": "mochi-cluster-1"
+                },
+                "name": "mochi-cluster-1",
+                "namespace": "mochi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "mochi-cluster",
+                        "uid": "6641b2dd-18e2-4966-a544-594d33f4780e"
+                    }
+                ],
+                "resourceVersion": "96778",
+                "uid": "f8a652c0-c62a-4d5b-8e26-90c56ab0f457"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "MQTT_NODE_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.name"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_ADVERTISE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "status.podIP"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_SEEDS",
+                                "value": "mochi-cluster-peers.mochi.svc:7946"
+                            },
+                            {
+                                "name": "MQTT_BOOTSTRAP",
+                                "value": "auto"
+                            },
+                            {
+                                "name": "MQTT_JOIN_TIMEOUT",
+                                "value": "2m"
+                            },
+                            {
+                                "name": "MQTT_GOSSIP_KEY",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "gossip-key",
+                                        "name": "mochi-cluster-gossip"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_ALLOW_ALL",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MQTT_LISTEN",
+                                "value": ":1883"
+                            },
+                            {
+                                "name": "MQTT_WS_LISTEN",
+                                "value": ":1882"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_ON_STOP",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_RATE",
+                                "value": "0"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_TIMEOUT",
+                                "value": "60s"
+                            },
+                            {
+                                "name": "MQTT_LOG_LEVEL",
+                                "value": "debug"
+                            },
+                            {
+                                "name": "MQTT_LOG_FORMAT",
+                                "value": "json"
+                            }
+                        ],
+                        "image": "mochi-cluster:auth-fix",
+                        "imagePullPolicy": "Never",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "name": "mochi",
+                        "ports": [
+                            {
+                                "containerPort": 1883,
+                                "name": "mqtt",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 1882,
+                                "name": "mqtt-ws",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7946,
+                                "name": "gossip-tcp",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7946,
+                                "name": "gossip-udp",
+                                "protocol": "UDP"
+                            },
+                            {
+                                "containerPort": 7947,
+                                "name": "forward",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7948,
+                                "name": "raft",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 8080,
+                                "name": "admin",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 2,
+                            "httpGet": {
+                                "path": "/healthz",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 90,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-s8jg9",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "hostname": "mochi-cluster-1",
+                "nodeName": "desktop-worker3",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 65532,
+                    "runAsNonRoot": true,
+                    "runAsUser": 65532,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "mochi-cluster-peers",
+                "terminationGracePeriodSeconds": 90,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "topologySpreadConstraints": [
+                    {
+                        "labelSelector": {
+                            "matchLabels": {
+                                "app.kubernetes.io/instance": "mochi-cluster",
+                                "app.kubernetes.io/name": "mochi-cluster"
+                            }
+                        },
+                        "maxSkew": 1,
+                        "topologyKey": "topology.kubernetes.io/zone",
+                        "whenUnsatisfiable": "ScheduleAnyway"
+                    },
+                    {
+                        "labelSelector": {
+                            "matchLabels": {
+                                "app.kubernetes.io/instance": "mochi-cluster",
+                                "app.kubernetes.io/name": "mochi-cluster"
+                            }
+                        },
+                        "maxSkew": 1,
+                        "topologyKey": "kubernetes.io/hostname",
+                        "whenUnsatisfiable": "ScheduleAnyway"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-s8jg9",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:20:38Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:20:37Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:06Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:06Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:20:37Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://288e34b62db6aac91ea14307e511e5ac8d9b972e3bd051aad4206f751301a4f1",
+                        "image": "docker.io/library/mochi-cluster:auth-fix",
+                        "imageID": "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf",
+                        "lastState": {},
+                        "name": "mochi",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-26T17:20:38Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65532,
+                                "supplementalGroups": [
+                                    65532
+                                ],
+                                "uid": 65532
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-s8jg9",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.26.0.5",
+                "hostIPs": [
+                    {
+                        "ip": "172.26.0.5"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.244.2.6",
+                "podIPs": [
+                    {
+                        "ip": "10.244.2.6"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-26T17:20:37Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "checksum/auth": "232f384bbe7eebaa6655cd2aefd61e29f8a91268fb882277dcac900efb0f1de5"
+                },
+                "creationTimestamp": "2026-10-26T17:20:28Z",
+                "generateName": "mochi-cluster-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "mochi-cluster",
+                    "app.kubernetes.io/name": "mochi-cluster",
+                    "apps.kubernetes.io/pod-index": "2",
+                    "controller-revision-hash": "mochi-cluster-64bfc48649",
+                    "statefulset.kubernetes.io/pod-name": "mochi-cluster-2"
+                },
+                "name": "mochi-cluster-2",
+                "namespace": "mochi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "mochi-cluster",
+                        "uid": "6641b2dd-18e2-4966-a544-594d33f4780e"
+                    }
+                ],
+                "resourceVersion": "96777",
+                "uid": "2e60a50c-1e20-4b8f-a585-9e54ca619868"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "MQTT_NODE_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.name"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_ADVERTISE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "status.podIP"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_SEEDS",
+                                "value": "mochi-cluster-peers.mochi.svc:7946"
+                            },
+                            {
+                                "name": "MQTT_BOOTSTRAP",
+                                "value": "auto"
+                            },
+                            {
+                                "name": "MQTT_JOIN_TIMEOUT",
+                                "value": "2m"
+                            },
+                            {
+                                "name": "MQTT_GOSSIP_KEY",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "gossip-key",
+                                        "name": "mochi-cluster-gossip"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MQTT_ALLOW_ALL",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MQTT_LISTEN",
+                                "value": ":1883"
+                            },
+                            {
+                                "name": "MQTT_WS_LISTEN",
+                                "value": ":1882"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_ON_STOP",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_RATE",
+                                "value": "0"
+                            },
+                            {
+                                "name": "MQTT_DRAIN_TIMEOUT",
+                                "value": "60s"
+                            },
+                            {
+                                "name": "MQTT_LOG_LEVEL",
+                                "value": "debug"
+                            },
+                            {
+                                "name": "MQTT_LOG_FORMAT",
+                                "value": "json"
+                            }
+                        ],
+                        "image": "mochi-cluster:auth-fix",
+                        "imagePullPolicy": "Never",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "name": "mochi",
+                        "ports": [
+                            {
+                                "containerPort": 1883,
+                                "name": "mqtt",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 1882,
+                                "name": "mqtt-ws",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7946,
+                                "name": "gossip-tcp",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7946,
+                                "name": "gossip-udp",
+                                "protocol": "UDP"
+                            },
+                            {
+                                "containerPort": 7947,
+                                "name": "forward",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 7948,
+                                "name": "raft",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 8080,
+                                "name": "admin",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 2,
+                            "httpGet": {
+                                "path": "/healthz",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 90,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "admin",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-fg2dp",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "hostname": "mochi-cluster-2",
+                "nodeName": "desktop-worker",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 65532,
+                    "runAsNonRoot": true,
+                    "runAsUser": 65532,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "mochi-cluster-peers",
+                "terminationGracePeriodSeconds": 90,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "topologySpreadConstraints": [
+                    {
+                        "labelSelector": {
+                            "matchLabels": {
+                                "app.kubernetes.io/instance": "mochi-cluster",
+                                "app.kubernetes.io/name": "mochi-cluster"
+                            }
+                        },
+                        "maxSkew": 1,
+                        "topologyKey": "topology.kubernetes.io/zone",
+                        "whenUnsatisfiable": "ScheduleAnyway"
+                    },
+                    {
+                        "labelSelector": {
+                            "matchLabels": {
+                                "app.kubernetes.io/instance": "mochi-cluster",
+                                "app.kubernetes.io/name": "mochi-cluster"
+                            }
+                        },
+                        "maxSkew": 1,
+                        "topologyKey": "kubernetes.io/hostname",
+                        "whenUnsatisfiable": "ScheduleAnyway"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-fg2dp",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:20:29Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:20:28Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:05Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:05Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:20:28Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://f6b6da9fef07b19d5c9d619c1fa7775ae907ef16febf8d3c4f4154b1a06b1bb3",
+                        "image": "docker.io/library/mochi-cluster:auth-fix",
+                        "imageID": "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf",
+                        "lastState": {},
+                        "name": "mochi",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-26T17:20:29Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65532,
+                                "supplementalGroups": [
+                                    65532
+                                ],
+                                "uid": 65532
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-fg2dp",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.26.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.26.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.244.3.23",
+                "podIPs": [
+                    {
+                        "ip": "10.244.3.23"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "memory": "512Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-26T17:20:28Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"mochi-loadtest\",\"namespace\":\"mochi\"},\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"image\":\"mochi-loadtest:saturation\",\"imagePullPolicy\":\"Never\",\"name\":\"loadtest\",\"resources\":{\"limits\":{\"memory\":\"1Gi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"128Mi\"}},\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"readOnlyRootFilesystem\":true,\"runAsUser\":65532}}],\"nodeSelector\":{\"kubernetes.io/hostname\":\"desktop-control-plane\"},\"restartPolicy\":\"Never\",\"tolerations\":[{\"effect\":\"NoSchedule\",\"key\":\"node-role.kubernetes.io/control-plane\",\"operator\":\"Exists\"}]}}\n"
+                },
+                "creationTimestamp": "2026-10-26T17:21:31Z",
+                "generation": 1,
+                "name": "mochi-loadtest",
+                "namespace": "mochi",
+                "resourceVersion": "96877",
+                "uid": "ec4ba4ef-5b1c-4792-a45a-6cc43446e085"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "image": "mochi-loadtest:saturation",
+                        "imagePullPolicy": "Never",
+                        "name": "loadtest",
+                        "resources": {
+                            "limits": {
+                                "memory": "1Gi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsUser": 65532
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "desktop-control-plane",
+                "nodeSelector": {
+                    "kubernetes.io/hostname": "desktop-control-plane"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "node-role.kubernetes.io/control-plane",
+                        "operator": "Exists"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "128Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-26T17:21:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "128Mi"
+                        },
+                        "containerID": "containerd://13d0b0c6d446d5d1cc7beb032ea8826e49cdbf8613a1548741b6b664caa86cc1",
+                        "image": "docker.io/library/mochi-loadtest:saturation",
+                        "imageID": "sha256:ca7e44c8723428144613396d3f498e93f3ba3418f15f4117c6657f5d54ca9e06",
+                        "lastState": {},
+                        "name": "loadtest",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "memory": "1Gi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-26T17:21:31Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 65532
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.26.0.4",
+                "hostIPs": [
+                    {
+                        "ip": "172.26.0.4"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.244.0.8",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.8"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "memory": "1Gi"
+                    },
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "128Mi"
+                    }
+                },
+                "startTime": "2026-10-26T17:21:31Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

@@ -138,16 +138,17 @@ func (l *Ledger) Update(ln *Ledger) {
 func (l *Ledger) AuthOk(cl *mqtt.Client, pk packets.Packet) (n int, ok bool) {
 	// If the users map is set, always check for a predefined user first instead
 	// of iterating through global rules.
-	if l.Users != nil {
-		if u, ok := l.Users[string(cl.Properties.Username)]; ok &&
-			u.Password != "" &&
-			u.Password == RString(pk.Connect.Password) {
-			return 0, !u.Disallow
+	if u, exists := l.Users[string(cl.Properties.Username)]; exists {
+		if u.Disallow {
+			return 0, false
+		}
+		if u.Password != "" {
+			return 0, u.Password == RString(pk.Connect.Password)
 		}
 	}
 
-	// If there's no users map, or no user was found, attempt to find a matching
-	// rule (which may also contain a user).
+	// Unknown users and enabled ACL-only users defer to the global auth rules.
+	// A failed password check or a disabled user must never reach these rules.
 	for n, rule := range l.Auth {
 		if rule.Client.Matches(cl.ID) &&
 			rule.Username.Matches(string(cl.Properties.Username)) &&

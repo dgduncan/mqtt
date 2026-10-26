@@ -1,0 +1,146 @@
+[
+  {
+    "client_port": 52302,
+    "request_type": "release",
+    "log_time": "2026-10-26T17:36:13.287712626Z",
+    "worker_response_ms": 1.709,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.183
+  },
+  {
+    "client_port": 52312,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288252543Z",
+    "worker_response_ms": 1.659,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.769
+  },
+  {
+    "client_port": 52382,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288346209Z",
+    "worker_response_ms": 1.274,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.757
+  },
+  {
+    "client_port": 52272,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288395751Z",
+    "worker_response_ms": 1.636,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.419
+  },
+  {
+    "client_port": 52372,
+    "request_type": "release",
+    "log_time": "2026-10-26T17:36:13.288532668Z",
+    "worker_response_ms": 1.371,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.766
+  },
+  {
+    "client_port": 52356,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288567209Z",
+    "worker_response_ms": 1.433,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.904
+  },
+  {
+    "client_port": 52366,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288593293Z",
+    "worker_response_ms": 1.301,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.767
+  },
+  {
+    "client_port": 52392,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288682584Z",
+    "worker_response_ms": 0.874,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.32
+  },
+  {
+    "client_port": 52394,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288766376Z",
+    "worker_response_ms": 1.264,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.903
+  },
+  {
+    "client_port": 52414,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.288857001Z",
+    "worker_response_ms": 0.62,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6377.007
+  },
+  {
+    "client_port": 52296,
+    "request_type": "release",
+    "log_time": "2026-10-26T17:36:13.289058084Z",
+    "worker_response_ms": 1.476,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.257
+  },
+  {
+    "client_port": 52338,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.289110959Z",
+    "worker_response_ms": 1.624,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.762
+  },
+  {
+    "client_port": 52330,
+    "request_type": "release",
+    "log_time": "2026-10-26T17:36:13.289254668Z",
+    "worker_response_ms": 1.716,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.859
+  },
+  {
+    "client_port": 52280,
+    "request_type": "claim",
+    "log_time": "2026-10-26T17:36:13.289693209Z",
+    "worker_response_ms": 1.597,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.415
+  },
+  {
+    "client_port": 52346,
+    "request_type": "release",
+    "log_time": "2026-10-26T17:36:13.289789418Z",
+    "worker_response_ms": 1.586,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.061
+  },
+  {
+    "client_port": 52340,
+    "request_type": "release",
+    "log_time": "2026-10-26T17:36:13.289821293Z",
+    "worker_response_ms": 1.598,
+    "response_status_ok": true,
+    "pod_response_before_timeout": false,
+    "first_pod_response_ms": 6378.746
+  }
+]

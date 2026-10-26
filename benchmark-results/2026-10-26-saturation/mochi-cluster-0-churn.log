@@ -1,0 +1,50 @@
+{"time":"2026-10-26T16:56:06.503073379Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.503140004Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.504603713Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.504645379Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.504691379Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.504854088Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.504885921Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.505355838Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.505358004Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.506014879Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.506109171Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.573845088Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.573857421Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.573989671Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.574045046Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.574525088Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.600048463Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.600091838Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.600791796Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.60426088Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.604375921Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.60456538Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.604529838Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.60490713Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.60511413Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.605116963Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.605270213Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.606048463Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:06.60638738Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}
+{"time":"2026-10-26T16:56:10.500930715Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1020","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.500950048Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1011","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.500962673Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-990","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.501054256Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1008","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.50105909Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501060465Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501059423Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.500930631Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1026","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.500944798Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1047","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.501075923Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-999","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.501107673Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501112465Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501111923Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501117298Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501132673Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1005","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.501142465Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-1029","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.501172798Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.501278965Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:10.50130834Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-0","client":"connect-1793033764824679837-981","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T16:56:10.501365798Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T16:56:12.033782799Z","level":"WARN","msg":"","listener":"tcp","error":"EOF"}

@@ -1,0 +1,7 @@
+table ip mochi_registry_recovery {
+    chain prerouting {
+        type nat hook prerouting priority -101; policy accept;
+        ip saddr 10.244.1.6 ip daddr 10.244.2.6 tcp dport 7948 dnat to 10.244.2.7
+        ip saddr 10.244.1.6 ip daddr 10.244.3.23 tcp dport 7948 dnat to 10.244.3.24
+    }
+}

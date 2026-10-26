@@ -1,0 +1,135 @@
+{"time":"2026-10-26T17:47:50.601806839Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:51.189821506Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:51.189853131Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:51.758325214Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:52.072054506Z","level":"DEBUG","msg":"[DEBUG] memberlist: Initiating push/pull sync with: mochi-cluster-1 10.244.2.7:7946","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:52.072370881Z","level":"DEBUG","msg":"[DEBUG] memberlist: Stream connection from=10.244.2.7:57614","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:52.422602881Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:52.422634048Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:53.129814757Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:54.154046382Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:54.345657924Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:54.345695257Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:55.414459424Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:55.414505258Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:55.423909716Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:56.493634592Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:56.493669883Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:56.622489092Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:58.118374217Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:58.118534342Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:58.564778509Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:59.297558301Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:59.29759126Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:47:59.626523718Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:00.760927427Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:00.761010302Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:01.190183344Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:02.423806969Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:02.450149553Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:02.450391011Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:04.141417554Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:04.141459762Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:04.346995054Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:05.415046596Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:05.421365346Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:05.421389346Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:06.496011638Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:06.983378388Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:06.983448222Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:08.120343805Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:08.946548458Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:08.946691458Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:09.301986042Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:10.055495834Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:10.055558792Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:10.766921584Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:11.222787626Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:11.222868793Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:12.354429335Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:12.35451571Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:12.455005502Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:13.424466044Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:13.424498169Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:14.150803294Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:15.165904086Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:15.165949253Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:15.424953878Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:16.630017837Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:16.630068045Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:16.98686117Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:18.008656963Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:18.008711546Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:18.95013463Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:19.988350713Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:19.988433713Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:20.060649672Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:21.223467381Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:21.401246006Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:21.401306506Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:22.085481839Z","level":"DEBUG","msg":"[DEBUG] memberlist: Initiating push/pull sync with: mochi-cluster-1 10.244.2.7:7946","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:22.085898798Z","level":"DEBUG","msg":"[DEBUG] memberlist: Stream connection from=10.244.2.7:40126","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:22.356828631Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:23.16058184Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:23.160647298Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:23.425220048Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:24.530639049Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:24.530672049Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:25.167693174Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:26.149702341Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:26.149879841Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:26.63270455Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:27.898515509Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:27.898556592Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:28.009915426Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:28.961545051Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:28.961669509Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:29.989488218Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:30.033812135Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:30.033859552Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:31.402320344Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:31.818593261Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:31.818687469Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:32.91287697Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:32.912904928Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:33.161676803Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:33.966278262Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:33.96634297Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:34.531108929Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:35.064495262Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:35.064630387Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.109421805Z","level":"WARN","msg":"[WARN]  raft: Election timeout reached, restarting election","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.109511346Z","level":"DEBUG","msg":"[INFO]  raft: entering candidate state: node=\"Node at 10.244.1.6:7948 [Candidate]\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.112449596Z","level":"DEBUG","msg":"[INFO]  raft: pre-vote successful, starting election: term=14 tally=2 refused=0 votesNeeded=2","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.112781805Z","level":"DEBUG","msg":"[INFO]  raft: election won: term=14 tally=2","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.11280843Z","level":"DEBUG","msg":"[INFO]  raft: entering leader state: leader=\"Node at 10.244.1.6:7948 [Leader]\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.11283118Z","level":"DEBUG","msg":"[INFO]  raft: added peer, starting replication: peer=mochi-cluster-1","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.113312638Z","level":"WARN","msg":"[WARN]  raft: appendEntries rejected, sending older logs: peer=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" next=1","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.113339096Z","level":"ERROR","msg":"[ERROR] raft: failed to get log: index=1 error=\"log not found\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.113345805Z","level":"DEBUG","msg":"[INFO]  raft: opening snapshot: id=11-227327-1793036670081","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.113372055Z","level":"DEBUG","msg":"[INFO]  raft: installing snapshot on: peer=mochi-cluster-1 id=11-227327-1793036670081 size=9362","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.115089013Z","level":"DEBUG","msg":"[INFO]  raft: pipelining replication: peer=\"{Voter mochi-cluster-1 10.244.2.6:7948}\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.151481263Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.219283805Z","level":"DEBUG","msg":"[INFO]  raft: updating configuration: command=AddVoter server-id=mochi-cluster-1 server-addr=10.244.2.7:7948 servers=\"[{Suffrage:Voter ID:mochi-cluster-1 Address:10.244.2.7:7948} {Suffrage:Voter ID:mochi-cluster-0 Address:10.244.1.6:7948}]\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.219448805Z","level":"DEBUG","msg":"[INFO]  raft: updating peer: peer=mochi-cluster-1","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:36.220293513Z","level":"INFO","msg":"added raft voter","node":"mochi-cluster-0","peer":"mochi-cluster-1","addr":"10.244.2.7:7948"}
+{"time":"2026-10-26T17:48:37.900467764Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:38.966985083Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:40.035642667Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:41.819900126Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:42.91640846Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:43.968090586Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:45.066376961Z","level":"ERROR","msg":"[ERROR] raft: failed to make requestVote RPC: target=\"{Voter mochi-cluster-1 10.244.2.6:7948}\" error=\"dial tcp 10.244.2.6:7948: i/o timeout\" term=14","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:52.285322923Z","level":"DEBUG","msg":"[DEBUG] memberlist: Initiating push/pull sync with: mochi-cluster-1 10.244.2.7:7946","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:48:52.28551459Z","level":"DEBUG","msg":"[DEBUG] memberlist: Stream connection from=10.244.2.7:56978","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.006412131Z","level":"DEBUG","msg":"[DEBUG] memberlist: Stream connection from=10.244.3.25:43188","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.006578339Z","level":"INFO","msg":"cluster node joined","node":"mochi-cluster-0","peer":"mochi-cluster-2","addr":"10.244.3.25:7947"}
+{"time":"2026-10-26T17:49:21.217130089Z","level":"DEBUG","msg":"[INFO]  raft: updating configuration: command=AddVoter server-id=mochi-cluster-2 server-addr=10.244.3.25:7948 servers=\"[{Suffrage:Voter ID:mochi-cluster-1 Address:10.244.2.7:7948} {Suffrage:Voter ID:mochi-cluster-0 Address:10.244.1.6:7948} {Suffrage:Voter ID:mochi-cluster-2 Address:10.244.3.25:7948}]\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.217168589Z","level":"DEBUG","msg":"[INFO]  raft: added peer, starting replication: peer=mochi-cluster-2","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.217455547Z","level":"INFO","msg":"added raft voter","node":"mochi-cluster-0","peer":"mochi-cluster-2","addr":"10.244.3.25:7948"}
+{"time":"2026-10-26T17:49:21.217777006Z","level":"WARN","msg":"[WARN]  raft: appendEntries rejected, sending older logs: peer=\"{Voter mochi-cluster-2 10.244.3.25:7948}\" next=1","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.217789672Z","level":"ERROR","msg":"[ERROR] raft: failed to get log: index=1 error=\"log not found\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.217793006Z","level":"DEBUG","msg":"[INFO]  raft: opening snapshot: id=11-227327-1793036670081","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.217800714Z","level":"DEBUG","msg":"[INFO]  raft: installing snapshot on: peer=mochi-cluster-2 id=11-227327-1793036670081 size=9362","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:21.218699964Z","level":"DEBUG","msg":"[INFO]  raft: pipelining replication: peer=\"{Voter mochi-cluster-2 10.244.3.25:7948}\"","node":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:22.286680006Z","level":"DEBUG","msg":"[DEBUG] memberlist: Initiating push/pull sync with: mochi-cluster-2 10.244.3.25:7946","node":"mochi-cluster-0"}

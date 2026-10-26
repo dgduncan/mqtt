@@ -11,6 +11,12 @@ auth:
       - username: smoke
         password: smoke-password
         allow: true
+    acl:
+      - username: smoke
+        filters:
+          "loadtest/#": 3
+      - filters:
+          "#": 0
 resources:
   requests: { cpu: 50m, memory: 64Mi }
   limits: { memory: 512Mi }

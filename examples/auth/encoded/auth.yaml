@@ -17,5 +17,4 @@ acl:
         melon/#: 3
         updates/#: 2
     - filters:
-        '#': 1
-        updates/#: 0
+        '#': 0

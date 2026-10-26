@@ -1,0 +1,37 @@
+{"time":"2026-10-26T17:49:19.956301838Z","level":"INFO","msg":"starting mochi cluster node","version":"auth-fix","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:49:19.956337463Z","level":"WARN","msg":"MQTT_ALLOW_ALL is set: every client is allowed"}
+{"time":"2026-10-26T17:49:19.956344422Z","level":"INFO","msg":"added hook","hook":"allow-all-auth"}
+{"time":"2026-10-26T17:49:19.958781755Z","level":"INFO","msg":"attached listener","id":"tcp","protocol":"tcp","address":"[::]:1883"}
+{"time":"2026-10-26T17:49:19.958821422Z","level":"INFO","msg":"attached listener","id":"ws","protocol":"ws","address":":1882"}
+{"time":"2026-10-26T17:49:19.959740297Z","level":"INFO","msg":"joining cluster","seeds":["10.244.1.6:7946","10.244.2.7:7946"]}
+{"time":"2026-10-26T17:49:19.959776672Z","level":"INFO","msg":"added hook","hook":"cluster"}
+{"time":"2026-10-26T17:49:21.006675422Z","level":"INFO","msg":"cluster node joined","node":"mochi-cluster-2","peer":"mochi-cluster-0","addr":"10.244.1.6:7947"}
+{"time":"2026-10-26T17:49:21.006695714Z","level":"INFO","msg":"cluster node joined","node":"mochi-cluster-2","peer":"mochi-cluster-1","addr":"10.244.2.7:7947"}
+{"time":"2026-10-26T17:49:21.007788839Z","level":"INFO","msg":"cluster node started","node":"mochi-cluster-2","gossip":"10.244.3.25:7946","forward":"[::]:7947","raft":"[::]:7948"}
+{"time":"2026-10-26T17:49:21.007800547Z","level":"INFO","msg":"mochi mqtt starting","version":"3.0.0"}
+{"time":"2026-10-26T17:49:21.008460214Z","level":"INFO","msg":"mochi mqtt server started"}
+{"time":"2026-10-26T17:49:21.008488297Z","level":"INFO","msg":"admin http listening","addr":":8080"}
+{"time":"2026-10-26T17:49:21.217689672Z","level":"WARN","msg":"[WARN]  raft: failed to get previous log: previous-index=227334 last-index=0 error=\"log not found\"","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:49:50.961783297Z","level":"INFO","msg":"cluster node left","node":"mochi-cluster-2","peer":"mochi-cluster-0"}
+{"time":"2026-10-26T17:49:53.049288965Z","level":"INFO","msg":"[INFO] memberlist: Updating address for left or failed node mochi-cluster-0 from 10.244.1.6:7946 to 10.244.1.7:7946","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:49:53.049322965Z","level":"INFO","msg":"cluster node joined","node":"mochi-cluster-2","peer":"mochi-cluster-0","addr":"10.244.1.7:7947"}
+{"time":"2026-10-26T17:50:10.169758667Z","level":"ERROR","msg":"[ERR] memberlist: Push/Pull with mochi-cluster-1 failed: dial tcp 10.244.2.7:7946: i/o timeout","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:50:50.17141663Z","level":"ERROR","msg":"[ERR] memberlist: Push/Pull with mochi-cluster-0 failed: dial tcp 10.244.1.7:7946: i/o timeout","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:50:53.753472382Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"benchmark-sys-2-1793037048750145000","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:50:53.753644465Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:50:56.9645553Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"benchmark-sys-2-1793037051959430000","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:50:56.964722092Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:51:00.171710718Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"benchmark-sys-2-1793037055164476000","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:51:00.171785927Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:51:03.37173847Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"benchmark-sys-2-1793037058367759000","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:51:03.371859262Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:51:06.584363138Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"benchmark-sys-2-1793037061578449000","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:51:06.584500805Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:51:09.791376584Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"benchmark-sys-2-1793037064784451000","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:51:09.791603709Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:51:30.172457177Z","level":"ERROR","msg":"[ERR] memberlist: Push/Pull with mochi-cluster-1 failed: dial tcp 10.244.2.7:7946: i/o timeout","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:52:10.175675542Z","level":"ERROR","msg":"[ERR] memberlist: Push/Pull with mochi-cluster-1 failed: dial tcp 10.244.2.7:7946: i/o timeout","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:52:50.180796589Z","level":"ERROR","msg":"[ERR] memberlist: Push/Pull with mochi-cluster-1 failed: dial tcp 10.244.2.7:7946: i/o timeout","node":"mochi-cluster-2"}
+{"time":"2026-10-26T17:53:13.66141796Z","level":"WARN","msg":"refused connection: failed to claim session","node":"mochi-cluster-2","client":"loadtest-sub-1793037182572134428-2","error":"cluster session registry unavailable"}
+{"time":"2026-10-26T17:53:13.661522752Z","level":"WARN","msg":"","listener":"tcp","error":"server unavailable"}
+{"time":"2026-10-26T17:53:30.182889343Z","level":"ERROR","msg":"[ERR] memberlist: Push/Pull with mochi-cluster-0 failed: dial tcp 10.244.1.7:7946: i/o timeout","node":"mochi-cluster-2"}

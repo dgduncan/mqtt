@@ -1,0 +1,95 @@
+{
+  "apiVersion": "networking.k8s.io/v1",
+  "kind": "NetworkPolicy",
+  "metadata": {
+    "annotations": {
+      "meta.helm.sh/release-name": "mochi-cluster",
+      "meta.helm.sh/release-namespace": "mochi"
+    },
+    "creationTimestamp": "2026-10-26T17:41:38Z",
+    "generation": 1,
+    "labels": {
+      "app.kubernetes.io/instance": "mochi-cluster",
+      "app.kubernetes.io/managed-by": "Helm",
+      "app.kubernetes.io/name": "mochi-cluster",
+      "app.kubernetes.io/version": "dev",
+      "helm.sh/chart": "mochi-cluster-0.1.0"
+    },
+    "name": "mochi-cluster",
+    "namespace": "mochi",
+    "resourceVersion": "99282",
+    "uid": "92b556ee-e2e4-4c7b-832d-61d91144c518"
+  },
+  "spec": {
+    "ingress": [
+      {
+        "from": [
+          {
+            "podSelector": {
+              "matchLabels": {
+                "app.kubernetes.io/instance": "mochi-cluster",
+                "app.kubernetes.io/name": "mochi-cluster"
+              }
+            }
+          }
+        ],
+        "ports": [
+          {
+            "port": 7946,
+            "protocol": "TCP"
+          },
+          {
+            "port": 7946,
+            "protocol": "UDP"
+          },
+          {
+            "port": 7947,
+            "protocol": "TCP"
+          },
+          {
+            "port": 7948,
+            "protocol": "TCP"
+          },
+          {
+            "port": 8080,
+            "protocol": "TCP"
+          }
+        ]
+      },
+      {
+        "ports": [
+          {
+            "port": 1883,
+            "protocol": "TCP"
+          },
+          {
+            "port": 1882,
+            "protocol": "TCP"
+          }
+        ]
+      },
+      {
+        "from": [
+          {
+            "podSelector": {}
+          }
+        ],
+        "ports": [
+          {
+            "port": 8080,
+            "protocol": "TCP"
+          }
+        ]
+      }
+    ],
+    "podSelector": {
+      "matchLabels": {
+        "app.kubernetes.io/instance": "mochi-cluster",
+        "app.kubernetes.io/name": "mochi-cluster"
+      }
+    },
+    "policyTypes": [
+      "Ingress"
+    ]
+  }
+}

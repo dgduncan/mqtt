@@ -210,7 +210,7 @@ func TestCanAuthenticate(t *testing.T) {
 			desc: "never user in users",
 			client: &mqtt.Client{
 				Properties: mqtt.ClientProperties{
-					Username: []byte("suspended-user"),
+					Username: []byte("suspended-username"),
 				},
 			},
 			pk: packets.Packet{Connect: packets.ConnectParams{Password: []byte("any")}},
@@ -224,6 +224,35 @@ func TestCanAuthenticate(t *testing.T) {
 			n, ok := checkLedger.AuthOk(d.client, d.pk)
 			require.Equal(t, d.n, n)
 			require.Equal(t, d.ok, ok)
+		})
+	}
+}
+
+func TestUsersAuthenticationDoesNotFallBack(t *testing.T) {
+	tests := []struct {
+		name     string
+		user     UserRule
+		password string
+		want     bool
+	}{
+		{name: "matching password", user: UserRule{Password: "secret"}, password: "secret", want: true},
+		{name: "wrong password", user: UserRule{Password: "secret"}, password: "wrong"},
+		{name: "missing password", user: UserRule{Password: "secret"}},
+		{name: "disabled matching password", user: UserRule{Password: "secret", Disallow: true}, password: "secret"},
+		{name: "disabled wrong password", user: UserRule{Password: "secret", Disallow: true}, password: "wrong"},
+		{name: "disabled missing password", user: UserRule{Password: "secret", Disallow: true}},
+		{name: "disabled without stored password", user: UserRule{Disallow: true}, password: "anything"},
+		{name: "enabled ACL-only user", user: UserRule{ACL: Filters{"tenant/#": ReadOnly}}, password: "anything", want: true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ledger := Ledger{
+				Users: Users{"device": tt.user},
+				Auth:  AuthRules{{Client: "audit-*", Allow: true}},
+			}
+			client := &mqtt.Client{ID: "audit-client", Properties: mqtt.ClientProperties{Username: []byte("device")}}
+			_, ok := ledger.AuthOk(client, packets.Packet{Connect: packets.ConnectParams{Password: []byte(tt.password)}})
+			require.Equal(t, tt.want, ok)
 		})
 	}
 }

@@ -1,0 +1,6 @@
+2026/10/26 17:51:46 subscriber 2: dial tcp 10.244.3.25:1883: i/o timeout
+command terminated with exit code 1
+
+The direct in-cluster QoS 2 smoke check failed during subscriber setup.
+No publish/delivery result was produced. All three pods reported ready.
+An earlier host port-forward monitoring connection also timed out during MQTT setup.

@@ -1,0 +1,2 @@
+2026/10/26 17:53:13 subscriber 2: connection refused: 0x88
+command terminated with exit code 1

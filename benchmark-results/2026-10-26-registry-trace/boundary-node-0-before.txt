@@ -1,0 +1,255 @@
+TcpExt: SyncookiesSent SyncookiesRecv SyncookiesFailed EmbryonicRsts PruneCalled RcvPruned OfoPruned OutOfWindowIcmps LockDroppedIcmps ArpFilter TW TWRecycled TWKilled PAWSActive PAWSEstab BeyondWindow TSEcrRejected PAWSOldAck PAWSTimewait DelayedACKs DelayedACKLocked DelayedACKLost ListenOverflows ListenDrops TCPHPHits TCPPureAcks TCPHPAcks TCPRenoRecovery TCPSackRecovery TCPSACKReneging TCPSACKReorder TCPRenoReorder TCPTSReorder TCPFullUndo TCPPartialUndo TCPDSACKUndo TCPLossUndo TCPLostRetransmit TCPRenoFailures TCPSackFailures TCPLossFailures TCPFastRetrans TCPSlowStartRetrans TCPTimeouts TCPLossProbes TCPLossProbeRecovery TCPRenoRecoveryFail TCPSackRecoveryFail TCPRcvCollapsed TCPBacklogCoalesce TCPDSACKOldSent TCPDSACKOfoSent TCPDSACKRecv TCPDSACKOfoRecv TCPAbortOnData TCPAbortOnClose TCPAbortOnMemory TCPAbortOnTimeout TCPAbortOnLinger TCPAbortFailed TCPMemoryPressures TCPMemoryPressuresChrono TCPSACKDiscard TCPDSACKIgnoredOld TCPDSACKIgnoredNoUndo TCPSpuriousRTOs TCPMD5NotFound TCPMD5Unexpected TCPMD5Failure TCPSackShifted TCPSackMerged TCPSackShiftFallback TCPBacklogDrop PFMemallocDrop TCPMinTTLDrop TCPDeferAcceptDrop IPReversePathFilter TCPTimeWaitOverflow TCPReqQFullDoCookies TCPReqQFullDrop TCPRetransFail TCPRcvCoalesce TCPOFOQueue TCPOFODrop TCPOFOMerge TCPChallengeACK TCPSYNChallenge TCPFastOpenActive TCPFastOpenActiveFail TCPFastOpenPassive TCPFastOpenPassiveFail TCPFastOpenListenOverflow TCPFastOpenCookieReqd TCPFastOpenBlackhole TCPSpuriousRtxHostQueues BusyPollRxPackets TCPAutoCorking TCPFromZeroWindowAdv TCPToZeroWindowAdv TCPWantZeroWindowAdv TCPSynRetrans TCPOrigDataSent TCPHystartTrainDetect TCPHystartTrainCwnd TCPHystartDelayDetect TCPHystartDelayCwnd TCPACKSkippedSynRecv TCPACKSkippedPAWS TCPACKSkippedSeq TCPACKSkippedFinWait2 TCPACKSkippedTimeWait TCPACKSkippedChallenge TCPWinProbe TCPKeepAlive TCPMTUPFail TCPMTUPSuccess TCPDelivered TCPDeliveredCE TCPAckCompressed TCPZeroWindowDrop TCPRcvQDrop TCPWqueueTooBig TCPFastOpenPassiveAltKey TcpTimeoutRehash TcpDuplicateDataRehash TCPDSACKRecvSegs TCPDSACKIgnoredDubious TCPMigrateReqSuccess TCPMigrateReqFailure TCPPLBRehash TCPAORequired TCPAOBad TCPAOKeyNotFound TCPAOGood TCPAODroppedIcmps
+TcpExt: 0 0 0 0 0 0 0 0 0 0 613 0 0 0 0 0 0 0 0 1864 0 55 0 0 118364 12422 45516 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0 0 0 0 63 55 0 5 0 11 3 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7022 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 3 0 151367 49 930 0 0 0 0 0 0 0 0 0 50 0 0 157001 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0
+IpExt: InNoRoutes InTruncatedPkts InMcastPkts OutMcastPkts InBcastPkts OutBcastPkts InOctets OutOctets InMcastOctets OutMcastOctets InBcastOctets OutBcastOctets InCsumErrors InNoECTPkts InECT1Pkts InECT0Pkts InCEPkts ReasmOverlaps
+IpExt: 0 0 0 0 0 0 23079345263 23044299803 0 0 0 0 0 40331886 0 0 0 0
+Ip: Forwarding DefaultTTL InReceives InHdrErrors InAddrErrors ForwDatagrams InUnknownProtos InDiscards InDelivers OutRequests OutDiscards OutNoRoutes ReasmTimeout ReasmReqds ReasmOKs ReasmFails FragOKs FragFails FragCreates OutTransmits
+Ip: 1 64 40331722 0 0 40070895 0 0 260826 218327 0 0 0 0 0 0 0 0 0 40287682
+Icmp: InMsgs InErrors InCsumErrors InDestUnreachs InTimeExcds InParmProbs InSrcQuenchs InRedirects InEchos InEchoReps InTimestamps InTimestampReps InAddrMasks InAddrMaskReps OutMsgs OutErrors OutRateLimitGlobal OutRateLimitHost OutDestUnreachs OutTimeExcds OutParmProbs OutSrcQuenchs OutRedirects OutEchos OutEchoReps OutTimestamps OutTimestampReps OutAddrMasks OutAddrMaskReps
+Icmp: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Tcp: RtoAlgorithm RtoMin RtoMax MaxConn ActiveOpens PassiveOpens AttemptFails EstabResets CurrEstab InSegs OutSegs RetransSegs InErrs OutRsts InCsumErrors
+Tcp: 1 200 120000 -1 5737 104 52 54 5 260723 218222 5 0 15 0
+Udp: InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors IgnoredMulti MemErrors
+Udp: 122 0 0 122 0 0 0 0 0
+UdpLite: InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors IgnoredMulti MemErrors
+UdpLite: 0 0 0 0 0 0 0 0 0
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    RX:  bytes packets errors dropped  missed   mcast           
+      19882053  127768      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+      19882053  127768      0       0       0       0 
+2: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+3: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/gre 0.0.0.0 brd 0.0.0.0
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+4: gretap0@NONE: <BROADCAST,MULTICAST> mtu 1462 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+5: erspan0@NONE: <BROADCAST,MULTICAST> mtu 1450 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+6: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+7: ip6_vti0@NONE: <NOARP> mtu 1428 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/tunnel6 :: brd :: permaddr 3a21:ba35:138c::
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+8: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+9: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/tunnel6 :: brd :: permaddr 5691:875c:83a9::
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+10: ip6gre0@NONE: <NOARP> mtu 1448 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/gre6 :: brd :: permaddr 629a:3f6b:bf3d::
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+11: eth0@if27: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether b2:8e:03:8b:d3:9c brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    RX:   bytes  packets errors dropped  missed   mcast           
+     7560147357 23790758      0       0       0       0 
+    TX:   bytes  packets errors dropped carrier collsns           
+    16075396197 16447515      0       0       0       0 
+16: veth4be30628@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether ae:91:a4:f6:93:5d brd ff:ff:ff:ff:ff:ff link-netns cni-04f327cb-02de-0479-704a-d66f5d009572
+    RX:  bytes packets errors dropped  missed   mcast           
+      13685729  142352      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+      20340463  162337      0       0       0       0 
+default via 172.26.0.1 dev eth0 
+10.244.0.0/24 via 172.26.0.4 dev eth0 
+10.244.1.6 dev veth4be30628 scope host 
+10.244.2.0/24 via 172.26.0.5 dev eth0 
+10.244.3.0/24 via 172.26.0.2 dev eth0 
+172.26.0.0/16 dev eth0 proto kernel scope link src 172.26.0.3 
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default
+# Generated by iptables-save v1.8.11 (nf_tables) on Mon Oct 26 17:32:21 2026
+*mangle
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+:KUBE-IPTABLES-HINT - [0:0]
+:KUBE-KUBELET-CANARY - [0:0]
+:KUBE-PROXY-CANARY - [0:0]
+COMMIT
+# Completed on Mon Oct 26 17:32:21 2026
+# Generated by iptables-save v1.8.11 (nf_tables) on Mon Oct 26 17:32:21 2026
+*filter
+:INPUT ACCEPT [260797:71984276]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [218298:37030828]
+:KUBE-EXTERNAL-SERVICES - [0:0]
+:KUBE-FIREWALL - [0:0]
+:KUBE-FORWARD - [0:0]
+:KUBE-KUBELET-CANARY - [0:0]
+:KUBE-NODEPORTS - [0:0]
+:KUBE-PROXY-CANARY - [0:0]
+:KUBE-PROXY-FIREWALL - [0:0]
+:KUBE-SERVICES - [0:0]
+[110:6708] -A INPUT -m conntrack --ctstate NEW -m comment --comment "kubernetes load balancer firewall" -j KUBE-PROXY-FIREWALL
+[260344:71638350] -A INPUT -m comment --comment "kubernetes health check service ports" -j KUBE-NODEPORTS
+[110:6708] -A INPUT -m conntrack --ctstate NEW -m comment --comment "kubernetes externally-visible service portals" -j KUBE-EXTERNAL-SERVICES
+[260797:71984276] -A INPUT -j KUBE-FIREWALL
+[38273:2304469] -A FORWARD -m conntrack --ctstate NEW -m comment --comment "kubernetes load balancer firewall" -j KUBE-PROXY-FIREWALL
+[40070893:23007358419] -A FORWARD -m comment --comment "kubernetes forwarding rules" -j KUBE-FORWARD
+[38273:2304469] -A FORWARD -m conntrack --ctstate NEW -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+[38273:2304469] -A FORWARD -m conntrack --ctstate NEW -m comment --comment "kubernetes externally-visible service portals" -j KUBE-EXTERNAL-SERVICES
+[5695:341808] -A OUTPUT -m conntrack --ctstate NEW -m comment --comment "kubernetes load balancer firewall" -j KUBE-PROXY-FIREWALL
+[5695:341808] -A OUTPUT -m conntrack --ctstate NEW -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+[218298:37030828] -A OUTPUT -j KUBE-FIREWALL
+[0:0] -A KUBE-FIREWALL ! -s 127.0.0.0/8 -d 127.0.0.0/8 -m comment --comment "block incoming localnet connections" -m conntrack ! --ctstate RELATED,ESTABLISHED,DNAT -j DROP
+[0:0] -A KUBE-FORWARD -m conntrack --ctstate INVALID -m nfacct --nfacct-name  ct_state_invalid_dropped_pkts -j DROP
+[0:0] -A KUBE-FORWARD -m comment --comment "kubernetes forwarding rules" -m mark --mark 0x4000/0x4000 -j ACCEPT
+[280584:28031058] -A KUBE-FORWARD -m comment --comment "kubernetes forwarding conntrack rule" -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+# Completed on Mon Oct 26 17:32:21 2026
+# Generated by iptables-save v1.8.11 (nf_tables) on Mon Oct 26 17:32:21 2026
+*nat
+:PREROUTING ACCEPT [37128:2232922]
+:INPUT ACCEPT [57:3420]
+:OUTPUT ACCEPT [5718:343080]
+:POSTROUTING ACCEPT [42797:2574126]
+:DOCKER_OUTPUT - [0:0]
+:DOCKER_POSTROUTING - [0:0]
+:KIND-MASQ-AGENT - [0:0]
+:KUBE-EXT-F5QED46EV6FSJDXO - [0:0]
+:KUBE-EXT-NBVVAR5B7F3AUA3S - [0:0]
+:KUBE-KUBELET-CANARY - [0:0]
+:KUBE-MARK-MASQ - [0:0]
+:KUBE-NODEPORTS - [0:0]
+:KUBE-POSTROUTING - [0:0]
+:KUBE-PROXY-CANARY - [0:0]
+:KUBE-SEP-2CB3GZZWDM222JHI - [0:0]
+:KUBE-SEP-6E7XQMQ4RAYOWTTM - [0:0]
+:KUBE-SEP-B5STWTTHE5WKXDQX - [0:0]
+:KUBE-SEP-BJYWEXBX7H4QVOFA - [0:0]
+:KUBE-SEP-H42FT6JLUV6FLCI2 - [0:0]
+:KUBE-SEP-IJTYRFUIDVCYFNQI - [0:0]
+:KUBE-SEP-NAN32YIWJWYQPDPB - [0:0]
+:KUBE-SEP-PUHFDAMRBZWCPADU - [0:0]
+:KUBE-SEP-SF3LG62VAE5ALYDV - [0:0]
+:KUBE-SEP-WXWGHGKZOCNYRYI7 - [0:0]
+:KUBE-SEP-YMMHE7XGZVHLFQK6 - [0:0]
+:KUBE-SEP-ZP3FB6NMPNCO4VBJ - [0:0]
+:KUBE-SEP-ZXMNUKOKXUTL2MK2 - [0:0]
+:KUBE-SERVICES - [0:0]
+:KUBE-SVC-ERIFXISQEP7F7OF4 - [0:0]
+:KUBE-SVC-F5QED46EV6FSJDXO - [0:0]
+:KUBE-SVC-JD5MR3NA4I4DYORP - [0:0]
+:KUBE-SVC-NBVVAR5B7F3AUA3S - [0:0]
+:KUBE-SVC-NPX46M4PTMTKRN6Y - [0:0]
+:KUBE-SVC-TCOU7JCQXEZGVUNU - [0:0]
+[37161:2236646] -A PREROUTING -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+[0:0] -A PREROUTING -d 192.168.65.254/32 -j DOCKER_OUTPUT
+[5695:341808] -A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+[60:4680] -A OUTPUT -d 192.168.65.254/32 -j DOCKER_OUTPUT
+[42712:2567954] -A POSTROUTING -m comment --comment "kubernetes postrouting rules" -j KUBE-POSTROUTING
+[0:0] -A POSTROUTING -d 192.168.65.254/32 -j DOCKER_POSTROUTING
+[42653:2564306] -A POSTROUTING -m addrtype ! --dst-type LOCAL -m comment --comment "kind-masq-agent: ensure nat POSTROUTING directs all non-LOCAL destination traffic to our custom KIND-MASQ-AGENT chain" -j KIND-MASQ-AGENT
+[0:0] -A DOCKER_OUTPUT -d 192.168.65.254/32 -p tcp -m tcp --dport 53 -j DNAT --to-destination 127.0.0.11:43813
+[60:4680] -A DOCKER_OUTPUT -d 192.168.65.254/32 -p udp -m udp --dport 53 -j DNAT --to-destination 127.0.0.11:49827
+[0:0] -A DOCKER_POSTROUTING -s 127.0.0.11/32 -p tcp -m tcp --sport 43813 -j SNAT --to-source 192.168.65.254:53
+[0:0] -A DOCKER_POSTROUTING -s 127.0.0.11/32 -p udp -m udp --sport 49827 -j SNAT --to-source 192.168.65.254:53
+[42653:2564306] -A KIND-MASQ-AGENT -d 10.244.0.0/16 -m comment --comment "kind-masq-agent: local traffic is not subject to MASQUERADE" -j RETURN
+[0:0] -A KIND-MASQ-AGENT -m comment --comment "kind-masq-agent: outbound traffic is subject to MASQUERADE (must be last in chain)" -j MASQUERADE
+[0:0] -A KUBE-EXT-F5QED46EV6FSJDXO -m comment --comment "masquerade traffic for mochi/mochi-cluster:mqtt-ws external destinations" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-EXT-F5QED46EV6FSJDXO -j KUBE-SVC-F5QED46EV6FSJDXO
+[0:0] -A KUBE-EXT-NBVVAR5B7F3AUA3S -m comment --comment "masquerade traffic for mochi/mochi-cluster:mqtt external destinations" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-EXT-NBVVAR5B7F3AUA3S -j KUBE-SVC-NBVVAR5B7F3AUA3S
+[0:0] -A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
+[0:0] -A KUBE-NODEPORTS -d 127.0.0.0/8 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt" -m tcp --dport 31352 -m nfacct --nfacct-name  localhost_nps_accepted_pkts -j KUBE-EXT-NBVVAR5B7F3AUA3S
+[0:0] -A KUBE-NODEPORTS -p tcp -m comment --comment "mochi/mochi-cluster:mqtt" -m tcp --dport 31352 -j KUBE-EXT-NBVVAR5B7F3AUA3S
+[0:0] -A KUBE-NODEPORTS -d 127.0.0.0/8 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws" -m tcp --dport 31765 -m nfacct --nfacct-name  localhost_nps_accepted_pkts -j KUBE-EXT-F5QED46EV6FSJDXO
+[0:0] -A KUBE-NODEPORTS -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws" -m tcp --dport 31765 -j KUBE-EXT-F5QED46EV6FSJDXO
+[18353:1101180] -A KUBE-POSTROUTING -m mark ! --mark 0x4000/0x4000 -j RETURN
+[0:0] -A KUBE-POSTROUTING -j MARK --set-xmark 0x4000/0x0
+[0:0] -A KUBE-POSTROUTING -m comment --comment "kubernetes service traffic requiring SNAT" -j MASQUERADE --random-fully
+[0:0] -A KUBE-SEP-2CB3GZZWDM222JHI -s 172.26.0.4/32 -m comment --comment "default/kubernetes:https" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-2CB3GZZWDM222JHI -p tcp -m comment --comment "default/kubernetes:https" -m tcp -j DNAT --to-destination 172.26.0.4:6443
+[0:0] -A KUBE-SEP-6E7XQMQ4RAYOWTTM -s 10.244.0.3/32 -m comment --comment "kube-system/kube-dns:dns" -j KUBE-MARK-MASQ
+[5:528] -A KUBE-SEP-6E7XQMQ4RAYOWTTM -p udp -m comment --comment "kube-system/kube-dns:dns" -m udp -j DNAT --to-destination 10.244.0.3:53
+[0:0] -A KUBE-SEP-B5STWTTHE5WKXDQX -s 10.244.2.6/32 -m comment --comment "mochi/mochi-cluster:mqtt" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-B5STWTTHE5WKXDQX -p tcp -m comment --comment "mochi/mochi-cluster:mqtt" -m tcp -j DNAT --to-destination 10.244.2.6:1883
+[0:0] -A KUBE-SEP-BJYWEXBX7H4QVOFA -s 10.244.1.6/32 -m comment --comment "mochi/mochi-cluster:mqtt" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-BJYWEXBX7H4QVOFA -p tcp -m comment --comment "mochi/mochi-cluster:mqtt" -m tcp -j DNAT --to-destination 10.244.1.6:1883
+[0:0] -A KUBE-SEP-H42FT6JLUV6FLCI2 -s 10.244.3.23/32 -m comment --comment "mochi/mochi-cluster:mqtt-ws" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-H42FT6JLUV6FLCI2 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws" -m tcp -j DNAT --to-destination 10.244.3.23:1882
+[0:0] -A KUBE-SEP-IJTYRFUIDVCYFNQI -s 10.244.1.6/32 -m comment --comment "mochi/mochi-cluster:mqtt-ws" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-IJTYRFUIDVCYFNQI -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws" -m tcp -j DNAT --to-destination 10.244.1.6:1882
+[0:0] -A KUBE-SEP-NAN32YIWJWYQPDPB -s 10.244.3.23/32 -m comment --comment "mochi/mochi-cluster:mqtt" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-NAN32YIWJWYQPDPB -p tcp -m comment --comment "mochi/mochi-cluster:mqtt" -m tcp -j DNAT --to-destination 10.244.3.23:1883
+[0:0] -A KUBE-SEP-PUHFDAMRBZWCPADU -s 10.244.0.4/32 -m comment --comment "kube-system/kube-dns:metrics" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-PUHFDAMRBZWCPADU -p tcp -m comment --comment "kube-system/kube-dns:metrics" -m tcp -j DNAT --to-destination 10.244.0.4:9153
+[0:0] -A KUBE-SEP-SF3LG62VAE5ALYDV -s 10.244.0.4/32 -m comment --comment "kube-system/kube-dns:dns-tcp" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-SF3LG62VAE5ALYDV -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp" -m tcp -j DNAT --to-destination 10.244.0.4:53
+[0:0] -A KUBE-SEP-WXWGHGKZOCNYRYI7 -s 10.244.0.4/32 -m comment --comment "kube-system/kube-dns:dns" -j KUBE-MARK-MASQ
+[1:100] -A KUBE-SEP-WXWGHGKZOCNYRYI7 -p udp -m comment --comment "kube-system/kube-dns:dns" -m udp -j DNAT --to-destination 10.244.0.4:53
+[0:0] -A KUBE-SEP-YMMHE7XGZVHLFQK6 -s 10.244.2.6/32 -m comment --comment "mochi/mochi-cluster:mqtt-ws" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-YMMHE7XGZVHLFQK6 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws" -m tcp -j DNAT --to-destination 10.244.2.6:1882
+[0:0] -A KUBE-SEP-ZP3FB6NMPNCO4VBJ -s 10.244.0.3/32 -m comment --comment "kube-system/kube-dns:metrics" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-ZP3FB6NMPNCO4VBJ -p tcp -m comment --comment "kube-system/kube-dns:metrics" -m tcp -j DNAT --to-destination 10.244.0.3:9153
+[0:0] -A KUBE-SEP-ZXMNUKOKXUTL2MK2 -s 10.244.0.3/32 -m comment --comment "kube-system/kube-dns:dns-tcp" -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SEP-ZXMNUKOKXUTL2MK2 -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp" -m tcp -j DNAT --to-destination 10.244.0.3:53
+[0:0] -A KUBE-SERVICES -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp cluster IP" -m tcp --dport 53 -j KUBE-SVC-ERIFXISQEP7F7OF4
+[0:0] -A KUBE-SERVICES -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:metrics cluster IP" -m tcp --dport 9153 -j KUBE-SVC-JD5MR3NA4I4DYORP
+[0:0] -A KUBE-SERVICES -d 10.96.143.153/32 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt cluster IP" -m tcp --dport 2883 -j KUBE-SVC-NBVVAR5B7F3AUA3S
+[0:0] -A KUBE-SERVICES -d 10.96.0.1/32 -p tcp -m comment --comment "default/kubernetes:https cluster IP" -m tcp --dport 443 -j KUBE-SVC-NPX46M4PTMTKRN6Y
+[0:0] -A KUBE-SERVICES -d 10.96.0.10/32 -p udp -m comment --comment "kube-system/kube-dns:dns cluster IP" -m udp --dport 53 -j KUBE-SVC-TCOU7JCQXEZGVUNU
+[0:0] -A KUBE-SERVICES -d 10.96.143.153/32 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws cluster IP" -m tcp --dport 2882 -j KUBE-SVC-F5QED46EV6FSJDXO
+[10:600] -A KUBE-SERVICES -m comment --comment "kubernetes service nodeports; NOTE: this must be the last rule in this chain" -m addrtype --dst-type LOCAL -j KUBE-NODEPORTS
+[0:0] -A KUBE-SVC-ERIFXISQEP7F7OF4 ! -s 10.244.0.0/16 -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp cluster IP" -m tcp --dport 53 -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SVC-ERIFXISQEP7F7OF4 -m comment --comment "kube-system/kube-dns:dns-tcp -> 10.244.0.3:53" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-ZXMNUKOKXUTL2MK2
+[0:0] -A KUBE-SVC-ERIFXISQEP7F7OF4 -m comment --comment "kube-system/kube-dns:dns-tcp -> 10.244.0.4:53" -j KUBE-SEP-SF3LG62VAE5ALYDV
+[0:0] -A KUBE-SVC-F5QED46EV6FSJDXO ! -s 10.244.0.0/16 -d 10.96.143.153/32 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt-ws cluster IP" -m tcp --dport 2882 -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SVC-F5QED46EV6FSJDXO -m comment --comment "mochi/mochi-cluster:mqtt-ws -> 10.244.1.6:1882" -m statistic --mode random --probability 0.33333333349 -j KUBE-SEP-IJTYRFUIDVCYFNQI
+[0:0] -A KUBE-SVC-F5QED46EV6FSJDXO -m comment --comment "mochi/mochi-cluster:mqtt-ws -> 10.244.2.6:1882" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-YMMHE7XGZVHLFQK6
+[0:0] -A KUBE-SVC-F5QED46EV6FSJDXO -m comment --comment "mochi/mochi-cluster:mqtt-ws -> 10.244.3.23:1882" -j KUBE-SEP-H42FT6JLUV6FLCI2
+[0:0] -A KUBE-SVC-JD5MR3NA4I4DYORP ! -s 10.244.0.0/16 -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:metrics cluster IP" -m tcp --dport 9153 -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SVC-JD5MR3NA4I4DYORP -m comment --comment "kube-system/kube-dns:metrics -> 10.244.0.3:9153" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-ZP3FB6NMPNCO4VBJ
+[0:0] -A KUBE-SVC-JD5MR3NA4I4DYORP -m comment --comment "kube-system/kube-dns:metrics -> 10.244.0.4:9153" -j KUBE-SEP-PUHFDAMRBZWCPADU
+[0:0] -A KUBE-SVC-NBVVAR5B7F3AUA3S ! -s 10.244.0.0/16 -d 10.96.143.153/32 -p tcp -m comment --comment "mochi/mochi-cluster:mqtt cluster IP" -m tcp --dport 2883 -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SVC-NBVVAR5B7F3AUA3S -m comment --comment "mochi/mochi-cluster:mqtt -> 10.244.1.6:1883" -m statistic --mode random --probability 0.33333333349 -j KUBE-SEP-BJYWEXBX7H4QVOFA
+[0:0] -A KUBE-SVC-NBVVAR5B7F3AUA3S -m comment --comment "mochi/mochi-cluster:mqtt -> 10.244.2.6:1883" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-B5STWTTHE5WKXDQX
+[0:0] -A KUBE-SVC-NBVVAR5B7F3AUA3S -m comment --comment "mochi/mochi-cluster:mqtt -> 10.244.3.23:1883" -j KUBE-SEP-NAN32YIWJWYQPDPB
+[0:0] -A KUBE-SVC-NPX46M4PTMTKRN6Y ! -s 10.244.0.0/16 -d 10.96.0.1/32 -p tcp -m comment --comment "default/kubernetes:https cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+[0:0] -A KUBE-SVC-NPX46M4PTMTKRN6Y -m comment --comment "default/kubernetes:https -> 172.26.0.4:6443" -j KUBE-SEP-2CB3GZZWDM222JHI
+[0:0] -A KUBE-SVC-TCOU7JCQXEZGVUNU ! -s 10.244.0.0/16 -d 10.96.0.10/32 -p udp -m comment --comment "kube-system/kube-dns:dns cluster IP" -m udp --dport 53 -j KUBE-MARK-MASQ
+[5:528] -A KUBE-SVC-TCOU7JCQXEZGVUNU -m comment --comment "kube-system/kube-dns:dns -> 10.244.0.3:53" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-6E7XQMQ4RAYOWTTM
+[1:100] -A KUBE-SVC-TCOU7JCQXEZGVUNU -m comment --comment "kube-system/kube-dns:dns -> 10.244.0.4:53" -j KUBE-SEP-WXWGHGKZOCNYRYI7
+COMMIT
+# Completed on Mon Oct 26 17:32:21 2026
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev veth4be30628 root refcnt 2 

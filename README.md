@@ -289,6 +289,15 @@ ACL rules have 3 optional criteria and an filter match:
 
 Rules are processed in index order (0,1,2,3), returning on the first matching rule. See [hooks/auth/ledger.go](hooks/auth/ledger.go) to review the structs.
 
+Entries in the `Users` map take precedence over global authentication rules. A disabled user
+is always denied, and a user with a configured password must supply that exact password;
+neither case can fall back to a global allow rule. Enabled users without a password can
+define ACLs only and defer authentication to the global rules.
+
+The library ledger allows topic access when no ACL rule matches. To require explicit
+grants, end the ACL list with `{Filters: auth.Filters{"#": auth.Deny}}` as a separate rule
+after the grants. The cluster command adds this final deny automatically for auth files.
+
 ```go
 server := mqtt.New(nil)
 err := server.AddHook(new(auth.Hook), &auth.Options{
@@ -309,10 +318,9 @@ err := server.AddHook(new(auth.Hook), &auth.Options{
         },
       },
       {
-        // Otherwise, no clients have publishing permissions
+        // Deny topics that were not explicitly granted above.
         Filters: auth.Filters{
-          "#":         auth.ReadOnly,
-          "updates/#": auth.Deny,
+          "#": auth.Deny,
         },
       },
     },

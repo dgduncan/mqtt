@@ -1,0 +1,433 @@
+{
+  "environment": {
+    "date": "2026-10-26",
+    "deployment_revision": 4,
+    "context": "docker-desktop",
+    "docker_vm_vcpus": 14,
+    "docker_vm_memory_bytes": 8318976000,
+    "broker_image": "mochi-cluster:auth-fix",
+    "broker_resources": {
+      "limits": {
+        "memory": "512Mi"
+      },
+      "requests": {
+        "cpu": "50m",
+        "memory": "64Mi"
+      }
+    },
+    "broker_replicas": 3,
+    "listener": "MQTT v5 over TCP, no TLS",
+    "auth": "auth.allowAll=true (local development profile)",
+    "generator_location": "control-plane pod; direct broker pod DNS, no data port-forward",
+    "latency": "publisher timestamp before send/window wait to unique subscriber delivery, sampled at most 100000 messages per subscriber",
+    "delivery": "publisher and sequence bitmaps per subscriber; duplicates excluded from successful deliveries",
+    "resource_sampling": "kubelet summary metrics, sampled every 3 seconds; underlying samples can be older",
+    "pods": [
+      {
+        "name": "mochi-cluster-0",
+        "node": "desktop-worker2",
+        "image_ids": [
+          "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf"
+        ]
+      },
+      {
+        "name": "mochi-cluster-1",
+        "node": "desktop-worker3",
+        "image_ids": [
+          "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf"
+        ]
+      },
+      {
+        "name": "mochi-cluster-2",
+        "node": "desktop-worker",
+        "image_ids": [
+          "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf"
+        ]
+      },
+      {
+        "name": "mochi-loadtest",
+        "node": "desktop-control-plane",
+        "image_ids": [
+          "sha256:4cac7e8fa021683917be148fc2ed1e14aa091140eec115362d57b1d19c8893e0"
+        ]
+      }
+    ]
+  },
+  "trial_count": 31,
+  "published_messages": 29852000,
+  "expected_subscriber_deliveries": 215014000,
+  "missing_deliveries": 1091126,
+  "duplicate_deliveries": 0,
+  "sustained_30_second_runs": [
+    {
+      "duplicates": 0,
+      "expected": 37800000,
+      "label": "sustained30-qos0-target-210000",
+      "latency_samples": 600000,
+      "missing": 0,
+      "p50_ms": 3.281,
+      "p95_ms": 13.224,
+      "p99_ms": 30.8,
+      "payload_bytes": 64,
+      "publish_per_second": 210001.68924658824,
+      "publish_seconds": 29.999758681,
+      "published": 6300000,
+      "publishers": 6,
+      "qos": 0,
+      "receive_per_second": 1259776.3319613284,
+      "receive_seconds": 30.005326375,
+      "received": 37800000,
+      "subscribers": 6
+    },
+    {
+      "duplicates": 0,
+      "expected": 18000360,
+      "label": "sustained30-qos1-target-100002",
+      "latency_samples": 580656,
+      "missing": 0,
+      "p50_ms": 318.882,
+      "p95_ms": 3877.241,
+      "p99_ms": 4673.456,
+      "payload_bytes": 64,
+      "publish_per_second": 99915.74020029475,
+      "publish_seconds": 30.025899763,
+      "published": 3000060,
+      "publishers": 6,
+      "qos": 1,
+      "receive_per_second": 551000.5936055257,
+      "receive_seconds": 32.668494751,
+      "received": 18000360,
+      "subscribers": 6
+    },
+    {
+      "duplicates": 0,
+      "expected": 10800000,
+      "label": "sustained30-qos2-target-60000",
+      "latency_samples": 600000,
+      "missing": 0,
+      "p50_ms": 12.43,
+      "p95_ms": 45.51,
+      "p99_ms": 126.114,
+      "payload_bytes": 64,
+      "publish_per_second": 59986.98937788337,
+      "publish_seconds": 30.006506722,
+      "published": 1800000,
+      "publishers": 6,
+      "qos": 2,
+      "receive_per_second": 359871.5483492111,
+      "receive_seconds": 30.010708125,
+      "received": 10800000,
+      "subscribers": 6
+    },
+    {
+      "duplicates": 0,
+      "expected": 14399640,
+      "label": "sustained30-qos1-target-79998",
+      "latency_samples": 599982,
+      "missing": 0,
+      "p50_ms": 1.686,
+      "p95_ms": 21.376,
+      "p99_ms": 150.295,
+      "payload_bytes": 64,
+      "publish_per_second": 79995.51132364362,
+      "publish_seconds": 30.000933306,
+      "published": 2399940,
+      "publishers": 6,
+      "qos": 1,
+      "receive_per_second": 479962.1727075282,
+      "receive_seconds": 30.001614333,
+      "received": 14399640,
+      "subscribers": 6
+    }
+  ],
+  "runs_with_missing_deliveries": [
+    {
+      "benchmark": {
+        "duplicates": 0,
+        "expected": 8640000,
+        "label": "qos0-6sub-target-240000",
+        "latency_samples": 575875,
+        "missing": 1870,
+        "p50_ms": 14.827,
+        "p95_ms": 82.197,
+        "p99_ms": 121.388,
+        "payload_bytes": 64,
+        "publish_per_second": 239997.8715788759,
+        "publish_seconds": 6.000053211,
+        "published": 1440000,
+        "publishers": 6,
+        "qos": 0,
+        "receive_per_second": 1419917.2666341332,
+        "receive_seconds": 6.083544586,
+        "received": 8638130,
+        "subscribers": 6
+      },
+      "broker_deltas": {
+        "mochi-cluster-0": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 494
+        },
+        "mochi-cluster-1": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 1376
+        },
+        "mochi-cluster-2": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 0
+        }
+      }
+    },
+    {
+      "benchmark": {
+        "duplicates": 0,
+        "expected": 4320000,
+        "label": "qos2-6sub-target-120000",
+        "latency_samples": 539927,
+        "missing": 570,
+        "p50_ms": 60.019,
+        "p95_ms": 480.189,
+        "p99_ms": 578.638,
+        "payload_bytes": 64,
+        "publish_per_second": 68210.19251090338,
+        "publish_seconds": 10.555607212,
+        "published": 720000,
+        "publishers": 6,
+        "qos": 2,
+        "receive_per_second": 408953.4229870348,
+        "receive_seconds": 10.562156366,
+        "received": 4319430,
+        "subscribers": 6
+      },
+      "broker_deltas": {
+        "mochi-cluster-0": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 0
+        },
+        "mochi-cluster-1": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 0
+        },
+        "mochi-cluster-2": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 0
+        }
+      }
+    },
+    {
+      "benchmark": {
+        "duplicates": 0,
+        "expected": 6480000,
+        "label": "qos0-1kB-6sub-target-180000",
+        "latency_samples": 490116,
+        "missing": 1088686,
+        "p50_ms": 55.267,
+        "p95_ms": 81.295,
+        "p99_ms": 96.201,
+        "payload_bytes": 1024,
+        "publish_per_second": 179958.79561438962,
+        "publish_seconds": 6.001373794,
+        "published": 1080000,
+        "publishers": 6,
+        "qos": 0,
+        "receive_per_second": 892211.3579183348,
+        "receive_seconds": 6.042642197,
+        "received": 5391314,
+        "subscribers": 6
+      },
+      "broker_deltas": {
+        "mochi-cluster-0": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 350643
+        },
+        "mochi-cluster-1": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 342060
+        },
+        "mochi-cluster-2": {
+          "Dropped": 0,
+          "Waits": 0,
+          "LinkResyncs": 0,
+          "ClaimFailures": 0,
+          "ConnectionsRefused": 0,
+          "ClientsFenced": 0,
+          "subscriber_messages_dropped": 395983
+        }
+      }
+    }
+  ],
+  "subscription_churn": [
+    {
+      "concurrency": 16,
+      "connection_failed": 0,
+      "connections": 2000,
+      "errors": {},
+      "failed": 0,
+      "label": "subscribe-churn-concurrency-16",
+      "p50_ms": 3.673,
+      "p95_ms": 100.207,
+      "p99_ms": 296.235,
+      "per_second": 498.01124376668423,
+      "seconds": 4.015973585,
+      "subscribe": true,
+      "subscription_failed": 0
+    },
+    {
+      "concurrency": 128,
+      "connection_failed": 10,
+      "connections": 2000,
+      "errors": {
+        "connection refused: 0x88": 10
+      },
+      "failed": 10,
+      "label": "subscribe-churn-concurrency-128",
+      "p50_ms": 100.899,
+      "p95_ms": 303.758,
+      "p99_ms": 493.516,
+      "per_second": 350.53400600604755,
+      "seconds": 5.677052628,
+      "subscribe": true,
+      "subscription_failed": 0
+    },
+    {
+      "concurrency": 64,
+      "connection_failed": 0,
+      "connections": 4000,
+      "errors": {},
+      "failed": 0,
+      "label": "subscribe-churn-repeat-64",
+      "p50_ms": 73.356,
+      "p95_ms": 2121.892,
+      "p99_ms": 3116.26,
+      "per_second": 256.60081872190113,
+      "seconds": 15.588414799,
+      "subscribe": true,
+      "subscription_failed": 0
+    },
+    {
+      "concurrency": 128,
+      "connection_failed": 0,
+      "connections": 4000,
+      "errors": {},
+      "failed": 0,
+      "label": "subscribe-churn-repeat-128",
+      "p50_ms": 4.468,
+      "p95_ms": 600.215,
+      "p99_ms": 3538.286,
+      "per_second": 611.3828594815677,
+      "seconds": 6.542545212,
+      "subscribe": true,
+      "subscription_failed": 0
+    },
+    {
+      "concurrency": 256,
+      "connection_failed": 1,
+      "connections": 4000,
+      "errors": {
+        "connection refused: 0x88": 1
+      },
+      "failed": 1,
+      "label": "subscribe-churn-repeat-256",
+      "p50_ms": 4.361,
+      "p95_ms": 713.481,
+      "p99_ms": 1498.93,
+      "per_second": 587.8424865323589,
+      "seconds": 6.802842754,
+      "subscribe": true,
+      "subscription_failed": 0
+    }
+  ],
+  "recovery": {
+    "duplicates": 0,
+    "expected": 90000,
+    "label": "recovery-qos2",
+    "latency_samples": 90000,
+    "missing": 0,
+    "p50_ms": 0.498,
+    "p95_ms": 1.868,
+    "p99_ms": 2.108,
+    "payload_bytes": 64,
+    "publish_per_second": 2999.267977362642,
+    "publish_seconds": 10.002440671,
+    "published": 30000,
+    "publishers": 3,
+    "qos": 2,
+    "receive_per_second": 8998.28995867745,
+    "receive_seconds": 10.001900407,
+    "received": 90000,
+    "subscribers": 3
+  },
+  "final_broker_status": [
+    {
+      "name": "mochi-cluster-0",
+      "node": "desktop-worker2",
+      "image": "mochi-cluster:auth-fix",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "name": "mochi-cluster-1",
+      "node": "desktop-worker3",
+      "image": "mochi-cluster:auth-fix",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "name": "mochi-cluster-2",
+      "node": "desktop-worker",
+      "image": "mochi-cluster:auth-fix",
+      "ready": true,
+      "restarts": 0
+    }
+  ],
+  "generator_image_id": [
+    "sha256:ca7e44c8723428144613396d3f498e93f3ba3418f15f4117c6657f5d54ca9e06"
+  ],
+  "interpretation": [
+    "QoS 0 slow-subscriber drop counters exactly matched missing delivery counts.",
+    "QoS 2 lost 570 subscriber deliveries under overload even though publisher completion handshakes finished; logs recorded client store quota reached (MaximumInflight=8192). The cluster forwarding and $SYS messages/dropped counters did not capture this quota loss.",
+    "QoS 1 had no missing messages in any tested workload; it slowed senders and accumulated latency/backlog. The 100k/s 30-second run required an additional 2.67 seconds to finish deliveries.",
+    "CONNECT refusal bursts during churn returned 0x88 and matched broker claim failures. No SUBACK rejection occurred for successfully connected clients. A repeated 128-worker run passed, so concurrency 128 is not a deterministic capacity threshold.",
+    "All rates describe this shared 14-vCPU Docker Desktop VM with an in-cluster generator, plaintext MQTT and the local allow-all profile. They are workload-specific observations, not universal broker capacity guarantees.",
+    "Latency is sampled and includes publisher-side waiting and subscriber processing. Kubelet resource samples are coarse and can lag the workload."
+  ]
+}

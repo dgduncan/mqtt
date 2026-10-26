@@ -69,6 +69,32 @@ Probes: readiness is `/healthz`, so a node out of contact with the registry, or 
 taken out of the client Service. Liveness and startup are `/livez`, so such a node isn't
 restarted. The startup probe allows for the join timeout.
 
+Auth files loaded by `cmd/cluster` end with an automatic catch-all ACL deny. This applies
+both to Helm's inline `auth.ledger` and to `auth.existingSecret`. Authentication alone no
+longer grants topic access: give clients explicit publish and subscribe permissions. For
+example:
+
+```yaml
+auth:
+  ledger:
+    auth:
+      - username: device
+        password: replace-with-a-secret
+        allow: true
+    acl:
+      - username: device
+        filters:
+          "devices/#": 3  # read and write
+      - filters:
+          "#": 0        # deny all other topics
+```
+
+When upgrading an existing authenticated deployment, add the topic grants before deploying
+the new image. An existing ledger containing only authentication rules will still accept
+valid credentials but will deny all publishing and subscriptions. Put specific restrictions
+before broad allow rules. The explicit development option `auth.allowAll: true` continues
+to allow all clients and topics when no auth file is configured.
+
 Still to do:
 
 1. **Terraform** in `deploy/terraform/{gcp,vultr}` for the Kubernetes cluster, registry, DNS

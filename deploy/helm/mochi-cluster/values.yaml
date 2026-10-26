@@ -29,6 +29,8 @@ cluster:
 auth:
   # Clients are checked against an auth ledger (see hooks/auth/ledger.go), from an
   # existing secret holding auth.yaml, or the ledger below rendered into a secret.
+  # The cluster appends a catch-all ACL deny to either source. Grant topic access
+  # explicitly; a ledger with authentication rules alone cannot publish or subscribe.
   existingSecret: ""
   secretKey: auth.yaml
   ledger: {}
@@ -40,6 +42,8 @@ auth:
   #    - username: device
   #      filters:
   #        "devices/#": 3
+  #    - filters:
+  #        "#": 0
   # Allow every client without a ledger. For testing only.
   allowAll: false
 

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mochi-loadtest
+  namespace: mochi
+spec:
+  restartPolicy: Never
+  automountServiceAccountToken: false
+  nodeSelector:
+    kubernetes.io/hostname: desktop-control-plane
+  tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
+  containers:
+    - name: loadtest
+      image: mochi-loadtest:saturation
+      imagePullPolicy: Never
+      resources:
+        requests: { cpu: 100m, memory: 128Mi }
+        limits: { memory: 1Gi }
+      securityContext:
+        runAsUser: 65532
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities: { drop: [ALL] }

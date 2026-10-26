@@ -159,7 +159,14 @@ func addAuth(server *mqtt.Server, cfg *config) error {
 	if err != nil {
 		return fmt.Errorf("auth file: %w", err)
 	}
-	return server.AddHook(new(auth.Hook), &auth.Options{Data: data})
+	ledger := new(auth.Ledger)
+	if err := ledger.Unmarshal(data); err != nil {
+		return fmt.Errorf("auth file: %w", err)
+	}
+	// The library ledger allows unmatched topics. Cluster auth files must grant
+	// access explicitly, including files mounted from an existing Helm secret.
+	ledger.ACL = append(ledger.ACL, auth.ACLRule{Filters: auth.Filters{"#": auth.Deny}})
+	return server.AddHook(new(auth.Hook), &auth.Options{Ledger: ledger})
 }
 
 func addListeners(server *mqtt.Server, cfg *config) error {

@@ -1,0 +1,47 @@
+//go:build linux
+
+package main
+
+import (
+ "bufio"
+ "encoding/binary"
+ "net"
+ "os"
+ "os/signal"
+ "strconv"
+ "sync/atomic"
+ "syscall"
+ "time"
+)
+
+func main() {
+ iface,err:=net.InterfaceByName("eth0");if err!=nil {panic(err)}
+ fd,err:=syscall.Socket(syscall.AF_PACKET,syscall.SOCK_RAW,0x0300);if err!=nil {panic(err)}
+ defer syscall.Close(fd)
+ if err=syscall.Bind(fd,&syscall.SockaddrLinklayer{Protocol:0x0300,Ifindex:iface.Index});err!=nil {panic(err)}
+ _=syscall.SetsockoptTimeval(fd,syscall.SOL_SOCKET,syscall.SO_RCVTIMEO,&syscall.Timeval{Sec:1})
+ var stopped atomic.Bool
+ signals:=make(chan os.Signal,1);signal.Notify(signals,syscall.SIGTERM,syscall.SIGINT)
+ go func(){<-signals;stopped.Store(true)}()
+ duration:=60
+ if len(os.Args)>1 {duration,_=strconv.Atoi(os.Args[1])}
+ deadline:=time.Now().Add(time.Duration(duration)*time.Second)
+ out:=bufio.NewWriterSize(os.Stdout,65536);defer out.Flush()
+ header:=[]uint32{0xa1b2c3d4,0x00040002,0,0,96,1}
+ if err=binary.Write(out,binary.LittleEndian,header);err!=nil {panic(err)}
+ _=out.Flush()
+ buf:=make([]byte,65536);count:=0
+ for !stopped.Load() && time.Now().Before(deadline) {
+  n,_,err:=syscall.Recvfrom(fd,buf,0)
+  if err!=nil {if err==syscall.EAGAIN||err==syscall.EINTR {continue};panic(err)}
+  if n<54||buf[12]!=8||buf[13]!=0||buf[23]!=6 {continue}
+  off:=14+int(buf[14]&15)*4;if n<off+20 {continue}
+  sp:=binary.BigEndian.Uint16(buf[off:]);dp:=binary.BigEndian.Uint16(buf[off+2:])
+  if sp!=7947&&sp!=7948&&dp!=7947&&dp!=7948 {continue}
+  stamp:=time.Now();size:=min(n,96)
+  record:=[]uint32{uint32(stamp.Unix()),uint32(stamp.Nanosecond()/1000),uint32(size),uint32(n)}
+  if err=binary.Write(out,binary.LittleEndian,record);err!=nil {return}
+  if _,err=out.Write(buf[:size]);err!=nil {return}
+  count++;if count%128==0 {_=out.Flush()}
+ }
+}

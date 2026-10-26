@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-26",
+  "deployment_revision": 4,
+  "context": "docker-desktop",
+  "docker_vm_vcpus": 14,
+  "docker_vm_memory_bytes": 8318976000,
+  "broker_image": "mochi-cluster:auth-fix",
+  "broker_resources": {
+    "limits": {
+      "memory": "512Mi"
+    },
+    "requests": {
+      "cpu": "50m",
+      "memory": "64Mi"
+    }
+  },
+  "broker_replicas": 3,
+  "listener": "MQTT v5 over TCP, no TLS",
+  "auth": "auth.allowAll=true (local development profile)",
+  "generator_location": "control-plane pod; direct broker pod DNS, no data port-forward",
+  "latency": "publisher timestamp before send/window wait to unique subscriber delivery, sampled at most 100000 messages per subscriber",
+  "delivery": "publisher and sequence bitmaps per subscriber; duplicates excluded from successful deliveries",
+  "resource_sampling": "kubelet summary metrics, sampled every 3 seconds; underlying samples can be older",
+  "pods": [
+    {
+      "name": "mochi-cluster-0",
+      "node": "desktop-worker2",
+      "image_ids": [
+        "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf"
+      ]
+    },
+    {
+      "name": "mochi-cluster-1",
+      "node": "desktop-worker3",
+      "image_ids": [
+        "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf"
+      ]
+    },
+    {
+      "name": "mochi-cluster-2",
+      "node": "desktop-worker",
+      "image_ids": [
+        "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf"
+      ]
+    },
+    {
+      "name": "mochi-loadtest",
+      "node": "desktop-control-plane",
+      "image_ids": [
+        "sha256:4cac7e8fa021683917be148fc2ed1e14aa091140eec115362d57b1d19c8893e0"
+      ]
+    }
+  ]
+}
