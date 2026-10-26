@@ -1,0 +1,31 @@
+package main
+import (
+ "bufio"
+ "encoding/json"
+ "fmt"
+ "os"
+ "path/filepath"
+ "strconv"
+ "strings"
+ "golang.org/x/sys/unix"
+)
+func main(){
+ pid,err:=strconv.Atoi(os.Args[1]);if err!=nil{panic(err)}
+ requested:=0;if len(os.Args)>2 {requested,err=strconv.Atoi(os.Args[2]);if err!=nil{panic(err)}}
+ pfd,err:=unix.PidfdOpen(pid,0);if err!=nil{panic(err)};defer unix.Close(pfd)
+ f,err:=os.Open(fmt.Sprintf("/proc/%d/net/netlink",pid));if err!=nil{panic(err)};defer f.Close()
+ inodes:=map[string]bool{};scan:=bufio.NewScanner(f)
+ for scan.Scan(){v:=strings.Fields(scan.Text());if len(v)>=10&&v[1]=="12" {inodes[v[9]]=true}}
+ entries,err:=os.ReadDir(fmt.Sprintf("/proc/%d/fd",pid));if err!=nil{panic(err)}
+ found:=0
+ for _,e:=range entries{
+  link,err:=os.Readlink(filepath.Join(fmt.Sprintf("/proc/%d/fd",pid),e.Name()));if err!=nil{continue}
+  inode:=strings.TrimSuffix(strings.TrimPrefix(link,"socket:["),"]");if !inodes[inode]{continue}
+  original,_:=strconv.Atoi(e.Name());fd,err:=unix.PidfdGetfd(pfd,original,0);if err!=nil{panic(err)}
+  before,err:=unix.GetsockoptInt(fd,unix.SOL_SOCKET,unix.SO_RCVBUF);if err!=nil{panic(err)}
+  if requested>0 {if err=unix.SetsockoptInt(fd,unix.SOL_SOCKET,unix.SO_RCVBUFFORCE,requested);err!=nil{panic(err)}}
+  after,err:=unix.GetsockoptInt(fd,unix.SOL_SOCKET,unix.SO_RCVBUF);if err!=nil{panic(err)}
+  _=json.NewEncoder(os.Stdout).Encode(map[string]any{"pid":pid,"fd":original,"before":before,"after":after});_ =unix.Close(fd);found++
+ }
+ if found==0 {panic("no NFQUEUE netlink socket found")}
+}

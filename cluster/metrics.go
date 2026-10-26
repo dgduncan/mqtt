@@ -43,6 +43,10 @@ type metrics struct {
 	drainDisconnected   atomic.Int64
 	drainMigrated       atomic.Int64
 	drainMigrateFailure atomic.Int64
+
+	registryRPCCalls    atomic.Int64
+	registryRPCFailures atomic.Int64
+	registryRPCTimeouts atomic.Int64
 }
 
 // PeerStats describes this node's link to another node.
@@ -69,6 +73,14 @@ type Stats struct {
 	RetainedSent    int64 // retained message changes sent to peers
 	RetainedApplied int64 // retained message changes from peers applied
 	RetainedIgnored int64 // retained message changes from peers ignored as older
+
+	SubscriberMessagesDropped int64  // outbound queue drops for subscribers
+	SubscriberInflightDropped int64  // quota/packet-ID failures and expired messages discarded on session restore
+	SubscriberInflight        int64  // messages stored inflight across all subscribers
+	SubscriberInflightLimit   uint16 // maximum inflight messages stored per client
+	RegistryRPCCalls          int64  // remote registry RPC attempts
+	RegistryRPCFailures       int64  // RPC attempts returning transport, protocol, or remote errors
+	RegistryRPCTimeouts       int64  // RPC attempts which timed out
 
 	Claims             int64 // sessions claimed in the registry
 	ClaimFailures      int64 // claims which failed, refusing the connection
@@ -102,34 +114,41 @@ type Stats struct {
 func (c *Cluster) Stats() Stats {
 	m := &c.metrics
 	s := Stats{
-		Forwarded:            m.publishesForwarded.Load(),
-		Dropped:              m.publishesDropped.Load(),
-		Waits:                m.forwardWaits.Load(),
-		Received:             m.publishesReceived.Load(),
-		BytesForwarded:       m.bytesForwarded.Load(),
-		RouteUpdatesSent:     m.routeUpdatesSent.Load(),
-		LinkConnects:         m.linkConnects.Load(),
-		LinkResyncs:          m.linkResyncs.Load(),
-		RetainedSent:         m.retainedSent.Load(),
-		RetainedApplied:      m.retainedApplied.Load(),
-		RetainedIgnored:      m.retainedIgnored.Load(),
-		Claims:               m.claims.Load(),
-		ClaimFailures:        m.claimFailures.Load(),
-		ConnectionsRefused:   m.connectionsRefused.Load(),
-		SessionsTakenOver:    m.sessionsTakenOver.Load(),
-		SessionsHandedOver:   m.sessionsHandedOver.Load(),
-		OwnerUnreachable:     m.ownerUnreachable.Load(),
-		SessionsSuperseded:   m.sessionsSuperseded.Load(),
-		ClientsFenced:        m.clientsFenced.Load(),
-		DrainDisconnected:    m.drainDisconnected.Load(),
-		DrainMigrated:        m.drainMigrated.Load(),
-		DrainMigrateFailures: m.drainMigrateFailure.Load(),
-		Draining:             c.draining.Load(),
-		Members:              len(c.Members()),
-		Leader:               c.Leader(),
-		InContact:            c.inContact(),
-		OwnedSessions:        c.sessions.len(),
-		RetainedMessages:     c.server.Topics.Retained.Len(),
+		Forwarded:                 m.publishesForwarded.Load(),
+		Dropped:                   m.publishesDropped.Load(),
+		Waits:                     m.forwardWaits.Load(),
+		Received:                  m.publishesReceived.Load(),
+		BytesForwarded:            m.bytesForwarded.Load(),
+		RouteUpdatesSent:          m.routeUpdatesSent.Load(),
+		LinkConnects:              m.linkConnects.Load(),
+		LinkResyncs:               m.linkResyncs.Load(),
+		RetainedSent:              m.retainedSent.Load(),
+		RetainedApplied:           m.retainedApplied.Load(),
+		RetainedIgnored:           m.retainedIgnored.Load(),
+		SubscriberMessagesDropped: atomic.LoadInt64(&c.server.Info.MessagesDropped),
+		SubscriberInflightDropped: atomic.LoadInt64(&c.server.Info.InflightDropped),
+		SubscriberInflight:        atomic.LoadInt64(&c.server.Info.Inflight),
+		SubscriberInflightLimit:   c.server.Options.Capabilities.MaximumInflight,
+		RegistryRPCCalls:          m.registryRPCCalls.Load(),
+		RegistryRPCFailures:       m.registryRPCFailures.Load(),
+		RegistryRPCTimeouts:       m.registryRPCTimeouts.Load(),
+		Claims:                    m.claims.Load(),
+		ClaimFailures:             m.claimFailures.Load(),
+		ConnectionsRefused:        m.connectionsRefused.Load(),
+		SessionsTakenOver:         m.sessionsTakenOver.Load(),
+		SessionsHandedOver:        m.sessionsHandedOver.Load(),
+		OwnerUnreachable:          m.ownerUnreachable.Load(),
+		SessionsSuperseded:        m.sessionsSuperseded.Load(),
+		ClientsFenced:             m.clientsFenced.Load(),
+		DrainDisconnected:         m.drainDisconnected.Load(),
+		DrainMigrated:             m.drainMigrated.Load(),
+		DrainMigrateFailures:      m.drainMigrateFailure.Load(),
+		Draining:                  c.draining.Load(),
+		Members:                   len(c.Members()),
+		Leader:                    c.Leader(),
+		InContact:                 c.inContact(),
+		OwnedSessions:             c.sessions.len(),
+		RetainedMessages:          c.server.Topics.Retained.Len(),
 	}
 
 	if c.raft != nil {
@@ -194,6 +213,11 @@ func (c *Cluster) WritePrometheus(w io.Writer) error {
 	counter("retained_sent_total", "Retained message changes sent to peers.", s.RetainedSent)
 	counter("retained_applied_total", "Retained message changes from peers applied.", s.RetainedApplied)
 	counter("retained_ignored_total", "Retained message changes from peers ignored as older.", s.RetainedIgnored)
+	counter("subscriber_messages_dropped_total", "Subscriber deliveries dropped because an outbound queue was full.", s.SubscriberMessagesDropped)
+	counter("subscriber_inflight_dropped_total", "Inflight deliveries dropped due to quota or packet ID exhaustion, or expired messages discarded during session restore.", s.SubscriberInflightDropped)
+	counter("registry_rpc_calls_total", "Remote registry RPC attempts, including readiness checks.", s.RegistryRPCCalls)
+	counter("registry_rpc_failures_total", "Remote registry RPC attempts returning transport, protocol, or remote errors.", s.RegistryRPCFailures)
+	counter("registry_rpc_timeouts_total", "Remote registry RPC attempts which timed out.", s.RegistryRPCTimeouts)
 	counter("session_claims_total", "Sessions claimed in the registry.", s.Claims)
 	counter("session_claim_failures_total", "Session claims which failed.", s.ClaimFailures)
 	counter("connections_refused_total", "Connections refused by the cluster.", s.ConnectionsRefused)
@@ -207,6 +231,8 @@ func (c *Cluster) WritePrometheus(w io.Writer) error {
 	counter("drain_migrate_failures_total", "Offline sessions which could not be moved while draining.", s.DrainMigrateFailures)
 
 	gauge("draining", "1 if the node is draining.", boolFloat(s.Draining))
+	gauge("subscriber_inflight_messages", "Messages stored inflight across all subscribers on this node.", float64(s.SubscriberInflight))
+	gauge("subscriber_inflight_limit", "Maximum inflight messages stored per client, not an aggregate node limit.", float64(s.SubscriberInflightLimit))
 	gauge("members", "Gossip members, including this node.", float64(s.Members))
 	gauge("registry_leader", "1 if this node is the registry leader.", boolFloat(s.IsLeader))
 	gauge("registry_in_contact", "1 if this node is in contact with the registry leader.", boolFloat(s.InContact))

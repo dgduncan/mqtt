@@ -3611,6 +3611,15 @@ func TestServerClearExpiredClients(t *testing.T) {
 	require.Equal(t, 2, s.Clients.Len())
 }
 
+func TestInflightDropsPublishedToSystemTopic(t *testing.T) {
+	s := newServer()
+	atomic.StoreInt64(&s.Info.InflightDropped, 7)
+	s.publishSysTopics()
+	pk, ok := s.Topics.Retained.Get(SysPrefix + "/broker/messages/inflight/dropped")
+	require.True(t, ok)
+	require.Equal(t, "7", string(pk.Payload))
+}
+
 func TestLoadServerInfoRestoreOnRestart(t *testing.T) {
 	s := New(nil)
 	s.Options.Capabilities.Compatibilities.RestoreSysInfoOnRestart = true

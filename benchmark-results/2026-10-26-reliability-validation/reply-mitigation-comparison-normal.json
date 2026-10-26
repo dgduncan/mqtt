@@ -1,0 +1,545 @@
+[
+  {
+    "phase": "before",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 730 bytes 80157 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 17020 bytes 2250936 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1 bytes 474 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 35 bytes 4620 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 734 bytes 79954 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 16680 bytes 2220335 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 803 bytes 88554 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 91335 bytes 11868672 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 80 bytes 8999 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 69550 bytes 7118640 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 821 bytes 89856 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 90274 bytes 9602795 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-before-0",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-before-0",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":38,\"connections\":6000,\"errors\":{\"connection refused: 0x88\":38},\"failed\":38,\"label\":\"established-reply-normal-before-0\",\"p50_ms\":97.681,\"p95_ms\":300.689,\"p99_ms\":1184.439,\"per_second\":786.3073706908933,\"seconds\":7.582276629,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "command terminated with exit code 1\n",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 38,
+        "connections": 6000,
+        "errors": {
+          "connection refused: 0x88": 38
+        },
+        "failed": 38,
+        "label": "established-reply-normal-before-0",
+        "p50_ms": 97.681,
+        "p95_ms": 300.689,
+        "p99_ms": 1184.439,
+        "per_second": 786.3073706908933,
+        "seconds": 7.582276629,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "before",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 803 bytes 88554 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 91365 bytes 11872678 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 80 bytes 8999 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 69565 bytes 7120690 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 821 bytes 89856 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 90306 bytes 9607121 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 867 bytes 96173 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 168183 bytes 21588678 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 135 bytes 15581 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 138581 bytes 14170375 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 879 bytes 97034 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 160174 bytes 16744653 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-before-1",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-before-1",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":23,\"connections\":6000,\"errors\":{\"connection refused: 0x88\":23},\"failed\":23,\"label\":\"established-reply-normal-before-1\",\"p50_ms\":95.354,\"p95_ms\":297.867,\"p99_ms\":1086.912,\"per_second\":821.1174779209146,\"seconds\":7.279104587,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "command terminated with exit code 1\n",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 23,
+        "connections": 6000,
+        "errors": {
+          "connection refused: 0x88": 23
+        },
+        "failed": 23,
+        "label": "established-reply-normal-before-1",
+        "p50_ms": 95.354,
+        "p95_ms": 297.867,
+        "p99_ms": 1086.912,
+        "per_second": 821.1174779209146,
+        "seconds": 7.279104587,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "before",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 867 bytes 96173 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 168219 bytes 21593486 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 135 bytes 15581 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 138599 bytes 14172843 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 879 bytes 97034 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 160201 bytes 16748337 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 922 bytes 101484 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 246937 bytes 31590531 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 184 bytes 20901 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 203456 bytes 21040473 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 929 bytes 101957 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 229228 bytes 23908406 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-before-2",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-before-2",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":39,\"connections\":6000,\"errors\":{\"connection refused: 0x88\":39},\"failed\":39,\"label\":\"established-reply-normal-before-2\",\"p50_ms\":82.988,\"p95_ms\":289.188,\"p99_ms\":1151.913,\"per_second\":862.7550861112942,\"seconds\":6.90926092,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "command terminated with exit code 1\n",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 39,
+        "connections": 6000,
+        "errors": {
+          "connection refused: 0x88": 39
+        },
+        "failed": 39,
+        "label": "established-reply-normal-before-2",
+        "p50_ms": 82.988,
+        "p95_ms": 289.188,
+        "p99_ms": 1151.913,
+        "per_second": 862.7550861112942,
+        "seconds": 6.90926092,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "patched",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 282 bytes 35570 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 972 bytes 107179 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 247726 bytes 31686434 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 184 bytes 20822 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 234 bytes 25805 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 204056 bytes 21112909 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 118 bytes 16966 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 977 bytes 107212 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 230044 bytes 24016661 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 50745 bytes 3332522 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 991 bytes 108992 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 284086 bytes 38356371 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 27153 bytes 1756708 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 255 bytes 28300 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 240040 bytes 25872239 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 27432 bytes 1776716 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1002 bytes 109450 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 267365 bytes 28868664 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-patched-0",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-patched-0",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":0,\"connections\":6000,\"errors\":{},\"failed\":0,\"label\":\"established-reply-normal-patched-0\",\"p50_ms\":77.046,\"p95_ms\":296.232,\"p99_ms\":330.118,\"per_second\":2648.373174915725,\"seconds\":2.2655417509999998,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 0,
+        "connections": 6000,
+        "errors": {},
+        "failed": 0,
+        "label": "established-reply-normal-patched-0",
+        "p50_ms": 77.046,
+        "p95_ms": 296.232,
+        "p99_ms": 330.118,
+        "per_second": 2648.373174915725,
+        "seconds": 2.2655417509999998,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "patched",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 50749 bytes 3333154 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 997 bytes 109422 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 284103 bytes 38358492 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 27157 bytes 1757340 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 256 bytes 28775 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 240053 bytes 25874015 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 27441 bytes 1777623 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1007 bytes 109827 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 267394 bytes 28872189 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 102965 bytes 6873137 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1033 bytes 113463 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 332000 bytes 45990265 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 54985 bytes 3613507 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 292 bytes 32384 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 292270 bytes 31786464 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 55610 bytes 3658112 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1028 bytes 112674 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 319150 bytes 34765804 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-patched-1",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-patched-1",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":0,\"connections\":6000,\"errors\":{},\"failed\":0,\"label\":\"established-reply-normal-patched-1\",\"p50_ms\":162.817,\"p95_ms\":299.294,\"p99_ms\":384.665,\"per_second\":1816.1593222472138,\"seconds\":3.303674918,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 0,
+        "connections": 6000,
+        "errors": {},
+        "failed": 0,
+        "label": "established-reply-normal-patched-1",
+        "p50_ms": 162.817,
+        "p95_ms": 299.294,
+        "p99_ms": 384.665,
+        "per_second": 1816.1593222472138,
+        "seconds": 3.303674918,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "patched",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 102971 bytes 6874085 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1033 bytes 113463 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 332024 bytes 45993437 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 54987 bytes 3613823 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 292 bytes 32384 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 292282 bytes 31787998 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 55613 bytes 3658586 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1028 bytes 112674 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 319171 bytes 34768613 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 155039 bytes 10327541 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1052 bytes 116576 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 363850 bytes 52454061 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 83330 bytes 5460278 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 318 bytes 35401 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 324503 bytes 36352623 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tip saddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ip daddr { 10.244.1.8, 10.244.2.8, 10.244.3.26 } ct direction reply ct state established counter packets 83893 bytes 5502809 accept comment \"mochi-validation-established-replies\" # handle 30\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1063 bytes 116917 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 348571 bytes 39149887 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-patched-2",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-patched-2",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":0,\"connections\":6000,\"errors\":{},\"failed\":0,\"label\":\"established-reply-normal-patched-2\",\"p50_ms\":9.444,\"p95_ms\":247.037,\"p99_ms\":373.466,\"per_second\":3883.2722860169683,\"seconds\":1.545088667,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 0,
+        "connections": 6000,
+        "errors": {},
+        "failed": 0,
+        "label": "established-reply-normal-patched-2",
+        "p50_ms": 9.444,
+        "p95_ms": 247.037,
+        "p99_ms": 373.466,
+        "per_second": 3883.2722860169683,
+        "seconds": 1.545088667,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "restored",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1054 bytes 116680 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 363936 bytes 52465017 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 324 bytes 35830 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 324559 bytes 36359421 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1069 bytes 117346 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 348646 bytes 39159924 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1111 bytes 122095 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 445360 bytes 62588120 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 373 bytes 41151 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 398776 bytes 43787062 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1119 bytes 122722 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 421875 bytes 46555507 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-restored-0",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-restored-0",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":54,\"connections\":6000,\"errors\":{\"connection refused: 0x88\":54},\"failed\":54,\"label\":\"established-reply-normal-restored-0\",\"p50_ms\":98.293,\"p95_ms\":299.19,\"p99_ms\":1201.527,\"per_second\":774.1376734929838,\"seconds\":7.680804337,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "command terminated with exit code 1\n",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 54,
+        "connections": 6000,
+        "errors": {
+          "connection refused: 0x88": 54
+        },
+        "failed": 54,
+        "label": "established-reply-normal-restored-0",
+        "p50_ms": 98.293,
+        "p95_ms": 299.19,
+        "p99_ms": 1201.527,
+        "per_second": 774.1376734929838,
+        "seconds": 7.680804337,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "restored",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1111 bytes 122095 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 445418 bytes 62593416 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 378 bytes 41528 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 398800 bytes 43789637 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1124 bytes 123099 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 421901 bytes 46559018 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1156 bytes 127526 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 536575 bytes 73800670 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 423 bytes 46946 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 477864 bytes 51741852 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1170 bytes 128118 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 503032 bytes 54679935 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-restored-1",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-restored-1",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":4,\"connections\":6000,\"errors\":{\"connection refused: 0x88\":4},\"failed\":4,\"label\":\"established-reply-normal-restored-1\",\"p50_ms\":114.702,\"p95_ms\":300.836,\"p99_ms\":1250.68,\"per_second\":1033.7312943372035,\"seconds\":5.800346795,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "command terminated with exit code 1\n",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 4,
+        "connections": 6000,
+        "errors": {
+          "connection refused: 0x88": 4
+        },
+        "failed": 4,
+        "label": "established-reply-normal-restored-1",
+        "p50_ms": 114.702,
+        "p95_ms": 300.836,
+        "p99_ms": 1250.68,
+        "per_second": 1033.7312943372035,
+        "seconds": 5.800346795,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  },
+  {
+    "phase": "restored",
+    "before": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1161 bytes 127904 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 536602 bytes 73804132 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 425 bytes 47473 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 477889 bytes 51745319 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1175 bytes 128495 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 503070 bytes 54684360 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "after": {
+      "desktop-worker": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1228 bytes 135356 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 621760 bytes 84154053 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker2": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 489 bytes 53877 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 549797 bytes 59037594 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n",
+      "desktop-worker3": "table inet kindnet-network-policies {\n\tchain postrouting { # handle 3\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept # handle 4\n\t\ticmpv6 type nd-router-solicit accept # handle 5\n\t\ticmpv6 type nd-router-advert accept # handle 6\n\t\ticmpv6 type nd-neighbor-solicit accept # handle 7\n\t\ticmpv6 type nd-neighbor-advert accept # handle 8\n\t\ticmpv6 type nd-redirect accept # handle 9\n\t\tmeta skuid 0 counter packets 1245 bytes 136731 accept # handle 10\n\t\tct label 28 ct state established,related counter packets 579742 bytes 62278804 accept # handle 11\n\t\tip saddr @podips-v4 queue flags bypass to 101 # handle 12\n\t\tip daddr @podips-v4 queue flags bypass to 101 # handle 13\n\t\tip6 saddr @podips-v6 queue flags bypass to 101 # handle 14\n\t\tip6 daddr @podips-v6 queue flags bypass to 101 # handle 15\n\t\tct label set 28 # handle 16\n\t}\n}\n"
+    },
+    "result": {
+      "label": "established-reply-normal-restored-2",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "established-reply-normal-restored-2",
+        "-connections",
+        "6000",
+        "-concurrency",
+        "256",
+        "-subscribe"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"concurrency\":256,\"connection_failed\":21,\"connections\":6000,\"errors\":{\"connection refused: 0x88\":21},\"failed\":21,\"label\":\"established-reply-normal-restored-2\",\"p50_ms\":98.266,\"p95_ms\":300.772,\"p99_ms\":1196.428,\"per_second\":843.6032642096026,\"seconds\":7.087454795,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "command terminated with exit code 1\n",
+      "benchmark": {
+        "concurrency": 256,
+        "connection_failed": 21,
+        "connections": 6000,
+        "errors": {
+          "connection refused: 0x88": 21
+        },
+        "failed": 21,
+        "label": "established-reply-normal-restored-2",
+        "p50_ms": 98.266,
+        "p95_ms": 300.772,
+        "p99_ms": 1196.428,
+        "per_second": 843.6032642096026,
+        "seconds": 7.087454795,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    }
+  }
+]

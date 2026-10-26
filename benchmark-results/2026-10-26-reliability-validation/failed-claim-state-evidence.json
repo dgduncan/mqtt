@@ -1,0 +1,643 @@
+{
+  "failed_claims": [
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 47788,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.764134421Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5013037628,
+        "error": "read tcp 10.244.1.8:47788->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 47832,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.767749337Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5013108128,
+        "error": "read tcp 10.244.1.8:47832->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 47836,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.767773879Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5013079836,
+        "error": "read tcp 10.244.1.8:47836->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 47848,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.767780629Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5012905336,
+        "error": "read tcp 10.244.1.8:47848->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34220,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.93922863Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000745127,
+        "error": "read tcp 10.244.1.8:34220->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34226,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.940212963Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5001497710,
+        "error": "read tcp 10.244.1.8:34226->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34210,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.940529505Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5002247127,
+        "error": "read tcp 10.244.1.8:34210->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34252,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.941339797Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000082752,
+        "error": "read tcp 10.244.1.8:34252->10.244.3.26:7947: i/o timeout\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34290,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.941798088Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000196086,
+        "error": "read tcp 10.244.1.8:34290->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34294,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.941836088Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000054502,
+        "error": "read tcp 10.244.1.8:34294->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34276,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.941884172Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000356586,
+        "error": "read tcp 10.244.1.8:34276->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34286,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.942049422Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000486461,
+        "error": "read tcp 10.244.1.8:34286->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 34274,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:19.942243463Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000732669,
+        "error": "read tcp 10.244.1.8:34274->10.244.3.26:7947: i/o timeout\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 35058,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:20.03543238Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000132211,
+        "error": "read tcp 10.244.1.8:35058->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 35068,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:20.035499047Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000171503,
+        "error": "read tcp 10.244.1.8:35068->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 35026,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:20.035445005Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000209919,
+        "error": "read tcp 10.244.1.8:35026->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 35042,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:20.035723588Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000469919,
+        "error": "read tcp 10.244.1.8:35042->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 35012,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:20.035768047Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000579169,
+        "error": "read tcp 10.244.1.8:35012->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-1",
+      "source": "10.244.1.8",
+      "port": 35086,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:20.038253255Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-1",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5002255252,
+        "error": "read tcp 10.244.1.8:35086->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41642,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.725390504Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000211503,
+        "error": "read tcp 10.244.2.8:41642->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41672,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.725449046Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000154752,
+        "error": "read tcp 10.244.2.8:41672->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41704,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.726327046Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000099211,
+        "error": "read tcp 10.244.2.8:41704->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41798,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.726819129Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000260669,
+        "error": "read tcp 10.244.2.8:41798->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41768,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.726960296Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000442419,
+        "error": "read tcp 10.244.2.8:41768->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41766,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.726989337Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000494211,
+        "error": "read tcp 10.244.2.8:41766->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41754,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.727014171Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000535461,
+        "error": "read tcp 10.244.2.8:41754->10.244.3.26:7947: i/o timeout"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41818,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.727042129Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000448003,
+        "error": "read tcp 10.244.2.8:41818->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    },
+    {
+      "pod": "mochi-validation-2",
+      "source": "10.244.2.8",
+      "port": 41782,
+      "peer": "10.244.3.26",
+      "log": {
+        "time": "2026-10-26T18:58:17.727067754Z",
+        "level": "DEBUG",
+        "msg": "registry request failed",
+        "node": "mochi-validation-2",
+        "operation": "claim",
+        "peer": "10.244.3.26:7947",
+        "phase": "read",
+        "elapsed": 5000534252,
+        "error": "read tcp 10.244.2.8:41782->10.244.3.26:7947: use of closed network connection\ncontext deadline exceeded"
+      }
+    }
+  ],
+  "trace_evidence": {
+    "desktop-worker": {
+      "unlabelled_queued_samples": [
+        [
+          "trace id 0c2035bc inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41642 tcp flags == 0x12 tcp window 65483",
+          "trace id 0c2035bc inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 0c2035bc inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 0c2035bc inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 0c2035bc inet mochi_registry_trace replies policy accept",
+          "trace id 0c2035bc inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41642 tcp flags == 0x12 tcp window 65483",
+          "trace id 0c2035bc inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id 7a683f36 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 6087 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 41642 tcp flags == ack tcp window 64",
+          "trace id 7a683f36 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 7a683f36 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 7a683f36 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 7a683f36 inet mochi_registry_trace replies policy accept",
+          "trace id 7a683f36 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 6087 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 41642 tcp flags == ack tcp window 64",
+          "trace id 7a683f36 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id f936f1c1 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41672 tcp flags == 0x12 tcp window 65483",
+          "trace id f936f1c1 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id f936f1c1 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id f936f1c1 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id f936f1c1 inet mochi_registry_trace replies policy accept",
+          "trace id f936f1c1 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41672 tcp flags == 0x12 tcp window 65483",
+          "trace id f936f1c1 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id 40f07496 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41704 tcp flags == 0x12 tcp window 65483",
+          "trace id 40f07496 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 40f07496 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 40f07496 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 40f07496 inet mochi_registry_trace replies policy accept",
+          "trace id 40f07496 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41704 tcp flags == 0x12 tcp window 65483",
+          "trace id 40f07496 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id f5714bb7 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 18573 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 41704 tcp flags == ack tcp window 64",
+          "trace id f5714bb7 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id f5714bb7 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id f5714bb7 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id f5714bb7 inet mochi_registry_trace replies policy accept",
+          "trace id f5714bb7 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 18573 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 41704 tcp flags == ack tcp window 64",
+          "trace id f5714bb7 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id 4f5d6997 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 47788 tcp flags == 0x12 tcp window 65483",
+          "trace id 4f5d6997 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 4f5d6997 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 4f5d6997 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 4f5d6997 inet mochi_registry_trace replies policy accept",
+          "trace id 4f5d6997 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 47788 tcp flags == 0x12 tcp window 65483",
+          "trace id 4f5d6997 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id f1df5c85 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 29507 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 47788 tcp flags == ack tcp window 64",
+          "trace id f1df5c85 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id f1df5c85 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id f1df5c85 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id f1df5c85 inet mochi_registry_trace replies policy accept",
+          "trace id f1df5c85 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 29507 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 47788 tcp flags == ack tcp window 64",
+          "trace id f1df5c85 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id dc030f91 inet mochi_registry_trace replies packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41754 tcp flags == 0x12 tcp window 65483",
+          "trace id dc030f91 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id dc030f91 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id dc030f91 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id dc030f91 inet mochi_registry_trace replies policy accept",
+          "trace id dc030f91 inet kindnet-network-policies postrouting packet: iif \"veth083d41ad\" oif \"eth0\" ether saddr ea:81:b2:94:41:73 ether daddr 46:e6:36:fa:b5:bd ip saddr 10.244.3.26 ip daddr 10.244.2.8 ip dscp cs0 ip ecn not-ect ip ttl 63 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 41754 tcp flags == 0x12 tcp window 65483",
+          "trace id dc030f91 inet kindnet-network-policies postrouting rule ip saddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ]
+      ],
+      "matched_traces": 328,
+      "unlabelled_queued": 217
+    },
+    "desktop-worker2": {
+      "unlabelled_queued_samples": [
+        [
+          "trace id 5b3dce5f inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34210 tcp flags == 0x12 tcp window 65483",
+          "trace id 5b3dce5f inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 5b3dce5f inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 5b3dce5f inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 5b3dce5f inet mochi_registry_trace replies policy accept",
+          "trace id 5b3dce5f inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34210 tcp flags == 0x12 tcp window 65483",
+          "trace id 5b3dce5f inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id 9d679b51 inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34220 tcp flags == 0x12 tcp window 65483",
+          "trace id 9d679b51 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 9d679b51 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 9d679b51 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 9d679b51 inet mochi_registry_trace replies policy accept",
+          "trace id 9d679b51 inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34220 tcp flags == 0x12 tcp window 65483",
+          "trace id 9d679b51 inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id afd550e7 inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 62648 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34210 tcp flags == ack tcp window 64",
+          "trace id afd550e7 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id afd550e7 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id afd550e7 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id afd550e7 inet mochi_registry_trace replies policy accept",
+          "trace id afd550e7 inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 62648 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34210 tcp flags == ack tcp window 64",
+          "trace id afd550e7 inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id a5a38e99 inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 2233 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34220 tcp flags == ack tcp window 64",
+          "trace id a5a38e99 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id a5a38e99 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id a5a38e99 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id a5a38e99 inet mochi_registry_trace replies policy accept",
+          "trace id a5a38e99 inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 2233 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34220 tcp flags == ack tcp window 64",
+          "trace id a5a38e99 inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id f1aa0165 inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34226 tcp flags == 0x12 tcp window 65483",
+          "trace id f1aa0165 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id f1aa0165 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id f1aa0165 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id f1aa0165 inet mochi_registry_trace replies policy accept",
+          "trace id f1aa0165 inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34226 tcp flags == 0x12 tcp window 65483",
+          "trace id f1aa0165 inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id 65a1e3cb inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 49354 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34226 tcp flags == ack tcp window 64",
+          "trace id 65a1e3cb inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 65a1e3cb inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 65a1e3cb inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 65a1e3cb inet mochi_registry_trace replies policy accept",
+          "trace id 65a1e3cb inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 49354 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34226 tcp flags == ack tcp window 64",
+          "trace id 65a1e3cb inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id 9345e61b inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34252 tcp flags == 0x12 tcp window 65483",
+          "trace id 9345e61b inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id 9345e61b inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id 9345e61b inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id 9345e61b inet mochi_registry_trace replies policy accept",
+          "trace id 9345e61b inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 0 ip protocol tcp ip length 60 tcp sport 7947 tcp dport 34252 tcp flags == 0x12 tcp window 65483",
+          "trace id 9345e61b inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ],
+        [
+          "trace id aae33411 inet mochi_registry_trace replies packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 49141 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34252 tcp flags == ack tcp window 64",
+          "trace id aae33411 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1 (verdict continue)",
+          "trace id aae33411 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct state established counter packets 0 bytes 0 comment \"registry_state_established\" (verdict continue)",
+          "trace id aae33411 inet mochi_registry_trace replies rule ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter packets 0 bytes 0 comment \"registry_direction_reply\" (verdict continue)",
+          "trace id aae33411 inet mochi_registry_trace replies policy accept",
+          "trace id aae33411 inet kindnet-network-policies postrouting packet: iif \"eth0\" oif \"veth8dd8eace\" ether saddr f6:bf:b5:f4:b1:1d ether daddr b2:8e:03:8b:d3:9c ip saddr 10.244.3.26 ip daddr 10.244.1.8 ip dscp cs0 ip ecn not-ect ip ttl 62 ip id 49141 ip protocol tcp ip length 52 tcp sport 7947 tcp dport 34252 tcp flags == ack tcp window 64",
+          "trace id aae33411 inet kindnet-network-policies postrouting rule ip daddr @podips-v4 queue flags bypass to 101 (verdict queue)"
+        ]
+      ],
+      "matched_traces": 156,
+      "unlabelled_queued": 114
+    },
+    "desktop-worker3": {
+      "unlabelled_queued_samples": [],
+      "matched_traces": 51,
+      "unlabelled_queued": 0
+    }
+  }
+}

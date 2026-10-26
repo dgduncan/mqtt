@@ -10,6 +10,7 @@ import (
 	"encoding/binary"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net"
 	"time"
 
@@ -45,7 +46,41 @@ var (
 	errNotHeld        = errors.New("node does not hold the session")
 	errPeerUnknown    = errors.New("peer is not a cluster member")
 	errRemoteResponse = errors.New("cluster request failed")
+	errLeaderUnknown  = errors.New("registry leader is unknown")
 )
+
+// RegistryRPCError identifies a failed remote registry request. Unwrap preserves
+// transport errors, context cancellation, and registry response errors for callers.
+type RegistryRPCError struct {
+	Operation string
+	Peer      string
+	Phase     string
+	Elapsed   time.Duration
+	Err       error
+}
+
+func (e *RegistryRPCError) Error() string {
+	return fmt.Sprintf("registry %s peer=%s phase=%s elapsed=%s: %v", e.Operation, e.Peer, e.Phase, e.Elapsed, e.Err)
+}
+
+func (e *RegistryRPCError) Unwrap() error { return e.Err }
+
+func registryRequestName(t byte) string {
+	switch t {
+	case frameClaimRequest:
+		return "claim"
+	case frameReleaseRequest:
+		return "release"
+	case frameTakeoverRequest:
+		return "takeover"
+	case frameAdoptRequest:
+		return "adopt"
+	case frameConfirmRequest:
+		return "confirm"
+	default:
+		return fmt.Sprintf("frame-%02x", t)
+	}
+}
 
 // sessionState is a session moved between nodes.
 type sessionState struct {
@@ -57,27 +92,56 @@ type sessionState struct {
 // call sends a request to a node and returns the response payload. Connecting is bounded by
 // the claim timeout, so an unreachable node is detected quickly, but the response may take
 // as long as ctx allows.
-func (c *Cluster) call(ctx context.Context, addr string, t byte, body []byte) ([]byte, error) {
+func (c *Cluster) call(ctx context.Context, addr string, t byte, body []byte) (payload []byte, err error) {
+	started := time.Now()
+	phase := "connect"
+	c.metrics.registryRPCCalls.Add(1)
+	defer func() {
+		if err == nil {
+			return
+		}
+		if ctx.Err() != nil {
+			err = errors.Join(err, ctx.Err())
+		}
+		c.metrics.registryRPCFailures.Add(1)
+		var netErr net.Error
+		if errors.Is(err, context.DeadlineExceeded) || errors.As(err, &netErr) && netErr.Timeout() {
+			c.metrics.registryRPCTimeouts.Add(1)
+		}
+		rpcErr := &RegistryRPCError{Operation: registryRequestName(t), Peer: addr, Phase: phase, Elapsed: time.Since(started), Err: err}
+		c.log.Debug("registry request failed", "operation", rpcErr.Operation, "peer", addr,
+			"phase", phase, "elapsed", rpcErr.Elapsed, "error", err)
+		err = rpcErr
+	}()
+
 	d := net.Dialer{Timeout: c.opts.ClaimTimeout}
 	conn, err := d.DialContext(ctx, "tcp", addr)
 	if err != nil {
 		return nil, err
 	}
 	defer conn.Close()
+	stop := context.AfterFunc(ctx, func() { _ = conn.Close() })
+	defer stop()
 
+	phase = "deadline"
 	if deadline, ok := ctx.Deadline(); ok {
-		_ = conn.SetDeadline(deadline)
+		if err := conn.SetDeadline(deadline); err != nil {
+			return nil, err
+		}
 	}
 
+	phase = "write"
 	if _, err := conn.Write(encodeFrame(t, body)); err != nil {
 		return nil, err
 	}
 
+	phase = "read"
 	rt, resp, err := readFrame(bufio.NewReader(conn))
 	if err != nil {
 		return nil, err
 	}
 
+	phase = "response"
 	if rt != frameResponse || len(resp) == 0 {
 		return nil, ErrMalformedFrame
 	}
@@ -115,7 +179,10 @@ func (c *Cluster) serveRequest(conn net.Conn, t byte, body []byte) {
 	}
 
 	_ = conn.SetWriteDeadline(time.Now().Add(c.opts.WriteTimeout))
-	_, _ = conn.Write(encodeFrame(frameResponse, resp))
+	if _, err := conn.Write(encodeFrame(frameResponse, resp)); err != nil {
+		c.log.Debug("registry response failed", "operation", registryRequestName(t),
+			"peer", conn.RemoteAddr().String(), "phase", "write_response", "error", err)
+	}
 }
 
 func (c *Cluster) handleRequest(t byte, body []byte) ([]byte, error) {
@@ -166,6 +233,18 @@ func (c *Cluster) handleRequest(t byte, body []byte) ([]byte, error) {
 		epoch, n := binary.Uvarint(b)
 		if n <= 0 {
 			return nil, ErrMalformedFrame
+		}
+		// Epoch zero cannot own a session. Reserve an empty-ID, zero-epoch
+		// confirmation for a read-only readiness check. Older peers already
+		// accept this request and confirm it through Raft, returning false;
+		// that lets a new node become ready during a rolling upgrade.
+		if id == "" && epoch == 0 {
+			ctx, cancel := context.WithTimeout(context.Background(), readinessTimeout)
+			defer cancel()
+			if err := c.verifyRegistry(ctx); err != nil {
+				return nil, err
+			}
+			return []byte{0}, nil
 		}
 
 		ctx, cancel := context.WithTimeout(context.Background(), c.opts.ClaimTimeout)
@@ -285,11 +364,23 @@ func (c *Cluster) applyLocal(ctx context.Context, cmd []byte) (any, error) {
 // propose applies a registry command through the leader, retrying through leader
 // elections until ctx is done.
 func (c *Cluster) propose(ctx context.Context, t byte, cmd, body []byte) (any, []byte, error) {
+	started := time.Now()
+	var lastErr error
+	unavailable := func(cause error) error {
+		return fmt.Errorf("registry %s failed after %s: %w", registryRequestName(t), time.Since(started),
+			errors.Join(ErrNoQuorum, cause, lastErr))
+	}
 	for {
+		if err := ctx.Err(); err != nil {
+			return nil, nil, unavailable(err)
+		}
 		if c.raft.State() == raft.Leader {
 			res, err := c.applyLocal(ctx, cmd)
 			if !errors.Is(err, errNotLeader) {
 				return res, nil, err
+			}
+			if lastErr == nil {
+				lastErr = err
 			}
 		} else if _, leader := c.raft.LeaderWithID(); leader != "" {
 			if addr := c.peerAddr(string(leader)); addr != "" {
@@ -297,15 +388,19 @@ func (c *Cluster) propose(ctx context.Context, t byte, cmd, body []byte) (any, [
 				if err == nil {
 					return nil, resp, nil
 				}
-				c.log.Debug("registry request failed", "leader", leader, "error", err)
+				lastErr = err
+			} else if lastErr == nil {
+				lastErr = fmt.Errorf("registry leader %s: %w", leader, errPeerUnknown)
 			}
+		} else if lastErr == nil {
+			lastErr = errLeaderUnknown
 		}
 
 		select {
 		case <-ctx.Done():
-			return nil, nil, ErrNoQuorum
+			return nil, nil, unavailable(ctx.Err())
 		case <-c.done:
-			return nil, nil, ErrNoQuorum
+			return nil, nil, unavailable(net.ErrClosed)
 		case <-time.After(time.Millisecond * 50):
 		}
 	}

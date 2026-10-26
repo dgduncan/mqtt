@@ -10,7 +10,7 @@
 //
 //	GET  /metrics  cluster metrics in the Prometheus text format
 //	GET  /stats    cluster stats as json
-//	GET  /healthz  200 if the node is in contact with the session registry and not draining
+//	GET  /healthz  200 if registry quorum and the admission RPC path are reachable and the node is not draining
 //	GET  /livez    200 while the process is serving
 //	POST /drain    drain the node (optional ?rate=clients-per-second)
 //
@@ -267,7 +267,8 @@ func adminHandler(server *mqtt.Server, node *cluster.Cluster) http.Handler {
 		_, _ = w.Write([]byte("ok\n"))
 	})
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
-		if s := node.Stats(); !s.InContact || s.Draining {
+		if err := node.CheckReady(r.Context()); err != nil {
+			server.Log.Debug("readiness check failed", "error", err)
 			http.Error(w, "unavailable", http.StatusServiceUnavailable)
 			return
 		}

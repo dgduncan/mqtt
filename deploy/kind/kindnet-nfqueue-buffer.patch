@@ -1,0 +1,26 @@
+diff --git a/pkg/dataplane/controller.go b/pkg/dataplane/controller.go
+index 49cf250..a98d15b 100644
+--- a/pkg/dataplane/controller.go
++++ b/pkg/dataplane/controller.go
+@@ -247,6 +247,21 @@ func (c *Controller) Run(ctx context.Context) error {
+ 	}
+ 	defer nf.Close()
+ 
++	// Avoid NFQUEUE fail-open bypass when bursts fill the netlink socket.
++	// Bypassed packets never receive the policy label, so their replies can
++	// otherwise be evaluated as new ingress and denied on ephemeral ports.
++	if err := nf.Con.SetReadBuffer(4 * 1024 * 1024); err != nil {
++		return fmt.Errorf("configure nfqueue receive buffer: %w", err)
++	}
++	bufferBytes, err := nf.Con.ReadBuffer()
++	if err != nil {
++		return fmt.Errorf("read nfqueue receive buffer: %w", err)
++	}
++	if bufferBytes < 4*1024*1024 {
++		return fmt.Errorf("nfqueue receive buffer is limited to %d bytes", bufferBytes)
++	}
++	logger.Info("Configured NFQUEUE receive buffer", "bytes", bufferBytes)
++
+ 	c.nfq = nf
+ 
+ 	// Parse the packet and check if it should be accepted

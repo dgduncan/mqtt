@@ -11,6 +11,7 @@ import (
 	"net/http/httptest"
 	"regexp"
 	"strings"
+	"sync/atomic"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -93,6 +94,23 @@ func TestWritePrometheus(t *testing.T) {
 func TestWritePrometheusError(t *testing.T) {
 	nodes := newCluster(t, "n1")
 	require.Error(t, nodes[0].cluster.WritePrometheus(failingWriter{}))
+}
+
+func TestSubscriberLossMetrics(t *testing.T) {
+	n := newCluster(t, "n1")[0]
+	atomic.StoreInt64(&n.server.Info.InflightDropped, 7)
+	atomic.StoreInt64(&n.server.Info.MessagesDropped, 3)
+	atomic.StoreInt64(&n.server.Info.Inflight, 4)
+	s := n.cluster.Stats()
+	require.EqualValues(t, 7, s.SubscriberInflightDropped)
+	require.EqualValues(t, 3, s.SubscriberMessagesDropped)
+	require.EqualValues(t, 4, s.SubscriberInflight)
+	var buf bytes.Buffer
+	require.NoError(t, n.cluster.WritePrometheus(&buf))
+	require.Contains(t, buf.String(), "mochi_cluster_subscriber_inflight_dropped_total 7\n")
+	require.Contains(t, buf.String(), "mochi_cluster_subscriber_messages_dropped_total 3\n")
+	require.Contains(t, buf.String(), "mochi_cluster_subscriber_inflight_messages 4\n")
+	atomic.StoreInt64(&n.server.Info.Inflight, 0)
 }
 
 type failingWriter struct{}

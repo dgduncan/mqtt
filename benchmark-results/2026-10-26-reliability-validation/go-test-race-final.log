@@ -1,0 +1,35 @@
+ok  	github.com/dgduncan/mqtt/v3	3.216s
+ok  	github.com/dgduncan/mqtt/v3/cluster	103.860s
+?   	github.com/dgduncan/mqtt/v3/cluster/chaos	[no test files]
+?   	github.com/dgduncan/mqtt/v3/cmd	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/cmd/cluster	(cached)
+?   	github.com/dgduncan/mqtt/v3/cmd/docker	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/config	(cached)
+?   	github.com/dgduncan/mqtt/v3/examples/auth/basic	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/auth/encoded	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/benchmark	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/examples/benchmark/loadtest	(cached)
+?   	github.com/dgduncan/mqtt/v3/examples/cluster	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/config	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/debug	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/direct	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/hooks	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/paho.testing	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/badger	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/bolt	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/pebble	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/redis	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/tcp	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/tls	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/websocket	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/hooks/auth	(cached)
+?   	github.com/dgduncan/mqtt/v3/hooks/debug	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage	(cached)
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/badger	(cached)
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/bolt	3.152s
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/pebble	(cached)
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/redis	(cached)
+ok  	github.com/dgduncan/mqtt/v3/listeners	(cached)
+ok  	github.com/dgduncan/mqtt/v3/mempool	(cached)
+ok  	github.com/dgduncan/mqtt/v3/packets	(cached)
+ok  	github.com/dgduncan/mqtt/v3/system	(cached)

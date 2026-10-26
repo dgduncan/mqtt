@@ -108,6 +108,10 @@ def run(args):
         for name,node in after['nodes'].items():
             prev=before['nodes'].get(name,{})
             sd={f:node.get('stats',{}).get(f,0)-prev.get('stats',{}).get(f,0) for f in ['Dropped','Waits','LinkResyncs','ClaimFailures','ConnectionsRefused','ClientsFenced']}
+            # A missing field means the broker predates this metric, not zero loss.
+            for field in ['SubscriberInflightDropped','SubscriberMessagesDropped','RegistryRPCCalls','RegistryRPCFailures','RegistryRPCTimeouts']:
+                current,previous=node.get('stats',{}).get(field),prev.get('stats',{}).get(field)
+                sd[field]=current-previous if isinstance(current,int) and isinstance(previous,int) else None
             sd['subscriber_messages_dropped']=node.get('sys',{}).get('messages/dropped',0)-prev.get('sys',{}).get('messages/dropped',0)
             deltas[name]=sd
         result['broker_deltas']=deltas

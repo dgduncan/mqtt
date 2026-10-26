@@ -1,0 +1,56 @@
+{
+  "fullnameOverride": "mochi-validation",
+  "image": {
+    "repository": "mochi-cluster",
+    "tag": "reliability",
+    "pullPolicy": "Never"
+  },
+  "auth": {
+    "allowAll": true
+  },
+  "log": {
+    "level": "debug"
+  },
+  "resources": {
+    "requests": {
+      "cpu": "50m",
+      "memory": "64Mi"
+    },
+    "limits": {
+      "memory": "512Mi"
+    }
+  },
+  "affinity": {
+    "nodeAffinity": {
+      "requiredDuringSchedulingIgnoredDuringExecution": {
+        "nodeSelectorTerms": [
+          {
+            "matchExpressions": [
+              {
+                "key": "kubernetes.io/hostname",
+                "operator": "In",
+                "values": [
+                  "desktop-worker",
+                  "desktop-worker2",
+                  "desktop-worker3"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "podAntiAffinity": {
+      "requiredDuringSchedulingIgnoredDuringExecution": [
+        {
+          "topologyKey": "kubernetes.io/hostname",
+          "labelSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "mochi-validation"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

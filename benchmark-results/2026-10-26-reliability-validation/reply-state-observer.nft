@@ -1,0 +1,14 @@
+table inet mochi_registry_trace {
+ chain replies {
+ type filter hook postrouting priority 94; policy accept;
+ ip saddr 10.244.3.26 tcp sport 7947 meta nftrace set 1
+ ip saddr 10.244.3.26 tcp sport 7947 ct state invalid counter comment "registry_state_invalid"
+ ip saddr 10.244.3.26 tcp sport 7947 ct state new counter comment "registry_state_new"
+ ip saddr 10.244.3.26 tcp sport 7947 ct state established counter comment "registry_state_established"
+ ip saddr 10.244.3.26 tcp sport 7947 ct state related counter comment "registry_state_related"
+ ip saddr 10.244.3.26 tcp sport 7947 ct state untracked counter comment "registry_state_untracked"
+ ip saddr 10.244.3.26 tcp sport 7947 ct direction reply counter comment "registry_direction_reply"
+ ip saddr 10.244.3.26 tcp sport 7947 ct direction original counter comment "registry_direction_original"
+ ip saddr 10.244.3.26 tcp sport 7947 ct label 28 counter comment "registry_label_present"
+ }
+}

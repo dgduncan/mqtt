@@ -1,0 +1,20 @@
+{
+  "desktop-worker": {
+    "pid": "11748",
+    "exit_code": 0,
+    "stdout": "{\"after\":212992,\"before\":212992,\"fd\":4,\"pid\":11748}\n",
+    "stderr": ""
+  },
+  "desktop-worker2": {
+    "pid": "7484",
+    "exit_code": 0,
+    "stdout": "{\"after\":212992,\"before\":212992,\"fd\":4,\"pid\":7484}\n",
+    "stderr": ""
+  },
+  "desktop-worker3": {
+    "pid": "7106",
+    "exit_code": 0,
+    "stdout": "{\"after\":212992,\"before\":212992,\"fd\":4,\"pid\":7106}\n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,1329 @@
+[
+  {
+    "target": "auth-fix",
+    "timeline": [
+      {
+        "seconds": 0.048115875,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 1.1008784169999999,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": true
+          }
+        ]
+      },
+      {
+        "seconds": 2.162770167,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 3.21095775,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 4.280996875,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.8",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 5.33912975,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.8",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 6.397535167,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 7.454591084,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 8.519399334,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 9.564873584,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.26",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 10.620137249999999,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": null,
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 11.681442584,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 12.728030833999998,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      }
+    ],
+    "exit_code": 0,
+    "seconds": 13.733786292000001,
+    "stats": {
+      "mochi-validation-0": {
+        "Forwarded": 0,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 0,
+        "BytesForwarded": 0,
+        "RouteUpdatesSent": 0,
+        "LinkConnects": 2,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "Claims": 0,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": false,
+        "InContact": true,
+        "LastContact": 4277875,
+        "RaftAppliedIndex": 431397,
+        "RaftLastIndex": 431397,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 20,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-1",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-2",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      },
+      "mochi-validation-1": {
+        "Forwarded": 0,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 0,
+        "BytesForwarded": 0,
+        "RouteUpdatesSent": 0,
+        "LinkConnects": 3,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "Claims": 0,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": false,
+        "InContact": true,
+        "LastContact": 55011958,
+        "RaftAppliedIndex": 431397,
+        "RaftLastIndex": 431397,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 20,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-0",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-2",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      },
+      "mochi-validation-2": {
+        "Forwarded": 0,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 0,
+        "BytesForwarded": 0,
+        "RouteUpdatesSent": 0,
+        "LinkConnects": 4,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "Claims": 0,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": true,
+        "InContact": true,
+        "LastContact": 542,
+        "RaftAppliedIndex": 431397,
+        "RaftLastIndex": 431397,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 20,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-0",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-1",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      }
+    },
+    "health": {
+      "0": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.0033577919999991934
+      },
+      "1": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.002953749999999644
+      },
+      "2": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.003049999999999997
+      }
+    },
+    "churn": {
+      "label": "rolling-auth-fix-churn",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "rolling-auth-fix-churn",
+        "-connections",
+        "1000",
+        "-concurrency",
+        "64",
+        "-subscribe"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"concurrency\":64,\"connection_failed\":0,\"connections\":1000,\"errors\":{},\"failed\":0,\"label\":\"rolling-auth-fix-churn\",\"p50_ms\":63.963,\"p95_ms\":114.754,\"p99_ms\":160.42,\"per_second\":933.9877318376455,\"seconds\":1.070677875,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "",
+      "benchmark": {
+        "concurrency": 64,
+        "connection_failed": 0,
+        "connections": 1000,
+        "errors": {},
+        "failed": 0,
+        "label": "rolling-auth-fix-churn",
+        "p50_ms": 63.963,
+        "p95_ms": 114.754,
+        "p99_ms": 160.42,
+        "per_second": 933.9877318376455,
+        "seconds": 1.070677875,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    },
+    "qos2": {
+      "label": "rolling-auth-fix-qos2",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "rolling-auth-fix-qos2",
+        "-qos",
+        "2",
+        "-publishers",
+        "3",
+        "-subscribers",
+        "3",
+        "-messages",
+        "1000",
+        "-rate",
+        "1000",
+        "-timeout",
+        "10s"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"duplicates\":0,\"expected\":9000,\"label\":\"rolling-auth-fix-qos2\",\"latency_samples\":9000,\"missing\":0,\"p50_ms\":0.511,\"p95_ms\":2.211,\"p99_ms\":2.485,\"payload_bytes\":64,\"publish_per_second\":2992.5812653547723,\"publish_seconds\":1.002479042,\"published\":3000,\"publishers\":3,\"qos\":2,\"receive_per_second\":8988.014105693464,\"receive_seconds\":1.001333542,\"received\":9000,\"subscribers\":3}\n",
+      "stderr": "",
+      "benchmark": {
+        "duplicates": 0,
+        "expected": 9000,
+        "label": "rolling-auth-fix-qos2",
+        "latency_samples": 9000,
+        "missing": 0,
+        "p50_ms": 0.511,
+        "p95_ms": 2.211,
+        "p99_ms": 2.485,
+        "payload_bytes": 64,
+        "publish_per_second": 2992.5812653547723,
+        "publish_seconds": 1.002479042,
+        "published": 3000,
+        "publishers": 3,
+        "qos": 2,
+        "receive_per_second": 8988.014105693464,
+        "receive_seconds": 1.001333542,
+        "received": 9000,
+        "subscribers": 3
+      }
+    }
+  },
+  {
+    "target": "reliability",
+    "timeline": [
+      {
+        "seconds": 0.04012445799999753,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 1.0959702079999971,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": true
+          }
+        ]
+      },
+      {
+        "seconds": 2.1596957919999973,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": null,
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 3.2158701249999986,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 4.278918082999997,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 5.353462125,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 6.420685457999998,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.9",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 7.481644666999998,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 8.539036042,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 9.610610999999999,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 10.680847999999997,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": true,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 11.746982624999998,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.27",
+            "image": "mochi-cluster:auth-fix",
+            "ready": false,
+            "deleting": true
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 12.798353666999997,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.28",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 13.872265875,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.28",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      },
+      {
+        "seconds": 14.940226666999997,
+        "pods": [
+          {
+            "name": "mochi-validation-0",
+            "ip": "10.244.3.28",
+            "image": "mochi-cluster:reliability",
+            "ready": false,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-1",
+            "ip": "10.244.1.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          },
+          {
+            "name": "mochi-validation-2",
+            "ip": "10.244.2.10",
+            "image": "mochi-cluster:reliability",
+            "ready": true,
+            "deleting": false
+          }
+        ]
+      }
+    ],
+    "exit_code": 0,
+    "seconds": 15.943020582999996,
+    "stats": {
+      "mochi-validation-0": {
+        "Forwarded": 0,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 0,
+        "BytesForwarded": 0,
+        "RouteUpdatesSent": 0,
+        "LinkConnects": 2,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "SubscriberMessagesDropped": 0,
+        "SubscriberInflightDropped": 0,
+        "SubscriberInflight": 0,
+        "SubscriberInflightLimit": 8192,
+        "RegistryRPCCalls": 1,
+        "RegistryRPCFailures": 0,
+        "RegistryRPCTimeouts": 0,
+        "Claims": 0,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": false,
+        "InContact": true,
+        "LastContact": 12965667,
+        "RaftAppliedIndex": 433424,
+        "RaftLastIndex": 433424,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 21,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-1",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-2",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      },
+      "mochi-validation-1": {
+        "Forwarded": 0,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 0,
+        "BytesForwarded": 0,
+        "RouteUpdatesSent": 0,
+        "LinkConnects": 3,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "SubscriberMessagesDropped": 0,
+        "SubscriberInflightDropped": 0,
+        "SubscriberInflight": 0,
+        "SubscriberInflightLimit": 8192,
+        "RegistryRPCCalls": 4,
+        "RegistryRPCFailures": 0,
+        "RegistryRPCTimeouts": 0,
+        "Claims": 0,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": false,
+        "InContact": true,
+        "LastContact": 43455542,
+        "RaftAppliedIndex": 433424,
+        "RaftLastIndex": 433424,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 21,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-0",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-2",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      },
+      "mochi-validation-2": {
+        "Forwarded": 0,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 0,
+        "BytesForwarded": 0,
+        "RouteUpdatesSent": 0,
+        "LinkConnects": 4,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "SubscriberMessagesDropped": 0,
+        "SubscriberInflightDropped": 0,
+        "SubscriberInflight": 0,
+        "SubscriberInflightLimit": 8192,
+        "RegistryRPCCalls": 3,
+        "RegistryRPCFailures": 0,
+        "RegistryRPCTimeouts": 0,
+        "Claims": 0,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": true,
+        "InContact": true,
+        "LastContact": 583,
+        "RaftAppliedIndex": 433424,
+        "RaftLastIndex": 433424,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 21,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-0",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-1",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      }
+    },
+    "health": {
+      "0": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.0036160840000007966
+      },
+      "1": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.0038879170000001295
+      },
+      "2": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.0032236660000037887
+      }
+    },
+    "churn": {
+      "label": "rolling-reliability-churn",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "rolling-reliability-churn",
+        "-connections",
+        "1000",
+        "-concurrency",
+        "64",
+        "-subscribe"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"concurrency\":64,\"connection_failed\":0,\"connections\":1000,\"errors\":{},\"failed\":0,\"label\":\"rolling-reliability-churn\",\"p50_ms\":56.994,\"p95_ms\":98.605,\"p99_ms\":101.129,\"per_second\":1098.3980181244285,\"seconds\":0.910416792,\"subscribe\":true,\"subscription_failed\":0}\n",
+      "stderr": "",
+      "benchmark": {
+        "concurrency": 64,
+        "connection_failed": 0,
+        "connections": 1000,
+        "errors": {},
+        "failed": 0,
+        "label": "rolling-reliability-churn",
+        "p50_ms": 56.994,
+        "p95_ms": 98.605,
+        "p99_ms": 101.129,
+        "per_second": 1098.3980181244285,
+        "seconds": 0.910416792,
+        "subscribe": true,
+        "subscription_failed": 0
+      }
+    },
+    "qos2": {
+      "label": "rolling-reliability-qos2",
+      "command": [
+        "kubectl",
+        "--kubeconfig=/Users/dduncan/.kube/config",
+        "--context=docker-desktop",
+        "-n",
+        "mochi",
+        "exec",
+        "mochi-loadtest",
+        "--",
+        "timeout",
+        "45",
+        "/loadtest",
+        "-pub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-sub",
+        "mochi-validation-0.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-1.mochi-validation-peers.mochi-validation.svc:1883,mochi-validation-2.mochi-validation-peers.mochi-validation.svc:1883",
+        "-json",
+        "-label",
+        "rolling-reliability-qos2",
+        "-qos",
+        "2",
+        "-publishers",
+        "3",
+        "-subscribers",
+        "3",
+        "-messages",
+        "1000",
+        "-rate",
+        "1000",
+        "-timeout",
+        "10s"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"duplicates\":0,\"expected\":9000,\"label\":\"rolling-reliability-qos2\",\"latency_samples\":9000,\"missing\":0,\"p50_ms\":0.476,\"p95_ms\":2.07,\"p99_ms\":2.307,\"payload_bytes\":64,\"publish_per_second\":2995.1980714949964,\"publish_seconds\":1.001603209,\"published\":3000,\"publishers\":3,\"qos\":2,\"receive_per_second\":8995.32467100692,\"receive_seconds\":1.000519751,\"received\":9000,\"subscribers\":3}\n",
+      "stderr": "",
+      "benchmark": {
+        "duplicates": 0,
+        "expected": 9000,
+        "label": "rolling-reliability-qos2",
+        "latency_samples": 9000,
+        "missing": 0,
+        "p50_ms": 0.476,
+        "p95_ms": 2.07,
+        "p99_ms": 2.307,
+        "payload_bytes": 64,
+        "publish_per_second": 2995.1980714949964,
+        "publish_seconds": 1.001603209,
+        "published": 3000,
+        "publishers": 3,
+        "qos": 2,
+        "receive_per_second": 8995.32467100692,
+        "receive_seconds": 1.000519751,
+        "received": 9000,
+        "subscribers": 3
+      }
+    }
+  }
+]

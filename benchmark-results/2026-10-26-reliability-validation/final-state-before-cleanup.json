@@ -1,0 +1,1805 @@
+{
+  "main_policy_matches_original": true,
+  "kindnet_daemonset": {
+    "apiVersion": "apps/v1",
+    "kind": "DaemonSet",
+    "metadata": {
+      "annotations": {
+        "deprecated.daemonset.template.generation": "5"
+      },
+      "creationTimestamp": "2026-10-23T15:18:22Z",
+      "generation": 5,
+      "labels": {
+        "app": "kindnet",
+        "k8s-app": "kindnet",
+        "tier": "node"
+      },
+      "name": "kindnet",
+      "namespace": "kube-system",
+      "resourceVersion": "112171",
+      "uid": "8787f1fd-efbc-4d35-bd0f-0569dbe52386"
+    },
+    "spec": {
+      "revisionHistoryLimit": 10,
+      "selector": {
+        "matchLabels": {
+          "app": "kindnet"
+        }
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "app": "kindnet",
+            "k8s-app": "kindnet",
+            "tier": "node"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "HOST_IP",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "status.hostIP"
+                    }
+                  }
+                },
+                {
+                  "name": "POD_IP",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "status.podIP"
+                    }
+                  }
+                },
+                {
+                  "name": "POD_SUBNET",
+                  "value": "10.244.0.0/16"
+                },
+                {
+                  "name": "CONTROL_PLANE_ENDPOINT",
+                  "value": "desktop-control-plane:6443"
+                }
+              ],
+              "image": "kindnetd:mochi-nfqueue-buffer",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "kindnet-cni",
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "50Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "50Mi"
+                }
+              },
+              "securityContext": {
+                "capabilities": {
+                  "add": [
+                    "NET_RAW",
+                    "NET_ADMIN"
+                  ]
+                },
+                "privileged": false
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/etc/cni/net.d",
+                  "name": "cni-cfg"
+                },
+                {
+                  "mountPath": "/run/xtables.lock",
+                  "name": "xtables-lock"
+                },
+                {
+                  "mountPath": "/lib/modules",
+                  "name": "lib-modules",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/var/run/nri",
+                  "name": "nri-plugin"
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "hostNetwork": true,
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "priorityClassName": "system-node-critical",
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "kindnet",
+          "serviceAccountName": "kindnet",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "operator": "Exists"
+            }
+          ],
+          "volumes": [
+            {
+              "hostPath": {
+                "path": "/etc/cni/net.d",
+                "type": ""
+              },
+              "name": "cni-cfg"
+            },
+            {
+              "hostPath": {
+                "path": "/run/xtables.lock",
+                "type": "FileOrCreate"
+              },
+              "name": "xtables-lock"
+            },
+            {
+              "hostPath": {
+                "path": "/lib/modules",
+                "type": ""
+              },
+              "name": "lib-modules"
+            },
+            {
+              "hostPath": {
+                "path": "/var/run/nri",
+                "type": ""
+              },
+              "name": "nri-plugin"
+            }
+          ]
+        }
+      },
+      "updateStrategy": {
+        "rollingUpdate": {
+          "maxSurge": 0,
+          "maxUnavailable": 1
+        },
+        "type": "RollingUpdate"
+      }
+    },
+    "status": {
+      "currentNumberScheduled": 4,
+      "desiredNumberScheduled": 4,
+      "numberAvailable": 4,
+      "numberMisscheduled": 0,
+      "numberReady": 4,
+      "observedGeneration": 5,
+      "updatedNumberScheduled": 4
+    }
+  },
+  "original_kindnet_container": {
+    "env": [
+      {
+        "name": "HOST_IP",
+        "valueFrom": {
+          "fieldRef": {
+            "apiVersion": "v1",
+            "fieldPath": "status.hostIP"
+          }
+        }
+      },
+      {
+        "name": "POD_IP",
+        "valueFrom": {
+          "fieldRef": {
+            "apiVersion": "v1",
+            "fieldPath": "status.podIP"
+          }
+        }
+      },
+      {
+        "name": "POD_SUBNET",
+        "value": "10.244.0.0/16"
+      },
+      {
+        "name": "CONTROL_PLANE_ENDPOINT",
+        "value": "desktop-control-plane:6443"
+      }
+    ],
+    "image": "docker.io/kindest/kindnetd:v20260528-9350166c",
+    "imagePullPolicy": "IfNotPresent",
+    "name": "kindnet-cni",
+    "resources": {
+      "limits": {
+        "cpu": "100m",
+        "memory": "50Mi"
+      },
+      "requests": {
+        "cpu": "100m",
+        "memory": "50Mi"
+      }
+    },
+    "securityContext": {
+      "capabilities": {
+        "add": [
+          "NET_RAW",
+          "NET_ADMIN"
+        ]
+      },
+      "privileged": false
+    },
+    "terminationMessagePath": "/dev/termination-log",
+    "terminationMessagePolicy": "File",
+    "volumeMounts": [
+      {
+        "mountPath": "/etc/cni/net.d",
+        "name": "cni-cfg"
+      },
+      {
+        "mountPath": "/run/xtables.lock",
+        "name": "xtables-lock"
+      },
+      {
+        "mountPath": "/lib/modules",
+        "name": "lib-modules",
+        "readOnly": true
+      },
+      {
+        "mountPath": "/var/run/nri",
+        "name": "nri-plugin"
+      }
+    ]
+  },
+  "agents": {
+    "desktop-control-plane": {
+      "pod": "kindnet-6xm2x",
+      "pid": "9970",
+      "socket": {
+        "after": 8388608,
+        "before": 8388608,
+        "fd": 7,
+        "pid": 9970
+      },
+      "logs": "I1026 19:19:51.766563       1 main.go:413] probe TCP address desktop-control-plane:6443\nI1026 19:19:51.767592       1 main.go:114] connected to apiserver: https://desktop-control-plane:6443\nI1026 19:19:51.767706       1 main.go:144] hostIP = 172.26.0.4\npodIP = 172.26.0.4\nI1026 19:19:51.854647       1 main.go:153] setting mtu 65535 for CNI \nI1026 19:19:51.854675       1 main.go:183] kindnetd IP family: \"ipv4\"\nI1026 19:19:51.854684       1 main.go:187] noMask IPv4 subnets: [10.244.0.0/16]\nI1026 19:19:51.956789       1 controller.go:173] \"Starting controller\" name=\"kube-network-policies\"\nI1026 19:19:51.956807       1 controller.go:178] \"Waiting for the policy engine to become ready...\"\nI1026 19:19:52.457517       1 controller.go:185] \"Policy engine is ready.\"\nI1026 19:19:52.457564       1 metrics.go:72] Registering metrics\nI1026 19:19:52.457715       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:19:52.465685       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.887375ms\"\nI1026 19:19:52.465849       1 controller.go:263] \"Configured NFQUEUE receive buffer\" bytes=8388608\nI1026 19:20:01.963860       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:01.963892       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:01.964089       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:01.964096       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:01.964129       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:01.964137       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:01.964161       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:01.964167       1 main.go:324] handling current node\nI1026 19:20:11.962269       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:20:11.962339       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:11.962788       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:11.962807       1 main.go:324] handling current node\nI1026 19:20:11.962829       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:11.962834       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:11.963243       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:11.963314       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:21.962124       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:21.962187       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:21.962502       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:21.962524       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:21.962748       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:21.962769       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:21.962872       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:21.962882       1 main.go:324] handling current node\nI1026 19:20:31.959999       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:31.960017       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:31.960116       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:31.960123       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:31.960150       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:31.960156       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:31.960179       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:31.960182       1 main.go:324] handling current node\nI1026 19:20:41.959551       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:41.959573       1 main.go:324] handling current node\nI1026 19:20:41.959651       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:41.959665       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:41.959777       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:41.959791       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:41.959831       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:20:41.959840       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:51.957631       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:51.957691       1 main.go:324] handling current node\nI1026 19:20:51.957711       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:51.957737       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:51.957875       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:51.957888       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:51.957978       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:51.957989       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:01.958595       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:01.958616       1 main.go:324] handling current node\nI1026 19:21:01.958649       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:01.958653       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:01.958770       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:01.958781       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:01.958822       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:01.958830       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:11.958986       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:11.959074       1 main.go:324] handling current node\nI1026 19:21:11.959114       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:11.959126       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:11.959366       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:11.959385       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:11.959456       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:11.959482       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:21.962492       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:21.962569       1 main.go:324] handling current node\nI1026 19:21:21.962634       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:21.962643       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:21.962903       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:21.962915       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:21.962990       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:21.963000       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:31.962433       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:31.962594       1 main.go:324] handling current node\nI1026 19:21:31.962665       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:31.962678       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:31.963449       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:31.963473       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:31.963569       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:31.963590       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:41.958875       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:41.958917       1 main.go:324] handling current node\nI1026 19:21:41.958937       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:41.958942       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:41.959179       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:41.959199       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:41.959383       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:41.959396       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:51.964875       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:51.964914       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:51.965110       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:51.965126       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:51.965183       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:51.965190       1 main.go:324] handling current node\nI1026 19:21:51.965199       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:51.965203       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:01.964591       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:01.964678       1 main.go:324] handling current node\nI1026 19:22:01.964702       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:01.964711       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:01.965082       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:01.965102       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:01.965226       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:01.965232       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:11.957926       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:11.957946       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:11.958044       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:11.958055       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:11.958097       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:11.958109       1 main.go:324] handling current node\nI1026 19:22:11.958115       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:11.958117       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:21.963912       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:21.963935       1 main.go:324] handling current node\nI1026 19:22:21.963944       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:21.963947       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:21.964039       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:21.964047       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:21.964096       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:21.964116       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:31.962051       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:31.962116       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:31.962575       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:31.962601       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:31.962767       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:31.962796       1 main.go:324] handling current node\nI1026 19:22:31.962819       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:31.962825       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:41.959004       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:41.959159       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:41.959586       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:41.959634       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:41.959791       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:41.959804       1 main.go:324] handling current node\nI1026 19:22:41.959822       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:41.959838       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:51.958007       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:51.958033       1 main.go:324] handling current node\nI1026 19:22:51.958042       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:51.958044       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:51.958141       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:51.958152       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:51.958191       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:51.958193       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:01.960346       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:01.960397       1 main.go:324] handling current node\nI1026 19:23:01.960419       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:01.960423       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:01.960569       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:01.960578       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:01.960610       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:01.960612       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:11.959221       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:11.959297       1 main.go:324] handling current node\nI1026 19:23:11.959309       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:11.959314       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:11.959470       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:11.959480       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:11.959526       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:11.959537       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:21.960539       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:21.960682       1 main.go:324] handling current node\nI1026 19:23:21.960721       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:21.960736       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:21.961282       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:21.961308       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:21.961458       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:21.961479       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:31.965389       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:31.965435       1 main.go:324] handling current node\nI1026 19:23:31.965455       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:31.965468       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:31.965687       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:31.965705       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:31.965756       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:31.965769       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:41.958956       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:41.959020       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:41.959339       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:41.959380       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:41.959681       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:41.959730       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:41.959831       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:41.959850       1 main.go:324] handling current node\nI1026 19:23:51.958231       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:51.958350       1 main.go:324] handling current node\nI1026 19:23:51.958378       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:51.958387       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:51.958634       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:51.958656       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:51.958761       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:51.958770       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:01.959829       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:01.959944       1 main.go:324] handling current node\nI1026 19:24:01.959987       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:01.959997       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:01.960309       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:01.960328       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:01.960456       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:01.960468       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:11.950929       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:11.950987       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:11.951248       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:11.951267       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:11.951329       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:11.951343       1 main.go:324] handling current node\nI1026 19:24:11.951364       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:11.951372       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:21.957269       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:21.957307       1 main.go:324] handling current node\nI1026 19:24:21.957320       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:21.957324       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:21.957535       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:21.957548       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:21.957596       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:21.957604       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:31.952690       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:31.952733       1 main.go:324] handling current node\nI1026 19:24:31.952767       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:31.952772       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:31.953011       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:31.953022       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:31.953130       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:31.953145       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:41.949238       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:41.949266       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:41.949455       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:41.949468       1 main.go:324] handling current node\nI1026 19:24:41.949486       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:41.949491       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:41.949534       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:41.949551       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:51.949433       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:51.949459       1 main.go:324] handling current node\nI1026 19:24:51.949486       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:51.949490       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:51.949572       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:51.949576       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:51.949601       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:51.949608       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:01.957523       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:01.957561       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:01.957743       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:01.957754       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:01.957798       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:01.957801       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:01.957830       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:01.957834       1 main.go:324] handling current node\nI1026 19:25:11.950031       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:11.950142       1 main.go:324] handling current node\nI1026 19:25:11.950216       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:11.950230       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:11.950561       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:11.950580       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:11.950793       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:11.950818       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:21.955586       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:21.955608       1 main.go:324] handling current node\nI1026 19:25:21.955616       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:21.955618       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:21.955740       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:21.955747       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:21.955777       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:21.955787       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:31.956979       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:31.957107       1 main.go:324] handling current node\nI1026 19:25:31.957211       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:31.957232       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:31.957896       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:31.957919       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:31.958014       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:31.958042       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:41.950356       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:41.950415       1 main.go:324] handling current node\nI1026 19:25:41.950437       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:41.950446       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:41.950864       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:41.950895       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:41.951049       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:41.951057       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:51.949410       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:51.949478       1 main.go:324] handling current node\nI1026 19:25:51.949514       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:51.949529       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:51.949921       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:51.949949       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:51.950136       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:51.950161       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \n",
+      "conntrack": "cpu=0   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=1   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=2   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=3   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=4   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=5   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=6   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=7   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=8   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=9   \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=10  \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=11  \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=12  \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=13  \tfound=0 invalid=0 insert=0 insert_failed=0 drop=0 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \n"
+    },
+    "desktop-worker3": {
+      "pod": "kindnet-gswpj",
+      "pid": "8109",
+      "socket": {
+        "after": 8388608,
+        "before": 8388608,
+        "fd": 8,
+        "pid": 8109
+      },
+      "logs": "I1026 19:19:49.685084       1 main.go:413] probe TCP address desktop-control-plane:6443\nI1026 19:19:49.686991       1 main.go:114] connected to apiserver: https://desktop-control-plane:6443\nI1026 19:19:49.687192       1 main.go:144] hostIP = 172.26.0.5\npodIP = 172.26.0.5\nI1026 19:19:49.687655       1 main.go:153] setting mtu 65535 for CNI \nI1026 19:19:49.687669       1 main.go:183] kindnetd IP family: \"ipv4\"\nI1026 19:19:49.687675       1 main.go:187] noMask IPv4 subnets: [10.244.0.0/16]\nI1026 19:19:49.840913       1 controller.go:173] \"Starting controller\" name=\"kube-network-policies\"\nI1026 19:19:49.840926       1 controller.go:178] \"Waiting for the policy engine to become ready...\"\nI1026 19:19:50.341693       1 controller.go:185] \"Policy engine is ready.\"\nI1026 19:19:50.341724       1 metrics.go:72] Registering metrics\nI1026 19:19:50.341800       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:19:50.341891       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:19:50.356584       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"14.732792ms\"\nI1026 19:19:50.356705       1 controller.go:263] \"Configured NFQUEUE receive buffer\" bytes=8388608\nI1026 19:19:50.356584       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"14.64325ms\"\nI1026 19:19:59.840742       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:19:59.840821       1 main.go:324] handling current node\nI1026 19:19:59.843960       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:19:59.843988       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:19:59.844537       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:19:59.844552       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:19:59.844604       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:19:59.844614       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:09.843282       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:20:09.843336       1 main.go:324] handling current node\nI1026 19:20:09.843352       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:09.843357       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:09.843578       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:09.843593       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:09.843653       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:09.843666       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:19.841754       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:19.841788       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:19.841967       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:19.841982       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:19.842062       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:19.842073       1 main.go:324] handling current node\nI1026 19:20:19.842079       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:19.842080       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:29.841698       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:29.841732       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:29.841840       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:29.841849       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:29.841888       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:29.841894       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:29.841920       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:29.841941       1 main.go:324] handling current node\nI1026 19:20:39.842183       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:39.842236       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:39.842400       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:39.842407       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:39.842440       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:39.842445       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:39.842480       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:20:39.842488       1 main.go:324] handling current node\nI1026 19:20:49.841963       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:49.841996       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:49.842209       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:49.842235       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:49.842306       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:49.842320       1 main.go:324] handling current node\nI1026 19:20:49.842335       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:49.842340       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:59.841785       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:59.841841       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:59.842024       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:59.842030       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:59.842084       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:59.842094       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:20:59.842124       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:59.842130       1 main.go:324] handling current node\nI1026 19:21:09.841406       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:09.841527       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:09.842108       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:09.842191       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:09.842363       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:09.842372       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:09.842494       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:09.842614       1 main.go:324] handling current node\nI1026 19:21:19.841019       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:19.841080       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:19.841407       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:19.841438       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:19.841543       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:19.841561       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:19.841628       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:19.841635       1 main.go:324] handling current node\nI1026 19:21:29.842565       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:29.842741       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:29.843294       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:29.843323       1 main.go:324] handling current node\nI1026 19:21:29.843465       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:29.843480       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:29.843583       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:29.843610       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:39.843661       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:39.843733       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:39.844152       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:39.844175       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:39.844311       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:39.844325       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:39.844500       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:39.844531       1 main.go:324] handling current node\nI1026 19:21:49.841779       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:49.841815       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:49.842019       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:49.842036       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:49.842099       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:49.842107       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:49.842146       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:49.842157       1 main.go:324] handling current node\nI1026 19:21:59.841880       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:59.841983       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:59.842362       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:59.842389       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:59.842591       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:59.842610       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:59.842676       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:59.842684       1 main.go:324] handling current node\nI1026 19:22:09.842782       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:22:09.842823       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:09.843074       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:09.843089       1 main.go:324] handling current node\nI1026 19:22:09.843099       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:09.843102       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:09.843153       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:09.843167       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:19.841761       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:19.841805       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:19.841995       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:19.842009       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:19.842053       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:19.842061       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:19.842093       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:19.842101       1 main.go:324] handling current node\nI1026 19:22:29.842104       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:29.842167       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:29.842454       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:29.842470       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:29.842548       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:29.842557       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:29.842593       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:29.842598       1 main.go:324] handling current node\nI1026 19:22:39.842330       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:22:39.842380       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:39.842607       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:22:39.842622       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:39.842660       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:39.842664       1 main.go:324] handling current node\nI1026 19:22:39.842670       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:39.842671       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:45.692812       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:45.696120       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"3.252083ms\"\nI1026 19:22:46.697169       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:46.705262       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.064875ms\"\nI1026 19:22:47.705380       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:47.714295       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.847042ms\"\nI1026 19:22:49.155011       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:49.164130       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"9.064917ms\"\nI1026 19:22:49.841294       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:49.841326       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:49.841444       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:49.841456       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:49.841511       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:49.841586       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:49.841647       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:49.841657       1 main.go:324] handling current node\nI1026 19:22:50.165156       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:50.173369       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.158875ms\"\nI1026 19:22:59.840921       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:59.840942       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:59.841116       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:59.841120       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:59.841146       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:59.841148       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:59.841169       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:59.841172       1 main.go:324] handling current node\nI1026 19:23:02.016626       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:02.021198       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"4.516625ms\"\nI1026 19:23:03.022355       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:03.028102       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"5.715167ms\"\nI1026 19:23:04.028765       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:04.034286       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"5.481208ms\"\nI1026 19:23:05.035149       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:05.040300       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"5.104125ms\"\nI1026 19:23:06.184935       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:06.189115       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"4.142125ms\"\nI1026 19:23:07.189702       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:07.198406       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.662958ms\"\nI1026 19:23:09.845755       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:09.845800       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:09.846066       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:23:09.846082       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:09.846160       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:23:09.846172       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:09.846215       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:09.846220       1 main.go:324] handling current node\nI1026 19:23:19.842401       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:19.842431       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:19.842549       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:19.842554       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:19.842577       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:19.842579       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:19.842597       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:19.842599       1 main.go:324] handling current node\nI1026 19:23:29.843995       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:29.844065       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:29.844538       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:29.844569       1 main.go:324] handling current node\nI1026 19:23:29.844594       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:29.844603       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:29.844732       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:29.844741       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:39.841527       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:23:39.841583       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:39.841855       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:23:39.841870       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:39.841928       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:39.841936       1 main.go:324] handling current node\nI1026 19:23:39.841955       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:39.841967       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:49.842096       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:49.842158       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:49.842315       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:49.842347       1 main.go:324] handling current node\nI1026 19:23:49.842369       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:49.842375       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:49.842566       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:49.842578       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:59.842286       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:59.842354       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:59.842639       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:59.842659       1 main.go:324] handling current node\nI1026 19:23:59.842670       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:59.842674       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:59.842719       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:59.842730       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:09.835151       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:24:09.835197       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:09.835568       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:09.835585       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:09.835667       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:09.835681       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:09.835722       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:09.835727       1 main.go:324] handling current node\nI1026 19:24:19.834940       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:19.835046       1 main.go:324] handling current node\nI1026 19:24:19.835077       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:19.835084       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:19.835736       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:19.835756       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:19.835826       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:19.835830       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:29.835636       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:29.835692       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:29.836016       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:29.836108       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:29.836256       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:29.836282       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:29.836382       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:29.836406       1 main.go:324] handling current node\nI1026 19:24:30.415829       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:24:30.424659       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.756ms\"\nI1026 19:24:39.833147       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:24:39.836212       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:39.836330       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:39.836335       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:39.836357       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:39.836359       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:39.836559       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:39.836580       1 main.go:324] handling current node\nI1026 19:24:49.833624       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:49.833857       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:49.834166       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:49.834235       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:49.834266       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:49.834269       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:49.834291       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:49.834297       1 main.go:324] handling current node\nI1026 19:24:59.834374       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:59.834411       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:59.834613       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:59.834655       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:59.834702       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:59.834726       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:59.834782       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:59.834793       1 main.go:324] handling current node\nI1026 19:25:09.833791       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:09.833887       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:09.834210       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:09.834237       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:09.834326       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:09.834334       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:09.834452       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:09.834478       1 main.go:324] handling current node\nI1026 19:25:19.834011       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:19.834057       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:19.834229       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:19.834242       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:19.834292       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:19.834296       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:19.834329       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:19.834334       1 main.go:324] handling current node\nI1026 19:25:29.833153       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:29.833295       1 main.go:324] handling current node\nI1026 19:25:29.833562       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:29.833588       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:29.834263       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:29.834293       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:29.834499       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:29.834511       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:38.406836       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:25:38.411805       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"4.922667ms\"\nI1026 19:25:39.834216       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:39.834272       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:39.834624       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:39.834650       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:39.834772       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:39.834779       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:39.834830       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:39.834837       1 main.go:324] handling current node\nI1026 19:25:49.833585       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:49.833618       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:49.833789       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:49.833796       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:49.833844       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:49.833855       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:49.833885       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:49.833889       1 main.go:324] handling current node\n",
+      "conntrack": "cpu=0   \tfound=0 invalid=0 insert=0 insert_failed=382 drop=382 early_drop=0 error=0 search_restart=0 clash_resolve=2 chaintoolong=0 \ncpu=1   \tfound=1 invalid=0 insert=0 insert_failed=331 drop=331 early_drop=0 error=0 search_restart=0 clash_resolve=2 chaintoolong=0 \ncpu=2   \tfound=0 invalid=0 insert=0 insert_failed=286 drop=286 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=3   \tfound=0 invalid=0 insert=0 insert_failed=182 drop=182 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=4   \tfound=0 invalid=0 insert=0 insert_failed=267 drop=267 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=5   \tfound=0 invalid=0 insert=0 insert_failed=303 drop=303 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=6   \tfound=0 invalid=0 insert=0 insert_failed=127 drop=127 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=7   \tfound=0 invalid=0 insert=0 insert_failed=75 drop=75 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=8   \tfound=0 invalid=0 insert=0 insert_failed=72 drop=72 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=9   \tfound=0 invalid=6 insert=0 insert_failed=166 drop=166 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=10  \tfound=0 invalid=0 insert=0 insert_failed=82 drop=82 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=11  \tfound=0 invalid=1 insert=0 insert_failed=9 drop=9 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=12  \tfound=1 invalid=0 insert=0 insert_failed=70 drop=70 early_drop=0 error=0 search_restart=0 clash_resolve=1 chaintoolong=0 \ncpu=13  \tfound=0 invalid=0 insert=0 insert_failed=352 drop=352 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \n"
+    },
+    "desktop-worker": {
+      "pod": "kindnet-nl57n",
+      "pid": "13072",
+      "socket": {
+        "after": 8388608,
+        "before": 8388608,
+        "fd": 9,
+        "pid": 13072
+      },
+      "logs": "I1026 19:21:26.047707       1 main.go:413] probe TCP address desktop-control-plane:6443\nI1026 19:21:26.049102       1 main.go:114] connected to apiserver: https://desktop-control-plane:6443\nI1026 19:21:26.049292       1 main.go:144] hostIP = 172.26.0.2\npodIP = 172.26.0.2\nI1026 19:21:26.049832       1 main.go:153] setting mtu 65535 for CNI \nI1026 19:21:26.049885       1 main.go:183] kindnetd IP family: \"ipv4\"\nI1026 19:21:26.049896       1 main.go:187] noMask IPv4 subnets: [10.244.0.0/16]\nI1026 19:21:26.146317       1 controller.go:173] \"Starting controller\" name=\"kube-network-policies\"\nI1026 19:21:26.146338       1 controller.go:178] \"Waiting for the policy engine to become ready...\"\nI1026 19:21:26.646584       1 controller.go:185] \"Policy engine is ready.\"\nI1026 19:21:26.646637       1 metrics.go:72] Registering metrics\nI1026 19:21:26.646749       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:21:26.646834       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:21:26.668126       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"21.227666ms\"\nI1026 19:21:26.668213       1 controller.go:263] \"Configured NFQUEUE receive buffer\" bytes=8388608\nI1026 19:21:26.668126       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"20.989417ms\"\nI1026 19:21:36.141399       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:21:36.141563       1 main.go:324] handling current node\nI1026 19:21:36.145145       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:21:36.145216       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:36.145692       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:36.145719       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:36.145824       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:21:36.145829       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:46.141686       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:46.141726       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:21:46.141879       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:46.141890       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:46.141935       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:46.141938       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:46.141980       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:46.141985       1 main.go:324] handling current node\nI1026 19:21:56.143348       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:56.143405       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:56.143596       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:56.143610       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:56.143650       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:56.143655       1 main.go:324] handling current node\nI1026 19:21:56.143666       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:56.143669       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:06.141671       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:06.141769       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:06.142197       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:22:06.142236       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:06.142488       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:22:06.142504       1 main.go:324] handling current node\nI1026 19:22:06.142544       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:22:06.142556       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:16.148158       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:16.148187       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:16.148922       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:16.148946       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:16.149004       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:16.149009       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:16.149061       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:16.149072       1 main.go:324] handling current node\nI1026 19:22:26.148909       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:26.168865       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:26.169104       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:26.169122       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:26.169167       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:26.169177       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:26.248092       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:26.248112       1 main.go:324] handling current node\nI1026 19:22:36.143101       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:22:36.143198       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:36.143541       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:36.143557       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:36.143645       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:22:36.143653       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:36.143949       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:22:36.143972       1 main.go:324] handling current node\nI1026 19:22:46.141829       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:46.141923       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:46.142365       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:46.142410       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:46.142624       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:46.142638       1 main.go:324] handling current node\nI1026 19:22:46.142654       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:46.142676       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:53.837173       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:53.848049       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"10.712916ms\"\nI1026 19:22:54.849229       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:54.871306       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"22.009583ms\"\nI1026 19:22:55.871369       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:55.881103       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"9.692208ms\"\nI1026 19:22:56.145001       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:56.145027       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:22:56.145210       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:56.145225       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:56.145278       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:56.145293       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:56.145328       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:56.145332       1 main.go:324] handling current node\nI1026 19:22:56.881375       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:56.890315       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.847917ms\"\nI1026 19:22:58.156732       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:58.164151       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.383375ms\"\nI1026 19:22:59.165134       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:59.173182       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.010584ms\"\nI1026 19:23:06.142180       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:23:06.142226       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:06.142350       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:06.142358       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:06.142383       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:23:06.142386       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:06.142407       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:23:06.142411       1 main.go:324] handling current node\nI1026 19:23:11.887524       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:11.891422       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"3.851417ms\"\nI1026 19:23:12.892420       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:12.899276       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"6.819542ms\"\nI1026 19:23:13.899821       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:13.903544       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"3.68625ms\"\nI1026 19:23:14.903832       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:14.912628       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.712875ms\"\nI1026 19:23:16.142631       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:16.142661       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:16.142879       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:16.142886       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:16.142916       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:16.142919       1 main.go:324] handling current node\nI1026 19:23:16.142925       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:16.142948       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:16.218649       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:16.223285       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"4.607292ms\"\nI1026 19:23:17.224071       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:17.232412       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.198625ms\"\nI1026 19:23:26.143404       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:26.143460       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:26.143615       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:26.143630       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:26.143701       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:26.143707       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:26.143817       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:26.143836       1 main.go:324] handling current node\nI1026 19:23:36.145291       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:23:36.145332       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:36.145493       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:36.145503       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:36.145565       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:23:36.145577       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:36.145616       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:23:36.145621       1 main.go:324] handling current node\nI1026 19:23:46.143114       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:46.143182       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:46.143707       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:46.143759       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:46.144007       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:46.144156       1 main.go:324] handling current node\nI1026 19:23:46.144227       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:46.144253       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:56.144595       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:56.144700       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:56.144965       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:56.145330       1 main.go:324] handling current node\nI1026 19:23:56.145352       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:56.145360       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:23:56.145537       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:56.145545       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:06.142212       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:24:06.142238       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:06.142402       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:06.142411       1 main.go:324] handling current node\nI1026 19:24:06.142431       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:06.142433       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:06.142488       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:24:06.142493       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:16.134905       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:16.134983       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:16.135193       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:16.135207       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:16.135296       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:16.135432       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:16.135629       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:16.135648       1 main.go:324] handling current node\nI1026 19:24:26.136016       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:26.136065       1 main.go:324] handling current node\nI1026 19:24:26.136082       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:26.136089       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:26.136377       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:26.136393       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:26.136549       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:26.136559       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:36.134781       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:36.134855       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:36.135000       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:24:36.135009       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:36.135052       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:24:36.135056       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:36.135089       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:36.135099       1 main.go:324] handling current node\nI1026 19:24:39.439022       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:24:39.442646       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442669       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442675       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442679       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442683       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442688       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442692       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442696       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442699       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442704       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442708       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442712       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442716       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442720       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442723       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442727       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442730       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442735       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442739       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442746       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442750       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442758       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442762       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442767       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442770       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442774       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442778       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442783       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442787       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442796       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442800       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442803       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442807       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442810       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442813       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442821       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442825       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442839       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442846       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442861       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442873       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442877       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442881       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442885       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442889       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442893       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442899       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442906       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442909       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442918       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442921       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442925       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442931       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442940       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442946       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442956       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442959       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442963       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442967       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442971       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442976       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442980       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442984       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442988       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442992       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.442995       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443004       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443013       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443017       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443051       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443073       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443081       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443085       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443089       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443092       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443103       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443107       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443111       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443114       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443121       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443124       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443129       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443132       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443136       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443140       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443148       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443155       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443256       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443268       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443272       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443276       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443280       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443284       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443288       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443295       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443298       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443301       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443305       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443309       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443312       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443334       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443348       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443360       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443368       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443376       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443382       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443390       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443395       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443398       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443403       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443407       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443420       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443428       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443431       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443435       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443589       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443612       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443618       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443622       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443631       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443640       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443644       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443647       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443658       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443662       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443665       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443669       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443673       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443677       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443681       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443685       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443688       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443692       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443705       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443712       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443716       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443719       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443723       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443726       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443732       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443735       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443739       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443742       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443757       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443764       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443767       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443772       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443778       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443782       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.443786       1 controller.go:320] \"Could not receive message\" error=\"netlink receive: no such file or directory\"\nI1026 19:24:39.446548       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.490542ms\"\nI1026 19:24:46.138652       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:46.138691       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:24:46.138810       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:46.138815       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:46.138842       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:46.138847       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:46.138869       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:46.138878       1 main.go:324] handling current node\nI1026 19:24:56.133636       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:56.133670       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:56.133802       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:56.133837       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:56.133893       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:56.133903       1 main.go:324] handling current node\nI1026 19:24:56.133914       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:56.133917       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:06.134518       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:25:06.134567       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:06.134687       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:06.134698       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:06.134734       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:06.134744       1 main.go:324] handling current node\nI1026 19:25:06.134752       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:06.134754       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:16.135528       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:16.135623       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:16.136233       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:16.136277       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:16.136375       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:16.136412       1 main.go:324] handling current node\nI1026 19:25:16.136431       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:16.136437       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:26.136366       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:26.136419       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:26.136571       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:26.136589       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:26.136671       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:26.136683       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:26.136729       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:26.136733       1 main.go:324] handling current node\nI1026 19:25:36.133347       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:36.133455       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:36.133676       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:25:36.133685       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:36.133740       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:36.133750       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:36.133789       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:36.133801       1 main.go:324] handling current node\nI1026 19:25:46.133920       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:46.133947       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:46.134133       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:46.134143       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:46.134174       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:46.134180       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:46.134221       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:46.134229       1 main.go:324] handling current node\nI1026 19:25:55.400926       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:25:55.411041       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"10.023167ms\"\nI1026 19:25:56.135790       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:56.135830       1 main.go:347] Node desktop-worker2 has CIDR [10.244.1.0/24] \nI1026 19:25:56.136084       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:56.136106       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:56.136170       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:56.136175       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:56.136248       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:56.136264       1 main.go:324] handling current node\n",
+      "conntrack": "cpu=0   \tfound=0 invalid=1 insert=0 insert_failed=304 drop=304 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=1   \tfound=0 invalid=0 insert=0 insert_failed=439 drop=439 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=2   \tfound=0 invalid=1 insert=0 insert_failed=573 drop=573 early_drop=0 error=0 search_restart=0 clash_resolve=1 chaintoolong=0 \ncpu=3   \tfound=2 invalid=5 insert=0 insert_failed=161 drop=161 early_drop=0 error=0 search_restart=0 clash_resolve=3 chaintoolong=0 \ncpu=4   \tfound=1 invalid=0 insert=0 insert_failed=166 drop=166 early_drop=0 error=0 search_restart=0 clash_resolve=2 chaintoolong=0 \ncpu=5   \tfound=0 invalid=0 insert=0 insert_failed=299 drop=299 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=6   \tfound=2 invalid=1 insert=0 insert_failed=30 drop=30 early_drop=0 error=0 search_restart=0 clash_resolve=3 chaintoolong=0 \ncpu=7   \tfound=0 invalid=0 insert=0 insert_failed=234 drop=234 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=8   \tfound=6 invalid=0 insert=0 insert_failed=84 drop=84 early_drop=0 error=0 search_restart=0 clash_resolve=6 chaintoolong=0 \ncpu=9   \tfound=0 invalid=0 insert=0 insert_failed=215 drop=215 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=10  \tfound=0 invalid=0 insert=0 insert_failed=124 drop=124 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=11  \tfound=0 invalid=0 insert=0 insert_failed=252 drop=252 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=12  \tfound=0 invalid=0 insert=0 insert_failed=378 drop=378 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=13  \tfound=5 invalid=7 insert=0 insert_failed=225 drop=225 early_drop=0 error=0 search_restart=0 clash_resolve=5 chaintoolong=0 \n"
+    },
+    "desktop-worker2": {
+      "pod": "kindnet-ss7c9",
+      "pid": "8515",
+      "socket": {
+        "after": 8388608,
+        "before": 8388608,
+        "fd": 4,
+        "pid": 8515
+      },
+      "logs": "I1026 19:19:50.448327       1 main.go:413] probe TCP address desktop-control-plane:6443\nI1026 19:19:50.449657       1 main.go:114] connected to apiserver: https://desktop-control-plane:6443\nI1026 19:19:50.449898       1 main.go:144] hostIP = 172.26.0.3\npodIP = 172.26.0.3\nI1026 19:19:50.450378       1 main.go:153] setting mtu 65535 for CNI \nI1026 19:19:50.450386       1 main.go:183] kindnetd IP family: \"ipv4\"\nI1026 19:19:50.450391       1 main.go:187] noMask IPv4 subnets: [10.244.0.0/16]\nI1026 19:19:50.550259       1 controller.go:173] \"Starting controller\" name=\"kube-network-policies\"\nI1026 19:19:50.550272       1 controller.go:178] \"Waiting for the policy engine to become ready...\"\nI1026 19:19:51.050561       1 controller.go:185] \"Policy engine is ready.\"\nI1026 19:19:51.050588       1 metrics.go:72] Registering metrics\nI1026 19:19:51.050661       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:19:51.050757       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:19:51.071613       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"20.90175ms\"\nI1026 19:19:51.071708       1 controller.go:263] \"Configured NFQUEUE receive buffer\" bytes=8388608\nI1026 19:19:51.071613       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"20.804875ms\"\nI1026 19:20:00.551325       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:00.551546       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:00.552011       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:00.552037       1 main.go:324] handling current node\nI1026 19:20:00.555859       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:00.555894       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:00.556027       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:00.556041       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:10.551180       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:10.551232       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:10.551511       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:10.551575       1 main.go:324] handling current node\nI1026 19:20:10.551592       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:20:10.551600       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:10.551715       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:10.551733       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:20.551048       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:20.551130       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:20.551517       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:20.551550       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:20.551677       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:20.551698       1 main.go:324] handling current node\nI1026 19:20:20.551721       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:20.551727       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:30.550481       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:30.550509       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:30.550604       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:30.550608       1 main.go:324] handling current node\nI1026 19:20:30.550617       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:30.550620       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:30.550646       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:30.550650       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:40.551028       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:40.551053       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:40.551277       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:40.551282       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:40.551306       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:40.551309       1 main.go:324] handling current node\nI1026 19:20:40.551316       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:20:40.551318       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:20:50.551004       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:20:50.551034       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:20:50.551117       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:20:50.551128       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:20:50.551158       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:20:50.551166       1 main.go:324] handling current node\nI1026 19:20:50.551173       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:20:50.551175       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:00.550997       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:00.551015       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:00.551106       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:00.551112       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:00.551170       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:00.551174       1 main.go:324] handling current node\nI1026 19:21:00.551180       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:00.551182       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:10.550977       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:10.551036       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:10.551288       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:10.551313       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:10.551393       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:10.551401       1 main.go:324] handling current node\nI1026 19:21:10.551410       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:10.551415       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:20.551041       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:20.551095       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:20.551340       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:20.551399       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:20.551502       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:20.551521       1 main.go:324] handling current node\nI1026 19:21:20.551534       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:20.551541       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:30.550635       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:30.550792       1 main.go:324] handling current node\nI1026 19:21:30.551011       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:30.551050       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:30.551757       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:30.551774       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:30.552076       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:30.552096       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:40.551552       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:21:40.551615       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:40.551792       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:40.551807       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:40.551861       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:40.551866       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:40.551907       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:40.551919       1 main.go:324] handling current node\nI1026 19:21:50.551612       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:21:50.551641       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:21:50.551769       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:21:50.551784       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:21:50.551822       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:21:50.551838       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:21:50.551860       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:21:50.551864       1 main.go:324] handling current node\nI1026 19:22:00.551664       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:00.551742       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:00.552078       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:00.552099       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:00.552193       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:00.552209       1 main.go:324] handling current node\nI1026 19:22:00.552231       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:00.552243       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:10.551864       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:10.551900       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:10.552004       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:10.552015       1 main.go:324] handling current node\nI1026 19:22:10.552022       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:10.552024       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:10.552055       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:10.552058       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:20.551407       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:20.551554       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:20.552020       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:20.552086       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:20.552156       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:20.552172       1 main.go:324] handling current node\nI1026 19:22:20.552182       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:20.552185       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:30.551859       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:30.551933       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:30.552259       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:30.552275       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:30.552330       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:30.552341       1 main.go:324] handling current node\nI1026 19:22:30.552358       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:30.552367       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:40.552473       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:40.552515       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:40.552621       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:40.552629       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:40.552659       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:40.552662       1 main.go:324] handling current node\nI1026 19:22:40.552668       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:22:40.552670       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:49.832034       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:49.835334       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"3.237875ms\"\nI1026 19:22:50.551673       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:22:50.551694       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:22:50.551782       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:22:50.551794       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:22:50.551819       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:22:50.551828       1 main.go:324] handling current node\nI1026 19:22:50.551836       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:22:50.551837       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:22:50.835835       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:50.840222       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"4.350167ms\"\nI1026 19:22:51.841739       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:51.851332       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"9.536292ms\"\nI1026 19:22:53.160817       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:53.168248       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.379917ms\"\nI1026 19:22:54.169292       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:22:54.177154       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.809625ms\"\nI1026 19:23:00.551544       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:00.551581       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:00.551698       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:00.551707       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:00.551732       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:00.551739       1 main.go:324] handling current node\nI1026 19:23:00.551754       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:00.551757       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:06.868261       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:06.873278       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"4.845666ms\"\nI1026 19:23:07.874183       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:07.881295       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.0805ms\"\nI1026 19:23:08.883461       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:08.889450       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"5.885209ms\"\nI1026 19:23:09.890099       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:09.898393       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.216458ms\"\nI1026 19:23:10.552200       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:10.552226       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:10.552451       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:23:10.552469       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:10.552516       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:23:10.552546       1 main.go:324] handling current node\nI1026 19:23:10.552562       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:10.552568       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:11.200515       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:11.206286       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"5.721ms\"\nI1026 19:23:12.206428       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:23:12.214309       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"7.821584ms\"\nI1026 19:23:20.552812       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:20.552839       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:20.553029       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:20.553036       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:20.553087       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:20.553110       1 main.go:324] handling current node\nI1026 19:23:20.553117       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:20.553120       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:30.551885       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:30.551914       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:30.552035       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:30.552042       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:30.552068       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:30.552074       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:30.552096       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:30.552099       1 main.go:324] handling current node\nI1026 19:23:40.551354       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:40.551384       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:40.551500       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:23:40.551512       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:40.551550       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:23:40.551558       1 main.go:324] handling current node\nI1026 19:23:40.551565       1 main.go:320] Handling node with IPs: map[172.26.0.5:{} fc00:f853:ccd:e793::5:{}]\nI1026 19:23:40.551568       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:23:50.551541       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:23:50.551572       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:23:50.551721       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:23:50.551739       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:23:50.551818       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:23:50.551825       1 main.go:324] handling current node\nI1026 19:23:50.551836       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:23:50.551841       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:00.551778       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:00.551810       1 main.go:324] handling current node\nI1026 19:24:00.551828       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:00.551887       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:00.552049       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:00.552061       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:00.552104       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:00.552108       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:07.410639       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:24:07.418774       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"8.097ms\"\nI1026 19:24:10.544606       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:24:10.544654       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:10.544925       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:10.544944       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:10.545036       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:10.545053       1 main.go:324] handling current node\nI1026 19:24:10.545064       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:10.545067       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:20.557059       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:20.557105       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:20.557255       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:20.557284       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:20.557332       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:20.557337       1 main.go:324] handling current node\nI1026 19:24:20.557347       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:20.557350       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:30.544858       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:30.544896       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:30.545082       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:30.545123       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:30.545224       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:30.545242       1 main.go:324] handling current node\nI1026 19:24:30.545253       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:30.545257       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:40.400580       1 controller.go:477] \"Syncing nftables rules\" logger=\"nftables-sync\"\nI1026 19:24:40.411289       1 controller.go:480] \"Syncing nftables rules\" logger=\"nftables-sync\" elapsed=\"10.662209ms\"\nI1026 19:24:40.543118       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:24:40.543154       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:40.543260       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:24:40.543265       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:40.543287       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:24:40.543291       1 main.go:324] handling current node\nI1026 19:24:40.543297       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:40.543299       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:24:50.543548       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:24:50.543571       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:24:50.543665       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:24:50.543671       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:24:50.543698       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:24:50.543705       1 main.go:324] handling current node\nI1026 19:24:50.543711       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:24:50.543713       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:00.542883       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:00.542970       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:00.543684       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:00.543719       1 main.go:324] handling current node\nI1026 19:25:00.543780       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:00.543796       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:00.543919       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:00.543935       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:10.543001       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:10.543051       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:10.543236       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:10.543252       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:10.543329       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:10.543338       1 main.go:324] handling current node\nI1026 19:25:10.543347       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:10.543351       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:20.543046       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:20.543154       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:20.543840       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:20.544067       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:20.544407       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:20.544453       1 main.go:324] handling current node\nI1026 19:25:20.544475       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:20.544482       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:30.542629       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:30.542767       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:30.543119       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:30.543134       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:30.543223       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:30.543243       1 main.go:324] handling current node\nI1026 19:25:30.543322       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:30.543335       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:40.542951       1 main.go:320] Handling node with IPs: map[172.26.0.3:{} fc00:f853:ccd:e793::3:{}]\nI1026 19:25:40.543005       1 main.go:324] handling current node\nI1026 19:25:40.543041       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:40.543066       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:40.543294       1 main.go:320] Handling node with IPs: map[172.26.0.4:{} fc00:f853:ccd:e793::4:{}]\nI1026 19:25:40.543311       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:40.543374       1 main.go:320] Handling node with IPs: map[172.26.0.2:{} fc00:f853:ccd:e793::2:{}]\nI1026 19:25:40.543386       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \nI1026 19:25:50.543762       1 main.go:320] Handling node with IPs: map[172.26.0.3:{}]\nI1026 19:25:50.543848       1 main.go:324] handling current node\nI1026 19:25:50.543884       1 main.go:320] Handling node with IPs: map[172.26.0.5:{}]\nI1026 19:25:50.543894       1 main.go:347] Node desktop-worker3 has CIDR [10.244.2.0/24] \nI1026 19:25:50.544288       1 main.go:320] Handling node with IPs: map[172.26.0.4:{}]\nI1026 19:25:50.544302       1 main.go:347] Node desktop-control-plane has CIDR [10.244.0.0/24] \nI1026 19:25:50.544413       1 main.go:320] Handling node with IPs: map[172.26.0.2:{}]\nI1026 19:25:50.544432       1 main.go:347] Node desktop-worker has CIDR [10.244.3.0/24] \n",
+      "conntrack": "cpu=0   \tfound=0 invalid=0 insert=0 insert_failed=9 drop=9 early_drop=0 error=0 search_restart=0 clash_resolve=1 chaintoolong=0 \ncpu=1   \tfound=0 invalid=0 insert=0 insert_failed=3 drop=3 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=2   \tfound=0 invalid=1 insert=0 insert_failed=4 drop=4 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=3   \tfound=0 invalid=0 insert=0 insert_failed=13 drop=13 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=4   \tfound=0 invalid=0 insert=0 insert_failed=43 drop=43 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=5   \tfound=0 invalid=0 insert=0 insert_failed=4 drop=4 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=6   \tfound=0 invalid=0 insert=0 insert_failed=152 drop=152 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=7   \tfound=0 invalid=0 insert=0 insert_failed=154 drop=154 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=8   \tfound=0 invalid=0 insert=0 insert_failed=27 drop=27 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=9   \tfound=0 invalid=6 insert=0 insert_failed=164 drop=164 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=10  \tfound=0 invalid=0 insert=0 insert_failed=159 drop=159 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=11  \tfound=0 invalid=0 insert=0 insert_failed=3 drop=3 early_drop=0 error=0 search_restart=0 clash_resolve=0 chaintoolong=0 \ncpu=12  \tfound=0 invalid=0 insert=0 insert_failed=200 drop=200 early_drop=0 error=0 search_restart=0 clash_resolve=1 chaintoolong=0 \ncpu=13  \tfound=3 invalid=0 insert=0 insert_failed=81 drop=81 early_drop=0 error=0 search_restart=0 clash_resolve=4 chaintoolong=0 \n"
+    }
+  },
+  "validation": {
+    "stats": {
+      "mochi-validation-0": {
+        "Forwarded": 2002,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 2000,
+        "BytesForwarded": 304228,
+        "RouteUpdatesSent": 1340,
+        "LinkConnects": 2,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "SubscriberMessagesDropped": 0,
+        "SubscriberInflightDropped": 0,
+        "SubscriberInflight": 0,
+        "SubscriberInflightLimit": 8192,
+        "RegistryRPCCalls": 756,
+        "RegistryRPCFailures": 0,
+        "RegistryRPCTimeouts": 0,
+        "Claims": 337,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": false,
+        "InContact": true,
+        "LastContact": 74765625,
+        "RaftAppliedIndex": 435438,
+        "RaftLastIndex": 435438,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 21,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-1",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-2",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      },
+      "mochi-validation-1": {
+        "Forwarded": 2000,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 2001,
+        "BytesForwarded": 304000,
+        "RouteUpdatesSent": 1336,
+        "LinkConnects": 3,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "SubscriberMessagesDropped": 0,
+        "SubscriberInflightDropped": 0,
+        "SubscriberInflight": 0,
+        "SubscriberInflightLimit": 8192,
+        "RegistryRPCCalls": 755,
+        "RegistryRPCFailures": 0,
+        "RegistryRPCTimeouts": 0,
+        "Claims": 335,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": false,
+        "InContact": true,
+        "LastContact": 57469750,
+        "RaftAppliedIndex": 435438,
+        "RaftLastIndex": 435438,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 21,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-0",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-2",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      },
+      "mochi-validation-2": {
+        "Forwarded": 2000,
+        "Dropped": 0,
+        "Waits": 0,
+        "Received": 2001,
+        "BytesForwarded": 304000,
+        "RouteUpdatesSent": 1336,
+        "LinkConnects": 4,
+        "LinkResyncs": 0,
+        "RetainedSent": 0,
+        "RetainedApplied": 0,
+        "RetainedIgnored": 0,
+        "SubscriberMessagesDropped": 0,
+        "SubscriberInflightDropped": 0,
+        "SubscriberInflight": 0,
+        "SubscriberInflightLimit": 8192,
+        "RegistryRPCCalls": 3,
+        "RegistryRPCFailures": 0,
+        "RegistryRPCTimeouts": 0,
+        "Claims": 335,
+        "ClaimFailures": 0,
+        "ConnectionsRefused": 0,
+        "SessionsTakenOver": 0,
+        "SessionsHandedOver": 0,
+        "OwnerUnreachable": 0,
+        "SessionsSuperseded": 0,
+        "ClientsFenced": 0,
+        "DrainDisconnected": 0,
+        "DrainMigrated": 0,
+        "DrainMigrateFailures": 0,
+        "Draining": false,
+        "Members": 3,
+        "Leader": "mochi-validation-2",
+        "IsLeader": true,
+        "InContact": true,
+        "LastContact": 417,
+        "RaftAppliedIndex": 435438,
+        "RaftLastIndex": 435438,
+        "OwnedSessions": 0,
+        "LocalRoutes": 0,
+        "RemoteRoutes": 0,
+        "RetainedMessages": 21,
+        "RetainedTombstones": 0,
+        "Peers": [
+          {
+            "Name": "mochi-validation-0",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          },
+          {
+            "Name": "mochi-validation-1",
+            "Connected": true,
+            "Queued": 0,
+            "Draining": false,
+            "Routes": 0
+          }
+        ]
+      }
+    },
+    "health": {
+      "0": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.0038055830000000013
+      },
+      "1": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.003992792000000023
+      },
+      "2": {
+        "status": 200,
+        "body": "ok\n",
+        "seconds": 0.0029157080000000724
+      }
+    }
+  },
+  "network": {
+    "desktop-worker": {
+      "tables": "table ip nat\ntable ip mangle\ntable ip filter\ntable ip6 mangle\ntable ip6 nat\ntable ip6 filter\ntable inet kindnet-network-policies\n",
+      "postrouting": "table inet kindnet-network-policies {\n\tchain postrouting {\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept\n\t\ticmpv6 type nd-router-solicit accept\n\t\ticmpv6 type nd-router-advert accept\n\t\ticmpv6 type nd-neighbor-solicit accept\n\t\ticmpv6 type nd-neighbor-advert accept\n\t\ticmpv6 type nd-redirect accept\n\t\tmeta skuid 0 counter packets 204 bytes 19241 accept\n\t\tct label 28 ct state established,related counter packets 415 bytes 55129 accept\n\t\tip saddr @podips-v4 queue flags bypass to 101\n\t\tip daddr @podips-v4 queue flags bypass to 101\n\t\tip6 saddr @podips-v6 queue flags bypass to 101\n\t\tip6 daddr @podips-v6 queue flags bypass to 101\n\t\tct label set 28\n\t}\n}\n"
+    },
+    "desktop-worker2": {
+      "tables": "table ip nat\ntable ip mangle\ntable ip filter\ntable ip6 mangle\ntable ip6 nat\ntable ip6 filter\ntable inet kindnet-network-policies\n",
+      "postrouting": "table inet kindnet-network-policies {\n\tchain postrouting {\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept\n\t\ticmpv6 type nd-router-solicit accept\n\t\ticmpv6 type nd-router-advert accept\n\t\ticmpv6 type nd-neighbor-solicit accept\n\t\ticmpv6 type nd-neighbor-advert accept\n\t\ticmpv6 type nd-redirect accept\n\t\tmeta skuid 0 counter packets 898 bytes 95419 accept\n\t\tct label 28 ct state established,related counter packets 261914 bytes 25215019 accept\n\t\tip saddr @podips-v4 queue flags bypass to 101\n\t\tip daddr @podips-v4 queue flags bypass to 101\n\t\tip6 saddr @podips-v6 queue flags bypass to 101\n\t\tip6 daddr @podips-v6 queue flags bypass to 101\n\t\tct label set 28\n\t}\n}\n"
+    },
+    "desktop-worker3": {
+      "tables": "table ip nat\ntable ip mangle\ntable ip filter\ntable ip6 mangle\ntable ip6 nat\ntable ip6 filter\ntable inet kindnet-network-policies\n",
+      "postrouting": "table inet kindnet-network-policies {\n\tchain postrouting {\n\t\ttype filter hook postrouting priority srcnat - 5; policy accept;\n\t\tudp dport 53 accept\n\t\ticmpv6 type nd-router-solicit accept\n\t\ticmpv6 type nd-router-advert accept\n\t\ticmpv6 type nd-neighbor-solicit accept\n\t\ticmpv6 type nd-neighbor-advert accept\n\t\ticmpv6 type nd-redirect accept\n\t\tmeta skuid 0 counter packets 371 bytes 39120 accept\n\t\tct label 28 ct state established,related counter packets 5306 bytes 706603 accept\n\t\tip saddr @podips-v4 queue flags bypass to 101\n\t\tip daddr @podips-v4 queue flags bypass to 101\n\t\tip6 saddr @podips-v6 queue flags bypass to 101\n\t\tip6 daddr @podips-v6 queue flags bypass to 101\n\t\tct label set 28\n\t}\n}\n"
+    }
+  },
+  "main_pods": {
+    "apiVersion": "v1",
+    "items": [
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "checksum/auth": "232f384bbe7eebaa6655cd2aefd61e29f8a91268fb882277dcac900efb0f1de5"
+          },
+          "creationTimestamp": "2026-10-26T17:49:52Z",
+          "generateName": "mochi-cluster-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/instance": "mochi-cluster",
+            "app.kubernetes.io/name": "mochi-cluster",
+            "apps.kubernetes.io/pod-index": "0",
+            "controller-revision-hash": "mochi-cluster-fc4f58c5b",
+            "statefulset.kubernetes.io/pod-name": "mochi-cluster-0"
+          },
+          "name": "mochi-cluster-0",
+          "namespace": "mochi",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "StatefulSet",
+              "name": "mochi-cluster",
+              "uid": "6641b2dd-18e2-4966-a544-594d33f4780e"
+            }
+          ],
+          "resourceVersion": "112752",
+          "uid": "8301536c-90c4-4101-af4e-1ce92e6a37da"
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "MQTT_NODE_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_ADVERTISE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "status.podIP"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_SEEDS",
+                  "value": "mochi-cluster-peers.mochi.svc:7946"
+                },
+                {
+                  "name": "MQTT_BOOTSTRAP",
+                  "value": "auto"
+                },
+                {
+                  "name": "MQTT_JOIN_TIMEOUT",
+                  "value": "2m"
+                },
+                {
+                  "name": "MQTT_GOSSIP_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "gossip-key",
+                      "name": "mochi-cluster-gossip"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_ALLOW_ALL",
+                  "value": "true"
+                },
+                {
+                  "name": "MQTT_LISTEN",
+                  "value": ":1883"
+                },
+                {
+                  "name": "MQTT_WS_LISTEN",
+                  "value": ":1882"
+                },
+                {
+                  "name": "MQTT_DRAIN_ON_STOP",
+                  "value": "true"
+                },
+                {
+                  "name": "MQTT_DRAIN_RATE",
+                  "value": "0"
+                },
+                {
+                  "name": "MQTT_DRAIN_TIMEOUT",
+                  "value": "60s"
+                },
+                {
+                  "name": "MQTT_LOG_LEVEL",
+                  "value": "info"
+                },
+                {
+                  "name": "MQTT_LOG_FORMAT",
+                  "value": "json"
+                }
+              ],
+              "image": "mochi-cluster:auth-fix",
+              "imagePullPolicy": "Never",
+              "livenessProbe": {
+                "failureThreshold": 6,
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "name": "mochi",
+              "ports": [
+                {
+                  "containerPort": 1883,
+                  "name": "mqtt",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 1882,
+                  "name": "mqtt-ws",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7946,
+                  "name": "gossip-tcp",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7946,
+                  "name": "gossip-udp",
+                  "protocol": "UDP"
+                },
+                {
+                  "containerPort": 7947,
+                  "name": "forward",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7948,
+                  "name": "raft",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 8080,
+                  "name": "admin",
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "failureThreshold": 2,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "resources": {
+                "limits": {
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "startupProbe": {
+                "failureThreshold": 90,
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-d9jc7",
+                  "readOnly": true
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": false,
+          "hostname": "mochi-cluster-0",
+          "nodeName": "desktop-worker2",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "subdomain": "mochi-cluster-peers",
+          "terminationGracePeriodSeconds": 90,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "topologySpreadConstraints": [
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app.kubernetes.io/instance": "mochi-cluster",
+                  "app.kubernetes.io/name": "mochi-cluster"
+                }
+              },
+              "maxSkew": 1,
+              "topologyKey": "topology.kubernetes.io/zone",
+              "whenUnsatisfiable": "ScheduleAnyway"
+            },
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app.kubernetes.io/instance": "mochi-cluster",
+                  "app.kubernetes.io/name": "mochi-cluster"
+                }
+              },
+              "maxSkew": 1,
+              "topologyKey": "kubernetes.io/hostname",
+              "whenUnsatisfiable": "ScheduleAnyway"
+            }
+          ],
+          "volumes": [
+            {
+              "name": "kube-api-access-d9jc7",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "expirationSeconds": 3607,
+                      "path": "token"
+                    }
+                  },
+                  {
+                    "configMap": {
+                      "items": [
+                        {
+                          "key": "ca.crt",
+                          "path": "ca.crt"
+                        }
+                      ],
+                      "name": "kube-root-ca.crt"
+                    }
+                  },
+                  {
+                    "downwardAPI": {
+                      "items": [
+                        {
+                          "fieldRef": {
+                            "apiVersion": "v1",
+                            "fieldPath": "metadata.namespace"
+                          },
+                          "path": "namespace"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "status": {
+          "allocatedResources": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          },
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:52Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:52Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:55Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:55Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:52Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "50m",
+                "memory": "64Mi"
+              },
+              "containerID": "containerd://c153a85f133f73675e83f332b3fcd4fc7ea7b9cc5a4f6c02f52403021f4f759b",
+              "image": "docker.io/library/mochi-cluster:auth-fix",
+              "imageID": "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf",
+              "lastState": {},
+              "name": "mochi",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-10-26T17:49:53Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-d9jc7",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            }
+          ],
+          "hostIP": "172.26.0.3",
+          "hostIPs": [
+            {
+              "ip": "172.26.0.3"
+            },
+            {
+              "ip": "fc00:f853:ccd:e793::3"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.244.1.7",
+          "podIPs": [
+            {
+              "ip": "10.244.1.7"
+            }
+          ],
+          "qosClass": "Burstable",
+          "resources": {
+            "limits": {
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "28m",
+              "memory": "64Mi"
+            }
+          },
+          "startTime": "2026-10-26T17:49:52Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "checksum/auth": "232f384bbe7eebaa6655cd2aefd61e29f8a91268fb882277dcac900efb0f1de5"
+          },
+          "creationTimestamp": "2026-10-26T17:45:54Z",
+          "generateName": "mochi-cluster-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/instance": "mochi-cluster",
+            "app.kubernetes.io/name": "mochi-cluster",
+            "apps.kubernetes.io/pod-index": "1",
+            "controller-revision-hash": "mochi-cluster-fc4f58c5b",
+            "statefulset.kubernetes.io/pod-name": "mochi-cluster-1"
+          },
+          "name": "mochi-cluster-1",
+          "namespace": "mochi",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "StatefulSet",
+              "name": "mochi-cluster",
+              "uid": "6641b2dd-18e2-4966-a544-594d33f4780e"
+            }
+          ],
+          "resourceVersion": "111235",
+          "uid": "dc17bc12-9c77-45a6-8a78-d7386ffe34ce"
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "MQTT_NODE_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_ADVERTISE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "status.podIP"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_SEEDS",
+                  "value": "mochi-cluster-peers.mochi.svc:7946"
+                },
+                {
+                  "name": "MQTT_BOOTSTRAP",
+                  "value": "auto"
+                },
+                {
+                  "name": "MQTT_JOIN_TIMEOUT",
+                  "value": "2m"
+                },
+                {
+                  "name": "MQTT_GOSSIP_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "gossip-key",
+                      "name": "mochi-cluster-gossip"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_ALLOW_ALL",
+                  "value": "true"
+                },
+                {
+                  "name": "MQTT_LISTEN",
+                  "value": ":1883"
+                },
+                {
+                  "name": "MQTT_WS_LISTEN",
+                  "value": ":1882"
+                },
+                {
+                  "name": "MQTT_DRAIN_ON_STOP",
+                  "value": "true"
+                },
+                {
+                  "name": "MQTT_DRAIN_RATE",
+                  "value": "0"
+                },
+                {
+                  "name": "MQTT_DRAIN_TIMEOUT",
+                  "value": "60s"
+                },
+                {
+                  "name": "MQTT_LOG_LEVEL",
+                  "value": "info"
+                },
+                {
+                  "name": "MQTT_LOG_FORMAT",
+                  "value": "json"
+                }
+              ],
+              "image": "mochi-cluster:auth-fix",
+              "imagePullPolicy": "Never",
+              "livenessProbe": {
+                "failureThreshold": 6,
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "name": "mochi",
+              "ports": [
+                {
+                  "containerPort": 1883,
+                  "name": "mqtt",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 1882,
+                  "name": "mqtt-ws",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7946,
+                  "name": "gossip-tcp",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7946,
+                  "name": "gossip-udp",
+                  "protocol": "UDP"
+                },
+                {
+                  "containerPort": 7947,
+                  "name": "forward",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7948,
+                  "name": "raft",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 8080,
+                  "name": "admin",
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "failureThreshold": 2,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "resources": {
+                "limits": {
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "startupProbe": {
+                "failureThreshold": 90,
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-gtxdw",
+                  "readOnly": true
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": false,
+          "hostname": "mochi-cluster-1",
+          "nodeName": "desktop-worker3",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "subdomain": "mochi-cluster-peers",
+          "terminationGracePeriodSeconds": 90,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "topologySpreadConstraints": [
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app.kubernetes.io/instance": "mochi-cluster",
+                  "app.kubernetes.io/name": "mochi-cluster"
+                }
+              },
+              "maxSkew": 1,
+              "topologyKey": "topology.kubernetes.io/zone",
+              "whenUnsatisfiable": "ScheduleAnyway"
+            },
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app.kubernetes.io/instance": "mochi-cluster",
+                  "app.kubernetes.io/name": "mochi-cluster"
+                }
+              },
+              "maxSkew": 1,
+              "topologyKey": "kubernetes.io/hostname",
+              "whenUnsatisfiable": "ScheduleAnyway"
+            }
+          ],
+          "volumes": [
+            {
+              "name": "kube-api-access-gtxdw",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "expirationSeconds": 3607,
+                      "path": "token"
+                    }
+                  },
+                  {
+                    "configMap": {
+                      "items": [
+                        {
+                          "key": "ca.crt",
+                          "path": "ca.crt"
+                        }
+                      ],
+                      "name": "kube-root-ca.crt"
+                    }
+                  },
+                  {
+                    "downwardAPI": {
+                      "items": [
+                        {
+                          "fieldRef": {
+                            "apiVersion": "v1",
+                            "fieldPath": "metadata.namespace"
+                          },
+                          "path": "namespace"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "status": {
+          "allocatedResources": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          },
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:45:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:45:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:48:36Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:48:36Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:45:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "50m",
+                "memory": "64Mi"
+              },
+              "containerID": "containerd://d71eea622c51f6204e1364b29e55401056b1fd05319eb2a82ae2a9ed16fe9c54",
+              "image": "docker.io/library/mochi-cluster:auth-fix",
+              "imageID": "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf",
+              "lastState": {},
+              "name": "mochi",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-10-26T17:45:54Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-gtxdw",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            }
+          ],
+          "hostIP": "172.26.0.5",
+          "hostIPs": [
+            {
+              "ip": "172.26.0.5"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.244.2.7",
+          "podIPs": [
+            {
+              "ip": "10.244.2.7"
+            }
+          ],
+          "qosClass": "Burstable",
+          "resources": {
+            "limits": {
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "28m",
+              "memory": "64Mi"
+            }
+          },
+          "startTime": "2026-10-26T17:45:54Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "checksum/auth": "232f384bbe7eebaa6655cd2aefd61e29f8a91268fb882277dcac900efb0f1de5"
+          },
+          "creationTimestamp": "2026-10-26T17:49:19Z",
+          "generateName": "mochi-cluster-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/instance": "mochi-cluster",
+            "app.kubernetes.io/name": "mochi-cluster",
+            "apps.kubernetes.io/pod-index": "2",
+            "controller-revision-hash": "mochi-cluster-fc4f58c5b",
+            "statefulset.kubernetes.io/pod-name": "mochi-cluster-2"
+          },
+          "name": "mochi-cluster-2",
+          "namespace": "mochi",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "StatefulSet",
+              "name": "mochi-cluster",
+              "uid": "6641b2dd-18e2-4966-a544-594d33f4780e"
+            }
+          ],
+          "resourceVersion": "110333",
+          "uid": "8c13cf6c-34c4-434d-9fee-bd00ea608e52"
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "MQTT_NODE_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_ADVERTISE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "status.podIP"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_SEEDS",
+                  "value": "mochi-cluster-peers.mochi.svc:7946"
+                },
+                {
+                  "name": "MQTT_BOOTSTRAP",
+                  "value": "auto"
+                },
+                {
+                  "name": "MQTT_JOIN_TIMEOUT",
+                  "value": "2m"
+                },
+                {
+                  "name": "MQTT_GOSSIP_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "gossip-key",
+                      "name": "mochi-cluster-gossip"
+                    }
+                  }
+                },
+                {
+                  "name": "MQTT_ALLOW_ALL",
+                  "value": "true"
+                },
+                {
+                  "name": "MQTT_LISTEN",
+                  "value": ":1883"
+                },
+                {
+                  "name": "MQTT_WS_LISTEN",
+                  "value": ":1882"
+                },
+                {
+                  "name": "MQTT_DRAIN_ON_STOP",
+                  "value": "true"
+                },
+                {
+                  "name": "MQTT_DRAIN_RATE",
+                  "value": "0"
+                },
+                {
+                  "name": "MQTT_DRAIN_TIMEOUT",
+                  "value": "60s"
+                },
+                {
+                  "name": "MQTT_LOG_LEVEL",
+                  "value": "info"
+                },
+                {
+                  "name": "MQTT_LOG_FORMAT",
+                  "value": "json"
+                }
+              ],
+              "image": "mochi-cluster:auth-fix",
+              "imagePullPolicy": "Never",
+              "livenessProbe": {
+                "failureThreshold": 6,
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "name": "mochi",
+              "ports": [
+                {
+                  "containerPort": 1883,
+                  "name": "mqtt",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 1882,
+                  "name": "mqtt-ws",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7946,
+                  "name": "gossip-tcp",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7946,
+                  "name": "gossip-udp",
+                  "protocol": "UDP"
+                },
+                {
+                  "containerPort": 7947,
+                  "name": "forward",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 7948,
+                  "name": "raft",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 8080,
+                  "name": "admin",
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "failureThreshold": 2,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "resources": {
+                "limits": {
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "startupProbe": {
+                "failureThreshold": 90,
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "admin",
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-8m5zd",
+                  "readOnly": true
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": false,
+          "hostname": "mochi-cluster-2",
+          "nodeName": "desktop-worker",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "subdomain": "mochi-cluster-peers",
+          "terminationGracePeriodSeconds": 90,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "topologySpreadConstraints": [
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app.kubernetes.io/instance": "mochi-cluster",
+                  "app.kubernetes.io/name": "mochi-cluster"
+                }
+              },
+              "maxSkew": 1,
+              "topologyKey": "topology.kubernetes.io/zone",
+              "whenUnsatisfiable": "ScheduleAnyway"
+            },
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app.kubernetes.io/instance": "mochi-cluster",
+                  "app.kubernetes.io/name": "mochi-cluster"
+                }
+              },
+              "maxSkew": 1,
+              "topologyKey": "kubernetes.io/hostname",
+              "whenUnsatisfiable": "ScheduleAnyway"
+            }
+          ],
+          "volumes": [
+            {
+              "name": "kube-api-access-8m5zd",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "expirationSeconds": 3607,
+                      "path": "token"
+                    }
+                  },
+                  {
+                    "configMap": {
+                      "items": [
+                        {
+                          "key": "ca.crt",
+                          "path": "ca.crt"
+                        }
+                      ],
+                      "name": "kube-root-ca.crt"
+                    }
+                  },
+                  {
+                    "downwardAPI": {
+                      "items": [
+                        {
+                          "fieldRef": {
+                            "apiVersion": "v1",
+                            "fieldPath": "metadata.namespace"
+                          },
+                          "path": "namespace"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "status": {
+          "allocatedResources": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          },
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:19Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:19Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:22Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:22Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-10-26T17:49:19Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "50m",
+                "memory": "64Mi"
+              },
+              "containerID": "containerd://36b809e8d88baefe5c282a21477f2bbb8df47a3dd1d1304b0728e3d899967cad",
+              "image": "docker.io/library/mochi-cluster:auth-fix",
+              "imageID": "sha256:cfec385db48630ae5fde1349d97145b4eef5a52208fc3023d74bc281d83bd5cf",
+              "lastState": {},
+              "name": "mochi",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-10-26T17:49:19Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-8m5zd",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            }
+          ],
+          "hostIP": "172.26.0.2",
+          "hostIPs": [
+            {
+              "ip": "172.26.0.2"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.244.3.25",
+          "podIPs": [
+            {
+              "ip": "10.244.3.25"
+            }
+          ],
+          "qosClass": "Burstable",
+          "resources": {
+            "limits": {
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "28m",
+              "memory": "64Mi"
+            }
+          },
+          "startTime": "2026-10-26T17:49:19Z"
+        }
+      }
+    ],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  }
+}

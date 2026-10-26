@@ -1,0 +1,1 @@
+{"concurrency":256,"connection_failed":0,"connections":6000,"errors":{},"failed":0,"label":"kindnet-original-baseline","p50_ms":6.135,"p95_ms":1124.246,"p99_ms":3500.858,"per_second":884.0420570637953,"seconds":6.787007419,"subscribe":true,"subscription_failed":0}

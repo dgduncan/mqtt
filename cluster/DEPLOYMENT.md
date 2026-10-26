@@ -37,7 +37,7 @@ These follow from how the cluster works ([cluster.go](cluster.go), [registry.go]
 | An odd number of nodes, 3 or 5, spread across zones | The session registry needs a raft quorum; 3 nodes tolerate 1 failure, 5 tolerate 2 | `replicas: 3`, topology spread across zones, PodDisruptionBudget `maxUnavailable: 1` |
 | Never restart every node at once | The registry is kept in memory by default, so a node recovers it from the others; if all nodes restart together, session ownership is lost | OrderedReady rolling update gated on readiness; PDB |
 | Graceful stop | SIGTERM drains the node (clients reconnect elsewhere and their sessions move) | `terminationGracePeriodSeconds` longer than the drain (the example waits up to 60s) |
-| Health | `/healthz` returns 503 when the node has lost contact with a registry quorum or is draining | **Readiness** probe on `/healthz`, so the load balancer stops sending clients to that node. **Liveness** probe on TCP 1883 only: a node cut off from the registry should be taken out of the load balancer, not restarted |
+| Health | `/healthz` checks local voter membership, Raft commit catch-up, registry quorum and the admission RPC path, and returns 503 on failure or while draining | **Readiness** probe on `/healthz`, so the load balancer stops sending clients to that node. **Liveness** and startup probes on `/livez` keep registry isolation from causing restarts |
 | Load balancing | Any node accepts any client, and sessions follow the client | Layer 4 TCP load balancer, no session affinity |
 | Metrics | `/metrics` serves Prometheus text | GKE: Managed Service for Prometheus `PodMonitoring`. VKE: kube-prometheus-stack or Grafana Cloud agent |
 
@@ -65,9 +65,64 @@ appear, then exits, and never starts a second cluster. The headless Service publ
 which aren't ready yet (`publishNotReadyAddresses`), because a node can't become ready until
 it has joined.
 
-Probes: readiness is `/healthz`, so a node out of contact with the registry, or draining, is
-taken out of the client Service. Liveness and startup are `/livez`, so such a node isn't
-restarted. The startup probe allows for the join timeout.
+Probes: readiness is `/healthz`. The node must know its voter membership, have a nonzero
+commit index, catch its Raft applied index up to the commit index observed by the probe,
+remain in contact with the registry, and complete an active registry check within 750 ms
+(or the HTTP request's earlier deadline). A leader verifies quorum; a follower checks
+the leader over the same RPC listener used for admission. Failures and draining return
+503, taking the node out of the client Service after the probe failure threshold.
+Liveness and startup are `/livez`, so registry isolation does not cause restarts. The
+startup probe allows for the join timeout.
+
+The applied-index check uses Raft's public progress counters, not a guarantee that the
+application FSM has finished every queued operation. Stable voter membership, durable
+Raft storage and recovery from stale peer addresses remain separate reliability work.
+
+The check permits a single bootstrapped voter, allowing OrderedReady startup to create
+the remaining pods. During a rolling upgrade, a new follower sends an impossible
+ownership confirmation (empty client ID, epoch zero). An older leader processes that
+confirmation through Raft without changing ownership; a new leader uses a read-only
+quorum verification. New-version probes therefore work before the leader is upgraded.
+`/stats`'s `InContact` and `mochi_cluster_registry_in_contact` describe Raft lease contact;
+they do not include this active readiness check.
+
+### Local Kindnet network loss
+
+For the Docker Desktop lab, see the [Kindnet receive-buffer mitigation](../deploy/kind/README.md)
+and [validation report](../benchmark-results/2026-10-26-reliability-validation/REPORT.md).
+The original restrictive NetworkPolicy remains enabled; the local CNI patch
+addresses reproduced registry refusals under connection churn. It does not change
+subscriber quota handling or Raft persistence.
+
+### Delivery losses and registry diagnostics
+
+The cluster's `/metrics` endpoint includes these node-wide metrics, without client-ID
+labels. `/stats` exposes the corresponding fields for benchmark snapshots.
+
+| Prometheus metric | `/stats` field | Meaning |
+| --- | --- | --- |
+| `mochi_cluster_subscriber_inflight_dropped_total` | `SubscriberInflightDropped` | Existing `InflightDropped` counter: subscriber quota/packet-ID failures and expired messages discarded during session restoration |
+| `mochi_cluster_subscriber_messages_dropped_total` | `SubscriberMessagesDropped` | Subscriber outbound queue drops, separate from cluster forwarding drops |
+| `mochi_cluster_subscriber_inflight_messages` | `SubscriberInflight` | Current stored inflight messages across all clients on this node |
+| `mochi_cluster_subscriber_inflight_limit` | `SubscriberInflightLimit` | Configured inflight storage limit **per client**; it is not a node-wide capacity |
+| `mochi_cluster_registry_rpc_calls_total` | `RegistryRPCCalls` | Remote registry RPC attempts, including readiness checks; excludes local Raft operations |
+| `mochi_cluster_registry_rpc_failures_total` | `RegistryRPCFailures` | Remote RPC errors, including transport/protocol errors and remote rejections |
+| `mochi_cluster_registry_rpc_timeouts_total` | `RegistryRPCTimeouts` | Remote RPC attempts whose local context or transport timed out |
+
+The broker also publishes the inflight-drop count at the retained
+`$SYS/broker/messages/inflight/dropped` topic on its normal system-topic interval.
+This count includes session-restore expirations, so it is not exclusively a quota-loss
+counter. The benchmark runner in `benchmark-results/2026-10-26-saturation/run.py`
+records these new counter deltas; missing fields from older brokers are recorded as
+`null`, not zero.
+
+Registry RPC failures retain the operation, peer address, phase (`connect`, `deadline`,
+`write`, `read`, or `response`), elapsed duration, and underlying error. A terminal
+proposal failure preserves both the context error and last RPC failure's cause while
+remaining compatible with `errors.Is(err, cluster.ErrNoQuorum)`. Inspect the wrapped
+cause before attributing that sentinel to actual quorum loss. Individual attempts and
+response-write failures are logged at debug level; admission warnings include the final
+wrapped cause at the configured normal log level.
 
 Auth files loaded by `cmd/cluster` end with an automatic catch-all ACL deny. This applies
 both to Helm's inline `auth.ledger` and to `auth.existingSecret`. Authentication alone no

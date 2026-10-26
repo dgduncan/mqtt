@@ -124,8 +124,8 @@ spec:
             httpGet: { path: /livez, port: admin }
             periodSeconds: 2
             failureThreshold: 90
-          # Ready while the node is in contact with the session registry and not draining,
-          # so the load balancer only sends clients to nodes which can accept them.
+          # Ready after Raft commit catch-up and checking the registry admission
+          # RPC path and quorum. The bounded check also permits first-voter bootstrap.
           readinessProbe:
             httpGet: { path: /healthz, port: admin }
             periodSeconds: 2

@@ -1,0 +1,23 @@
+Release "mochi-validation" has been upgraded. Happy Helming!
+NAME: mochi-validation
+LAST DEPLOYED: Mon Oct 26 14:22:45 2026
+NAMESPACE: mochi-validation
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+NOTES:
+3 mochi cluster nodes are starting, one at a time.
+
+  kubectl -n mochi-validation rollout status statefulset/mochi-validation
+
+Clients connect to the mochi-validation service (LoadBalancer).
+
+  kubectl -n mochi-validation get service mochi-validation
+
+Cluster stats from a node:
+
+  kubectl -n mochi-validation port-forward pod/mochi-validation-0 8080
+  curl localhost:8080/stats
+
+WARNING: auth.allowAll is set, so every client can connect.

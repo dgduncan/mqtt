@@ -1,0 +1,1 @@
+insert rule inet kindnet-network-policies postrouting ip saddr { 10.244.3.26, 10.244.1.8, 10.244.2.8 } ip daddr { 10.244.3.26, 10.244.1.8, 10.244.2.8 } ct direction reply ct state established counter accept comment "mochi-validation-established-replies"

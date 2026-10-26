@@ -210,12 +210,14 @@ type Cluster struct {
 	retained    map[string]retainEntry
 	retainClock atomic.Int64
 
-	registry    *registry
-	sessions    *sessions
-	raft        *raft.Raft
-	leaderLease time.Duration // how long a leader cut off from a quorum may keep leading
-	stream      *raftStream
-	contact     atomic.Int64 // unix nanoseconds of the last known contact with a registry quorum
+	registry       *registry
+	sessions       *sessions
+	raft           *raft.Raft
+	leaderLease    time.Duration // how long a leader cut off from a quorum may keep leading
+	stream         *raftStream
+	contact        atomic.Int64 // unix nanoseconds of the last known contact with a registry quorum
+	verificationMu sync.Mutex
+	verification   *registryVerification // coalesces concurrent readiness quorum checks
 
 	ml          *memberlist.Memberlist
 	ln          net.Listener

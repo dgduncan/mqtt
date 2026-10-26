@@ -1,0 +1,35 @@
+ok  	github.com/dgduncan/mqtt/v3	3.415s
+ok  	github.com/dgduncan/mqtt/v3/cluster	98.415s
+?   	github.com/dgduncan/mqtt/v3/cluster/chaos	[no test files]
+?   	github.com/dgduncan/mqtt/v3/cmd	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/cmd/cluster	3.991s
+?   	github.com/dgduncan/mqtt/v3/cmd/docker	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/config	1.806s
+?   	github.com/dgduncan/mqtt/v3/examples/auth/basic	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/auth/encoded	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/benchmark	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/examples/benchmark/loadtest	(cached)
+?   	github.com/dgduncan/mqtt/v3/examples/cluster	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/config	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/debug	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/direct	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/hooks	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/paho.testing	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/badger	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/bolt	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/pebble	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/persistence/redis	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/tcp	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/tls	[no test files]
+?   	github.com/dgduncan/mqtt/v3/examples/websocket	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/hooks/auth	(cached)
+?   	github.com/dgduncan/mqtt/v3/hooks/debug	[no test files]
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage	2.716s
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/badger	7.403s
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/bolt	3.202s
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/pebble	4.709s
+ok  	github.com/dgduncan/mqtt/v3/hooks/storage/redis	2.352s
+ok  	github.com/dgduncan/mqtt/v3/listeners	4.341s
+ok  	github.com/dgduncan/mqtt/v3/mempool	3.978s
+ok  	github.com/dgduncan/mqtt/v3/packets	3.069s
+ok  	github.com/dgduncan/mqtt/v3/system	3.677s

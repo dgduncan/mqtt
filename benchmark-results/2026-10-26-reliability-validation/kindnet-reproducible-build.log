@@ -1,0 +1,47 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 225B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/kindest/kindnetd:v20260528-9350166c
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/kindest/kindnetd:v20260528-9350166c@sha256:92f49a1b2c9242058481fc3e13412c19a62cfeb090717dad4598719d32351f1f
+#4 resolve docker.io/kindest/kindnetd:v20260528-9350166c@sha256:92f49a1b2c9242058481fc3e13412c19a62cfeb090717dad4598719d32351f1f done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 45.16MB 0.3s done
+#5 DONE 0.3s
+
+#4 [1/2] FROM docker.io/kindest/kindnetd:v20260528-9350166c@sha256:92f49a1b2c9242058481fc3e13412c19a62cfeb090717dad4598719d32351f1f
+#4 extracting sha256:9b11900825b441f3a44033ac69ff83d5dd4b9b43821ae2fb4fd0da409cfc4623 0.2s done
+#4 extracting sha256:e598884a098bd8c03be10a9d31f1a921f2f7cf741ac9b68653206ee8b843db15
+#4 extracting sha256:e598884a098bd8c03be10a9d31f1a921f2f7cf741ac9b68653206ee8b843db15 0.2s done
+#4 DONE 0.5s
+
+#4 [1/2] FROM docker.io/kindest/kindnetd:v20260528-9350166c@sha256:92f49a1b2c9242058481fc3e13412c19a62cfeb090717dad4598719d32351f1f
+#4 extracting sha256:0f6e7d0f425c70023f688822929036c65286ab74af21441aa2d50970f43bb2fb 0.0s done
+#4 extracting sha256:8db3fbde343d5f5c395bd50e4ca9d6c12b8f2515ffb26d439fd3f7fa0d7defd2 done
+#4 DONE 0.6s
+
+#6 [2/2] COPY kindnetd /bin/kindnetd
+#6 DONE 0.1s
+
+#7 exporting to image
+#7 exporting layers
+#7 exporting layers 0.8s done
+#7 exporting manifest sha256:b0bbfa04960d332777bd8e0d53c9c151b82feb696e2d5cbde0e28e68e5506d9b 0.0s done
+#7 exporting config sha256:8f7edd1501500a876519ca67f927b8c3a010f87d2cc20841af633b49d72ae45f 0.0s done
+#7 exporting attestation manifest sha256:5b1f1115383f7a3f1ecfca72b80948849d7c9e688a0bb10c13c2e04b45fc4bba 0.0s done
+#7 exporting manifest list sha256:d6f15aa8cccf94b346ada76ea7fef5b88f89fe862ac314ca63c95fb3d5c7b097 0.0s done
+#7 naming to docker.io/library/kindnetd:mochi-nfqueue-buffer done
+#7 unpacking to docker.io/library/kindnetd:mochi-nfqueue-buffer 0.1s done
+#7 DONE 0.9s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/2yvfyby8nq6o397ulj4v852ko

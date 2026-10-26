@@ -1,0 +1,37 @@
+{
+  "apiVersion": "networking.k8s.io/v1",
+  "kind": "NetworkPolicy",
+  "metadata": {
+    "name": "validation-block-registry",
+    "namespace": "mochi-validation"
+  },
+  "spec": {
+    "podSelector": {
+      "matchLabels": {
+        "statefulset.kubernetes.io/pod-name": "mochi-validation-1"
+      }
+    },
+    "policyTypes": [
+      "Egress"
+    ],
+    "egress": [
+      {
+        "ports": [
+          {
+            "protocol": "TCP",
+            "port": 1,
+            "endPort": 7946
+          },
+          {
+            "protocol": "TCP",
+            "port": 7948,
+            "endPort": 65535
+          },
+          {
+            "protocol": "UDP"
+          }
+        ]
+      }
+    ]
+  }
+}

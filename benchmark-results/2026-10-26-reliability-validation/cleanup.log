@@ -1,0 +1,7 @@
+These resources were kept due to the resource policy:
+[Secret] mochi-validation-gossip
+
+release "mochi-validation" uninstalled
+namespace "mochi-validation" deleted
+pod "mochi-loadtest" deleted from mochi namespace
+Temporary release, namespace, load generator, and node helpers removed; patched CNI retained.

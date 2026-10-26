@@ -1,0 +1,36 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 99B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/mochi-cluster:auth-fix
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/mochi-cluster:auth-fix@sha256:caf4c44673aa965cc7b713a4bdbc4d5a6286ac3b5819978efdaf6d0cd768b026
+#4 resolve docker.io/library/mochi-cluster:auth-fix@sha256:caf4c44673aa965cc7b713a4bdbc4d5a6286ac3b5819978efdaf6d0cd768b026 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 10.55MB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/2] COPY mochi-cluster /mochi-cluster
+#6 DONE 0.0s
+
+#7 exporting to image
+#7 exporting layers
+#7 exporting layers 0.2s done
+#7 exporting manifest sha256:ed6dc2652d52331a57eaf57aa1f5dc80b22bf662af53d0986ab8cc375485d2b8 done
+#7 exporting config sha256:6abb32814ea8061e8f24db92542a1561f3015005e6ac8740282d4c61cde6c868 done
+#7 exporting attestation manifest sha256:675806f8b64396f98683ec6c04b2206ee4de5704af69fd99b556d1052501e562 done
+#7 exporting manifest list sha256:f48374573790b3d3cd0e8ecafec22ee3ecf1d696d4e200aa7ee65909dc92951f done
+#7 naming to docker.io/library/mochi-cluster:reliability done
+#7 unpacking to docker.io/library/mochi-cluster:reliability 0.0s done
+#7 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/0ho3qy3r3s9cstymosr5ay0kl
