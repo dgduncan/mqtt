@@ -2197,15 +2197,38 @@ func TestPublishToClientExceedMaximumInflight(t *testing.T) {
 		cl.State.Inflight.Set(packets.Packet{PacketID: i})
 	}
 
+	dropped := addDroppedCounter(t, cl)
+
 	_, err := s.publishToClient(cl, packets.Subscription{Filter: "a/b/c", Qos: 1}, *packets.TPacketData[packets.Publish].Get(packets.TPublishQos1).Packet)
 	require.Error(t, err)
 	require.ErrorIs(t, err, packets.ErrQuotaExceeded)
 	require.Equal(t, int64(1), atomic.LoadInt64(&s.Info.InflightDropped))
+	require.Equal(t, int32(1), dropped.n.Load(), "OnPublishDropped not called")
+}
+
+// droppedCounter counts OnPublishDropped calls.
+type droppedCounter struct {
+	HookBase
+	n atomic.Int32
+}
+
+func (h *droppedCounter) ID() string { return "dropped-counter" }
+
+func (h *droppedCounter) Provides(b byte) bool { return b == OnPublishDropped }
+
+func (h *droppedCounter) OnPublishDropped(cl *Client, pk packets.Packet) { h.n.Add(1) }
+
+func addDroppedCounter(t *testing.T, cl *Client) *droppedCounter {
+	t.Helper()
+	h := new(droppedCounter)
+	require.NoError(t, cl.ops.hooks.Add(h, nil))
+	return h
 }
 
 func TestPublishToClientExhaustedPacketID(t *testing.T) {
 	s := newServer()
 	cl, _, _ := newTestClient()
+	dropped := addDroppedCounter(t, cl)
 	for i := uint32(0); i <= cl.ops.options.Capabilities.maximumPacketID; i++ {
 		cl.State.Inflight.Set(packets.Packet{PacketID: uint16(i)})
 	}
@@ -2214,6 +2237,7 @@ func TestPublishToClientExhaustedPacketID(t *testing.T) {
 	require.Error(t, err)
 	require.ErrorIs(t, err, packets.ErrQuotaExceeded)
 	require.Equal(t, int64(1), atomic.LoadInt64(&s.Info.InflightDropped))
+	require.Equal(t, int32(1), dropped.n.Load(), "OnPublishDropped not called")
 }
 
 func TestPublishToClientACLNotAuthorized(t *testing.T) {

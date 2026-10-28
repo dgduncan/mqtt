@@ -1096,11 +1096,15 @@ func (s *Server) publishToClient(cl *Client, sub packets.Subscription, pk packet
 		}
 	}
 
+	// A delivery that cannot enter the client's inflight store is dropped. Both
+	// cases are reported through OnPublishDropped, like a full write queue, and
+	// logged at Debug: they recur for every message to a slow subscriber, so a
+	// Warn per drop would let one stalled client flood the log.
 	if out.FixedHeader.Qos > 0 {
 		if cl.State.Inflight.Len() >= int(s.Options.Capabilities.MaximumInflight) {
-			// add hook?
 			atomic.AddInt64(&s.Info.InflightDropped, 1)
-			s.Log.Warn("client store quota reached", "client", cl.ID, "listener", cl.Net.Listener)
+			cl.ops.hooks.OnPublishDropped(cl, pk)
+			s.Log.Debug("client store quota reached", "client", cl.ID, "listener", cl.Net.Listener)
 			return out, packets.ErrQuotaExceeded
 		}
 
@@ -1108,7 +1112,8 @@ func (s *Server) publishToClient(cl *Client, sub packets.Subscription, pk packet
 		if err != nil {
 			s.hooks.OnPacketIDExhausted(cl, pk)
 			atomic.AddInt64(&s.Info.InflightDropped, 1)
-			s.Log.Warn("packet ids exhausted", "error", err, "client", cl.ID, "listener", cl.Net.Listener)
+			cl.ops.hooks.OnPublishDropped(cl, pk)
+			s.Log.Debug("packet ids exhausted", "error", err, "client", cl.ID, "listener", cl.Net.Listener)
 			return out, packets.ErrQuotaExceeded
 		}
 
