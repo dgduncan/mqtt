@@ -592,6 +592,58 @@ func TestClientStop(t *testing.T) {
 	require.Equal(t, nil, cl.StopCause())
 }
 
+// A reply held while corked must reach the client before Stop closes the
+// connection, or the client treats a publish the server accepted as never
+// acknowledged.
+func TestClientStopSendsHeldReplies(t *testing.T) {
+	cl, r, _ := newTestClient()
+	cl.ops.options.ClientNetWriteBufferSize = 1024 // corking only holds writes with a buffer
+	cl.State.corked.Store(true)
+
+	puback := packets.Packet{FixedHeader: packets.FixedHeader{Type: packets.Puback}, PacketID: 7}
+	require.NoError(t, cl.WritePacket(puback))
+
+	got := make(chan []byte, 1)
+	go func() {
+		b, _ := io.ReadAll(r)
+		got <- b
+	}()
+	cl.Stop(nil)
+
+	require.Equal(t, []byte{packets.Puback << 4, 2, 0, 7}, <-got)
+	require.False(t, cl.State.corked.Load())
+}
+
+// A client that has stopped reading must not hold up its own close: neither
+// the held reply Stop tries to send, nor another writer blocked on the
+// connection while holding the client's lock.
+func TestClientStopDoesNotWaitForStalledReader(t *testing.T) {
+	t.Run("held reply", func(t *testing.T) {
+		cl, _, _ := newTestClient() // nothing reads the other end of the pipe
+		cl.ops.options.ClientNetWriteBufferSize = 1024
+		cl.State.corked.Store(true)
+		require.NoError(t, cl.WritePacket(packets.Packet{FixedHeader: packets.FixedHeader{Type: packets.Puback}, PacketID: 1}))
+
+		start := time.Now()
+		cl.Stop(nil)
+		require.Less(t, time.Since(start), stopFlushTimeout+time.Second)
+	})
+
+	t.Run("blocked writer", func(t *testing.T) {
+		cl, _, _ := newTestClient()
+		blocked := make(chan error, 1)
+		go func() {
+			blocked <- cl.WritePacket(packets.Packet{FixedHeader: packets.FixedHeader{Type: packets.Puback}, PacketID: 1})
+		}()
+		time.Sleep(50 * time.Millisecond) // let the write block inside the lock
+
+		start := time.Now()
+		cl.Stop(nil)
+		require.Less(t, time.Since(start), stopFlushTimeout+time.Second)
+		require.Error(t, <-blocked)
+	})
+}
+
 func TestClientClosed(t *testing.T) {
 	cl, _, _ := newTestClient()
 	require.False(t, cl.Closed())

@@ -3126,6 +3126,27 @@ func TestServerRecievePacketDisconnectClient(t *testing.T) {
 	require.Equal(t, packets.TPacketData[packets.Disconnect].Get(packets.TDisconnect).RawBytes, buf)
 }
 
+// DisconnectClient writes the DISCONNECT and then stops the client. While
+// corked the DISCONNECT is held, and it must still be sent, after the replies
+// held before it.
+func TestServerDisconnectClientWhileCorked(t *testing.T) {
+	s := newServer()
+	cl, r, _ := newTestClient()
+	cl.ops.options.ClientNetWriteBufferSize = 1024
+	cl.State.corked.Store(true)
+	require.NoError(t, cl.WritePacket(packets.Packet{FixedHeader: packets.FixedHeader{Type: packets.Puback}, PacketID: 7}))
+
+	got := make(chan []byte, 1)
+	go func() {
+		b, _ := io.ReadAll(r)
+		got <- b
+	}()
+	require.NoError(t, s.DisconnectClient(cl, packets.CodeDisconnect))
+
+	want := append([]byte{packets.Puback << 4, 2, 0, 7}, packets.TPacketData[packets.Disconnect].Get(packets.TDisconnect).RawBytes...)
+	require.Equal(t, want, <-got)
+}
+
 func TestServerProcessPacketDisconnect(t *testing.T) {
 	s := newServer()
 	cl, _, _ := newTestClient()

@@ -409,11 +409,37 @@ func (cl *Client) uncork() error {
 	return cl.flushOutbuf()
 }
 
+// stopFlushTimeout bounds how long Stop spends sending held replies, so a
+// client that has stopped reading cannot hold up its own close.
+const stopFlushTimeout = time.Second
+
+// flushHeld sends what is waiting in the write buffer before the connection is
+// closed. While corked, that is every reply to the packets processed since the
+// read buffer last drained: acknowledgements the client is owed, and the
+// DISCONNECT that DisconnectClient writes just before it stops the client.
+// Closing without it would discard them, and the client would treat publishes
+// the server accepted as never acknowledged.
+//
+// The write deadline goes on first, without the lock: a writer stuck on a
+// client that has stopped reading holds the lock, and used to be freed only by
+// the close in Stop. The deadline frees it instead, so taking the lock and
+// flushing both finish within stopFlushTimeout.
+func (cl *Client) flushHeld() {
+	cl.State.corked.Store(false)
+	_ = cl.Net.Conn.SetWriteDeadline(time.Now().Add(stopFlushTimeout))
+
+	cl.Lock()
+	defer cl.Unlock()
+	_ = cl.flushOutbuf() // the connection is closing; a failed flush changes nothing
+}
+
 // Stop instructs the client to shut down all processing goroutines and disconnect.
+// Replies held back while corked are sent first; see flushHeld.
 func (cl *Client) Stop(err error) {
 	cl.State.endOnce.Do(func() {
 
 		if cl.Net.Conn != nil {
+			cl.flushHeld()
 			_ = cl.Net.Conn.Close() // omit close error
 		}
 
