@@ -489,6 +489,14 @@ func (s *Server) attachClient(cl *Client, listener string) error {
 
 	err = cl.Read(s.receivePacket)
 	if err != nil {
+		if errors.Is(err, packets.ErrPacketTooLarge) && cl.Properties.ProtocolVersion == 5 {
+			// The fixed header named a size past MaximumPacketSize. Say so
+			// with DISCONNECT 0x95 rather than a bare close, so the client
+			// learns why instead of resending the same packet on reconnect
+			// (4.13). Errors from processing a packet already get this in
+			// receivePacket; this one is raised by the read itself.
+			_ = s.DisconnectClient(cl, packets.ErrPacketTooLarge)
+		}
 		s.sendLWT(cl)
 		cl.Stop(err)
 	} else {
@@ -653,6 +661,13 @@ func (s *Server) SendConnack(cl *Client, reason packets.Code, present bool, prop
 	if s.Options.Capabilities.MaximumQos < 2 {
 		properties.MaximumQos = s.Options.Capabilities.MaximumQos // [MQTT-3.2.2-9]
 		properties.MaximumQosFlag = true
+	}
+
+	// 3.2.2.3.6 Maximum Packet Size: absent means no limit, so a server that
+	// enforces one must say so, or a client has no way to stay under it
+	// [MQTT-3.2.2-15]. Not encoded for v3, which has no CONNACK properties.
+	if s.Options.Capabilities.MaximumPacketSize > 0 {
+		properties.MaximumPacketSize = s.Options.Capabilities.MaximumPacketSize
 	}
 
 	if cl.Properties.Props.AssignedClientID != "" {
