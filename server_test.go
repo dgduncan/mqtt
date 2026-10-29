@@ -605,6 +605,112 @@ func TestEstablishConnectionReadError(t *testing.T) {
 	_ = r.Close()
 }
 
+// A v5 client whose packet is over MaximumPacketSize is told why with
+// DISCONNECT 0x95 before the server closes, rather than seeing a bare close.
+func TestEstablishConnectionDisconnectsPacketTooLarge(t *testing.T) {
+	s := newServer()
+	defer s.Close()
+	s.Options.Capabilities.MaximumPacketSize = 128 // the 89-byte CONNECT fits
+
+	r, w := net.Pipe()
+	o := make(chan error)
+	go func() {
+		o <- s.EstablishConnection("tcp", r)
+	}()
+
+	go func() {
+		_, _ = w.Write(packets.TPacketData[packets.Connect].Get(packets.TConnectMqtt5).RawBytes)
+		_, _ = w.Write([]byte{0x30, 0xac, 0x02}) // PUBLISH QoS 0, remaining length 300
+		_, _ = w.Write(make([]byte, 300))        // never read: the header alone is refused
+	}()
+
+	recv := make(chan []byte)
+	go func() {
+		buf, err := io.ReadAll(w)
+		require.NoError(t, err)
+		recv <- buf
+	}()
+
+	err := <-o
+	require.ErrorIs(t, err, packets.ErrPacketTooLarge)
+
+	cl, ok := s.Clients.Get(packets.TPacketData[packets.Connect].Get(packets.TConnectMqtt5).Packet.Connect.ClientIdentifier)
+	require.True(t, ok)
+	require.ErrorIs(t, cl.StopCause(), packets.ErrPacketTooLarge)
+
+	out := decodeServerPackets(t, <-recv, 5)
+	require.Len(t, out, 2)
+	require.Equal(t, packets.Connack, out[0].FixedHeader.Type)
+	require.Equal(t, uint32(128), out[0].Properties.MaximumPacketSize)
+	require.Equal(t, packets.Disconnect, out[1].FixedHeader.Type)
+	require.Equal(t, packets.ErrPacketTooLarge.Code, out[1].ReasonCode)
+
+	_ = w.Close()
+	_ = r.Close()
+}
+
+// MQTT 3.1.1 has no server DISCONNECT, so an oversized packet from a v3 client
+// still ends in a plain close after the CONNACK.
+func TestEstablishConnectionPacketTooLargeV3Closes(t *testing.T) {
+	s := newServer()
+	defer s.Close()
+	s.Options.Capabilities.MaximumPacketSize = 128
+
+	r, w := net.Pipe()
+	o := make(chan error)
+	go func() {
+		o <- s.EstablishConnection("tcp", r)
+	}()
+
+	go func() {
+		_, _ = w.Write(packets.TPacketData[packets.Connect].Get(packets.TConnectClean).RawBytes)
+		_, _ = w.Write([]byte{0x30, 0xac, 0x02})
+		_, _ = w.Write(make([]byte, 300))
+	}()
+
+	recv := make(chan []byte)
+	go func() {
+		buf, err := io.ReadAll(w)
+		require.NoError(t, err)
+		recv <- buf
+	}()
+
+	err := <-o
+	require.ErrorIs(t, err, packets.ErrPacketTooLarge)
+	require.Equal(t, packets.TPacketData[packets.Connack].Get(packets.TConnackAcceptedNoSession).RawBytes, <-recv)
+
+	_ = w.Close()
+	_ = r.Close()
+}
+
+// decodeServerPackets splits the bytes a server wrote to a client into
+// packets, decoding CONNACK and DISCONNECT bodies as protocol version v.
+func decodeServerPackets(t *testing.T, buf []byte, v byte) []packets.Packet {
+	t.Helper()
+	var out []packets.Packet
+	rd := bytes.NewReader(buf)
+	for rd.Len() > 0 {
+		hb, err := rd.ReadByte()
+		require.NoError(t, err)
+		pk := packets.Packet{ProtocolVersion: v}
+		require.NoError(t, pk.FixedHeader.Decode(hb))
+		n, _, err := packets.DecodeLength(rd)
+		require.NoError(t, err)
+		pk.FixedHeader.Remaining = n
+		body := make([]byte, n)
+		_, err = io.ReadFull(rd, body)
+		require.NoError(t, err)
+		switch pk.FixedHeader.Type {
+		case packets.Connack:
+			require.NoError(t, pk.ConnackDecode(body))
+		case packets.Disconnect:
+			require.NoError(t, pk.DisconnectDecode(body))
+		}
+		out = append(out, pk)
+	}
+	return out
+}
+
 func TestEstablishConnectionInheritExisting(t *testing.T) {
 	s := newServer()
 	defer s.Close()
@@ -1208,6 +1314,44 @@ func TestServerSendConnackAdjustedExpiryInterval(t *testing.T) {
 	buf, err := io.ReadAll(r)
 	require.NoError(t, err)
 	require.Equal(t, packets.TPacketData[packets.Connack].Get(packets.TConnackAcceptedAdjustedExpiryInterval).RawBytes, buf)
+}
+
+// A server that enforces a packet size has to advertise it to v5 clients:
+// absent, the property means no limit.
+func TestServerSendConnackAdvertisesMaximumPacketSize(t *testing.T) {
+	s := newServer()
+	s.Options.Capabilities.MaximumPacketSize = 256 << 10
+	cl, r, w := newTestClient()
+	cl.Properties.ProtocolVersion = 5
+	go func() {
+		err := s.SendConnack(cl, packets.CodeSuccess, false, nil)
+		require.NoError(t, err)
+		_ = w.Close()
+	}()
+
+	buf, err := io.ReadAll(r)
+	require.NoError(t, err)
+	out := decodeServerPackets(t, buf, 5)
+	require.Len(t, out, 1)
+	require.Equal(t, packets.CodeSuccess.Code, out[0].ReasonCode)
+	require.Equal(t, uint32(256<<10), out[0].Properties.MaximumPacketSize)
+}
+
+// v3 CONNACKs carry no properties, so the limit changes nothing on the wire.
+func TestServerSendConnackMaximumPacketSizeV3(t *testing.T) {
+	s := newServer()
+	s.Options.Capabilities.MaximumPacketSize = 256 << 10
+	cl, r, w := newTestClient()
+	cl.Properties.ProtocolVersion = 4
+	go func() {
+		err := s.SendConnack(cl, packets.CodeSuccess, false, nil)
+		require.NoError(t, err)
+		_ = w.Close()
+	}()
+
+	buf, err := io.ReadAll(r)
+	require.NoError(t, err)
+	require.Equal(t, packets.TPacketData[packets.Connack].Get(packets.TConnackAcceptedNoSession).RawBytes, buf)
 }
 
 func TestInheritClientSession(t *testing.T) {
